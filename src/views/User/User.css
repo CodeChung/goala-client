@@ -1,0 +1,26 @@
+.view nav {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 15px 0;
+}
+
+.view nav a {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.new-user-links a {
+    padding: 0 5px;
+}
+
+.hidden {
+    display: none !important;
+}
