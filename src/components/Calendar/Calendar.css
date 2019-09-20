@@ -1,15 +1,26 @@
 .calendar {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
 }
 
 .calendar-header {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
+    width: 100%;
 }
 
 .calendar-weekdays {
     display: flex;
     justify-content: space-around;
+}
+
+.weekday {
+    box-sizing: border-box;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    width: calc(100% / 7)
 }

@@ -6,5 +6,9 @@
 .calendar-days a {
     box-sizing: border-box;
     width: calc(100% / 7);
-    border: 1px solid black;
+    border: .01em solid slategrey;
+    height: calc(65vh / 5);
+    text-decoration: none;
+    color: black;
+
 }
