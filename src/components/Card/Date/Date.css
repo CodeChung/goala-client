@@ -1,0 +1,31 @@
+.entry-date {
+    padding: 12px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.entry-date-number {
+    font-size: 45px;
+    font-weight: 700;
+    color: #63CCCA;
+}
+
+.entry-date-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    top: 3px;
+    left: 5px;
+}
+
+.entry-date-day {
+    color: darkslategrey;
+    font-weight: 300;
+}
+
+.entry-date-month {
+    font-weight: 600;
+}

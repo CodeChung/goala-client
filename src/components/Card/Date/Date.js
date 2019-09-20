@@ -9,13 +9,13 @@ class Date extends React.Component {
                 <div className='entry-date-number'>
                     {date.getDate()}
                 </div>
-                <div>
-                    <div className='entry-date-month'>
-                        {date.toLocaleString('default', { month: 'long' })} {date.getFullYear()}
-                    </div>
+                <div className='entry-date-block'>
                     <div className='entry-date-day'>
                         {date.toLocaleString('default', { weekday: 'long' })}
-                    </div>   
+                    </div>  
+                    <div className='entry-date-month'>
+                        {date.toLocaleString('default', { month: 'long' })} {date.getFullYear()}
+                    </div> 
                 </div>
                 
             </div>

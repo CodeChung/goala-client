@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './Card.css';
 import Date from './Date/Date';
 
 class Card extends React.Component {
     render() {
-        const { id, date, saved, actions, reminders } = this.props
-        console.log( id, date, saved, actions, reminders)
+        let { id, date, saved, actions, reminders, text } = this.props
         return (
             <div className='entry-card'>
-                Card
+                <div 
+                    onClick={ saved = !saved }
+                    className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
+                    <FontAwesomeIcon icon={faBookmark} />
+                </div>
                 <Date date={date}/>
+                {text}
             </div>
         )
     }

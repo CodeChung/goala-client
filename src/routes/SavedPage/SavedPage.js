@@ -27,6 +27,54 @@ const exampleCards = [
         reminders: [],
         text: 'Today was a great day. This will probably be html'
     },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
+    {
+        id: 3,
+        date: new Date(),
+        saved: true,
+        actions: [],
+        reminders: [],
+        text: 'Today was a great day. This will probably be html'
+    },
 ]
 
 class SavedPage extends React.Component {

@@ -20,6 +20,7 @@ class CardList extends React.Component {
                 saved={card.saved}
                 actions={card.actions}
                 reminders={card.reminders}
+                text={card.text}
                 />
         )
         return (
@@ -36,7 +37,8 @@ CardList.propTypes = {
         date: PropTypes.instanceOf(Date),
         saved: PropTypes.bool,
         actions: PropTypes.array,
-        reminders: PropTypes.array
+        reminders: PropTypes.array,
+        text: PropTypes.string,
     }))
 }
 
