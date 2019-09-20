@@ -4,7 +4,9 @@ import CoachPage from '../../routes/CoachPage/CoachPage';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './User.css'
 import HomePage from '../../routes/HomePage/HomePage';
+import SearchPage from '../../routes/SearchPage/SearchPage';
 import SideBar from '../../components/SideBar/SideBar';
+import SavedPage from '../../routes/SavedPage/SavedPage';
 
 class User extends React.Component {
     state = {
@@ -24,13 +26,17 @@ class User extends React.Component {
                 <main>
                     <Switch>
                         <Route exact path='/' 
-                            component={HomePage}/>
-                        <Route path='/login' render={() => <Redirect to='/'/>}/>
+                            component={HomePage} />
+                        <Route path='/login' render={() => <Redirect to='/'/>} />
                         <Route path='/goal/:goalId' 
                             render={({match}) => <CoachPage
                                 match={match}
-                                showNav={() => this.showNav()}/>}/>
-                        <Route component={MissingPage}/>
+                                showNav={() => this.showNav()}/>} />
+                        <Route path='/saved'
+                            component={SavedPage} />
+                        <Route path='/search'
+                            component={SearchPage} />
+                        <Route component={MissingPage} />
                     </Switch>
                 </main>
             </section>

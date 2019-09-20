@@ -4,7 +4,7 @@ class LandingPage extends React.Component {
     render() {
         return (
             <section className='landing-page'>
-                Goalf is a goal setting journal.
+                A private journal integrated with goal and habit tracking.
                 <button>Check it out</button>
             </section>
         )

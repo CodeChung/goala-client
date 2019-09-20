@@ -1,0 +1,45 @@
+.searchbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    padding-top: 30px;
+}
+
+.searchbar form::after {
+    content: ' ';
+    width: 2px;
+    height: 4em;
+    background-color: black;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* box-shadow: 3px 3px 2px red; */
+}
+
+.searchbar form input {
+    font-size: 25px;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+}
+
+.searchbar form input:focus {
+    outline: none;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+.searchbar form input:focus::placeholder{
+    color:transparent;
+    text-shadow: none;
+}
+
+.searchbar form button {
+    font-size: 25px;
+    border: none;
+}
+
+.searchbar form button:focus {
+    outline: none;
+}

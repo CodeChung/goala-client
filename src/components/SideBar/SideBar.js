@@ -9,7 +9,6 @@ class SideBar extends React.Component {
         currentView: 'home'
     }
     setCurrentNav(currentView) {
-        console.log(currentView)
         this.setState({ currentView })
     }
     render() {
