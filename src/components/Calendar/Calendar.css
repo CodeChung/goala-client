@@ -1,0 +1,15 @@
+.calendar {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.calendar-weekdays {
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,0 +1,10 @@
+.calendar-days {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar-days a {
+    box-sizing: border-box;
+    width: calc(100% / 7);
+    border: 1px solid black;
+}
