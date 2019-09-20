@@ -1,9 +1,10 @@
 import React from 'react';
 import { Redirect, Switch, Link, Route } from 'react-router-dom';
-import GoalPage from '../../routes/GoalPage/GoalPage';
 import CoachPage from '../../routes/CoachPage/CoachPage';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './User.css'
+import HomePage from '../../routes/HomePage/HomePage';
+import SideBar from '../../components/SideBar/SideBar';
 
 class User extends React.Component {
     state = {
@@ -19,19 +20,11 @@ class User extends React.Component {
     render() {
         return (
             <section className='user view'>
-                <nav className={this.state.display}>
-                    <Link to='/'>
-                        <span className='logo'>
-                            Coach
-                        </span>
-                    </Link>
-                    <Link to='/login' onClick={() => this.props.logout()}>Logout</Link>
-                </nav>
+                <SideBar logout={() => this.props.logout()}/>
                 <main>
                     <Switch>
                         <Route exact path='/' 
-                            render={() => <GoalPage
-                                hideNav={() => this.hideNav()}/>}/>
+                            component={HomePage}/>
                         <Route path='/login' render={() => <Redirect to='/'/>}/>
                         <Route path='/goal/:goalId' 
                             render={({match}) => <CoachPage
