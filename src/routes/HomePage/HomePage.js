@@ -5,6 +5,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 HomePage
+                Implement scroll feed
             </div>
         )
     }

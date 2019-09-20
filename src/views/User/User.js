@@ -7,6 +7,7 @@ import HomePage from '../../routes/HomePage/HomePage';
 import SearchPage from '../../routes/SearchPage/SearchPage';
 import SideBar from '../../components/SideBar/SideBar';
 import SavedPage from '../../routes/SavedPage/SavedPage';
+import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 
 class User extends React.Component {
     state = {
@@ -28,10 +29,8 @@ class User extends React.Component {
                         <Route exact path='/' 
                             component={HomePage} />
                         <Route path='/login' render={() => <Redirect to='/'/>} />
-                        <Route path='/goal/:goalId' 
-                            render={({match}) => <CoachPage
-                                match={match}
-                                showNav={() => this.showNav()}/>} />
+                        <Route path='/calendar'
+                            component={CalendarPage} />
                         <Route path='/saved'
                             component={SavedPage} />
                         <Route path='/search'
