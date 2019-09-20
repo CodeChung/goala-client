@@ -1,3 +1,7 @@
+/* Import fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:300,400&display=swap');
+
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -23,6 +27,7 @@
 }
 
 nav a {
+    font-family: 'Work Sans', sans-serif;
     font-size: 14px;
     text-decoration: none;
     display: flex;
@@ -41,6 +46,11 @@ nav a:hover {
     background: lightblue;
     border-left: 10px solid #5A5353;
     
+}
+
+.nav-logo {
+    font-family: 'Crimson Text', serif;
+    letter-spacing: 0.3ch;
 }
 
 .nav-logo:hover {

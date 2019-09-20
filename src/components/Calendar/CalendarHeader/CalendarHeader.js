@@ -5,8 +5,6 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 class CalendarHeader extends React.Component {
     render() {
-        const dateFormat = 'MMMM YYYY';
-        
         return (
             <div className='calendar-header'>
                 <div className="">

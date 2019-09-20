@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect, Switch, Link, Route } from 'react-router-dom';
-import CoachPage from '../../routes/CoachPage/CoachPage';
+import { Redirect, Switch, Route } from 'react-router-dom';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './User.css'
 import HomePage from '../../routes/HomePage/HomePage';

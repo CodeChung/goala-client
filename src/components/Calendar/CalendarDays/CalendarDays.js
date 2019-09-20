@@ -29,7 +29,6 @@ class CalendarDays extends React.Component {
 
         // add in irrelevant month blocks
         for (let i = 0; i < monthOffset; i++) {
-            console.log(i)
             days.push(<CalendarCell key={i} />)
         }
         // we'll have a fetch request to query all entries with same month, then sort by date
@@ -37,15 +36,19 @@ class CalendarDays extends React.Component {
         // fetch()
         //     .then(monthData => monthData.forEach(day => days.push(<CalendarCell key={} date={day.date})))
         for (let i = 1; i <= monthLength; i++) {
-            console.log(i)
             days.push(<CalendarCell key={monthOffset + i} number={i} />)
         }
 
-        for (let i = monthOffsetEnd; i < 35; i++) {
-            console.log(i)
-            days.push(<CalendarCell key={i + 1} />)
+        if (days.length % 7 !== 0) {
+            const length = days.length
+            for (let i = 0; i < 7 - length % 7; i++) {
+                days.push(<CalendarCell key={monthOffsetEnd + i + 1} />)
+            }
         }
-        console.log(this.state.days, days)
+
+        // for (let i = monthOffsetEnd; i < 35; i++) {
+        //     days.push(<CalendarCell key={i + 1} />)
+        // }
         this.setState({ 
             days,
             refresh: true,

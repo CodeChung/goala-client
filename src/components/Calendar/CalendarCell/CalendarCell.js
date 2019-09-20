@@ -7,7 +7,7 @@ class CalendarCell extends React.Component {
     render() {
         return (
             <Link t0='/'>
-                <div className='calendar-cell'>
+                <div className={'calendar-cell' + this.props.style}>
                     {this.props.number || 'XXX'}
                 </div>
             </Link>
