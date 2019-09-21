@@ -6,12 +6,26 @@
     overflow: auto !important;
 }
 
+.journal-feed {
+    width: 100%;
+}
+
 .journal-feed .card-list {
-    width: 60%;
+    width: 100%;
     justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
 }
 
 .journal-feed .card-list .entry-card {
     width: 400px;
     height: 400px;
+    transition: .3s;
+}
+
+.journal-feed .card-list .entry-card:hover {
+    width: 100%;
+    height: 100vh;
+    transition: .5s;
 }

@@ -16,7 +16,9 @@ class Card extends React.Component {
                     <FontAwesomeIcon icon={faBookmark} />
                 </div>
                 <Date date={date}/>
-                {text}
+                <p contentEditable='true'>
+                    {text}
+                </p>
             </div>
         )
     }
