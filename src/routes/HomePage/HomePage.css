@@ -1,0 +1,17 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto !important;
+}
+
+.journal-feed .card-list {
+    width: 60%;
+    justify-content: center;
+}
+
+.journal-feed .card-list .entry-card {
+    width: 400px;
+    height: 400px;
+}

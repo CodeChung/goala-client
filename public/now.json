@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "alias": "hc9825-bookmarks-app",
+    "name": "goala-app",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+  }
