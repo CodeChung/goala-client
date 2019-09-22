@@ -1,5 +1,6 @@
 import React from 'react';
 import Column from './Column';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './ActionTools.css';
 
 const initialData = {
@@ -19,9 +20,12 @@ const initialData = {
     columnOrder: ['column-1']
 }
 
-
 class ActionTools extends React.Component {
     state = initialData;
+
+    onDragEnd = result => {
+
+    }
     render() {
         const columns = this.state.columnOrder.map(columnId => {
             const column = this.state.columns[columnId]
@@ -31,8 +35,13 @@ class ActionTools extends React.Component {
         })
         return (
             <div className='action-tools'>
-                <h4>Values</h4>
-                {columns}
+                <DragDropContext
+                    onDragEnd={this.onDragEnd}
+                    >
+                    <h4>Values</h4>
+                    {columns}
+                </DragDropContext>
+                
             </div>
         )
     }

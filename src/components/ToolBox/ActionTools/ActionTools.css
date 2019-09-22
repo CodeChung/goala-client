@@ -1,0 +1,6 @@
+.action-tools {
+    z-index: 1;
+    background: wheat;
+    position: absolute;
+    width: 50%;
+}
