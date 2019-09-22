@@ -52,6 +52,7 @@ nav a:hover {
 .nav-logo {
     font-family: 'Crimson Text', serif;
     letter-spacing: 0.3ch;
+    font-size: 50px;
 }
 
 .nav-logo:hover {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
+import './LoginForm.css';
 
 class LoginForm extends Component {
   static defaultProps = {
@@ -34,6 +35,7 @@ class LoginForm extends Component {
     return (
       <form
         className='LoginForm'
+        autoComplete='off'
         onSubmit={e => this.handleSubmit(e)}
       >
         <div role='alert'>
@@ -46,6 +48,7 @@ class LoginForm extends Component {
           <input
             required
             name='username'
+            placeholder='username'
             id='LoginForm__user_name'/>
         </div>
         <div className='password'>
@@ -56,6 +59,7 @@ class LoginForm extends Component {
             required
             name='password'
             type='password'
+            placeholder='password'
             id='LoginForm__password'/>
         </div>
         <button type='submit'>

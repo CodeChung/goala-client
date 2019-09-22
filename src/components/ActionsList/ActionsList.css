@@ -1,0 +1,10 @@
+.action-list {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.action-icon {
+    margin: 10px;
+    border: 1px solid black;
+}

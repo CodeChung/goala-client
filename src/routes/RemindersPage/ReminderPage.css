@@ -1,0 +1,11 @@
+.add-reminder {
+    font-size: 30px;
+    border-radius: 50%;
+    margin-top: 25px;
+    width: 45px;
+    height: 45px;
+}
+
+.add-reminder:focus {
+    outline: none;
+}

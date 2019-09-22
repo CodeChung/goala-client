@@ -8,6 +8,7 @@ class CalendarDays extends React.Component {
         days: [],
         refresh: false,
         offset: 0,
+        count: 0,
     }
     componentDidMount() {
         const { currentMonth } = this.props
@@ -19,8 +20,23 @@ class CalendarDays extends React.Component {
             this.renderCells(this.props.currentMonth)
         }
     }
+    addCell(number) {
+        let { days, count } = this.state
+        console.log(count)
+        if (count % 7 === 0) {
+            days.push(<CalendarCell key={count} number={number} type='left-cell' />)
+        } else {
+            days.push(<CalendarCell key={count} number={number} type='' />)
+        }
+        count++
+        console.log(count)
+        this.setState({
+            days,
+            count: count
+        })
+    }
     renderCells(currentMonth) {
-        const days = []
+        const { days } = this.state
         const monthOffset = moment().month(currentMonth).startOf('month').day()
         const monthLength = moment().month(currentMonth).daysInMonth()
         const monthOffsetEnd = monthOffset + monthLength
@@ -29,20 +45,20 @@ class CalendarDays extends React.Component {
 
         // add in irrelevant month blocks
         for (let i = 0; i < monthOffset; i++) {
-            days.push(<CalendarCell key={i} />)
+            this.addCell()
         }
         // we'll have a fetch request to query all entries with same month, then sort by date
         // map each day data with calendarcell component
         // fetch()
         //     .then(monthData => monthData.forEach(day => days.push(<CalendarCell key={} date={day.date})))
         for (let i = 1; i <= monthLength; i++) {
-            days.push(<CalendarCell key={monthOffset + i} number={i} />)
+            this.addCell(i)
         }
 
         if (days.length % 7 !== 0) {
             const length = days.length
             for (let i = 0; i < 7 - length % 7; i++) {
-                days.push(<CalendarCell key={monthOffsetEnd + i + 1} />)
+                this.addCell()
             }
         }
 

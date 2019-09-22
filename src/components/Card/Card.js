@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './Card.css';
 import Date from './Date/Date';
+import ToolBox from '../ToolBox/ToolBox';
 
 class Card extends React.Component {
     render() {
@@ -19,6 +20,7 @@ class Card extends React.Component {
                 <p contentEditable='true'>
                     {text}
                 </p>
+                <ToolBox view='entry'/>
             </div>
         )
     }
