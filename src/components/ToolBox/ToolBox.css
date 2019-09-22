@@ -1,6 +1,5 @@
 .toolbox {
-    position: fixed;
-    width: 180px;
-    right: 0;
-    padding-right: 20px;
+    width: 200px;
+    float: right;
+    box-sizing: border-box;
 }

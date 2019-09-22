@@ -1,15 +1,17 @@
 import React from 'react';
 import './ToolBox.css';
+import ActionTools from './ActionTools/ActionTools';
 
 class ToolBox extends React.Component {
+
     render() {
-        return (
-            <div className='toolbox'>
-                I will show up with related actions and reminder buttons
-                animated scroll from the right side
-                hovering over div
-            </div>
-        )
+        const { view } = this.props
+        switch (view) {
+            case 'action':
+                return <ActionTools />
+            default:
+                return <div />
+        }
     }
 }
 

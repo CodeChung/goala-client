@@ -11,15 +11,19 @@ class Card extends React.Component {
         let { id, date, saved, actions, reminders, text } = this.props
         return (
             <div className='entry-card'>
+                <h2>Emojimotion</h2>
                 <div 
                     onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
                     <FontAwesomeIcon icon={faBookmark} />
                 </div>
+                <p>chapter</p>
+                <p>emoticon that represents mood</p>
                 <Date date={date}/>
                 <p contentEditable='true'>
                     {text}
                 </p>
+                <p>[tags:]</p>
                 <ToolBox view='entry'/>
             </div>
         )
