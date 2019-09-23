@@ -3,9 +3,11 @@ import './ActionsList.css';
 
 class ActionsList extends React.Component {
     render() {
-        const actionsList = this.props.actions.map(action => {
+        const actionsList = this.props.actions.map((action, index) => {
             return (
-                <div className='action-icon'>
+                <div  
+                    key={index}
+                    className='action-icon'>
                     {action.title}
                 </div>
             )

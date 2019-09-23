@@ -4,7 +4,7 @@
     height: calc(100% - 80px);
 }
 
-.calendar-days a {
+.calendar-cell {
     box-sizing: border-box;
     width: calc(100% / 7);
     border: .01em solid slategrey;
@@ -16,6 +16,6 @@
     transition: .5s ease-in-out;
 }
 
-.calendar-days a:hover {
+.calendar-cell:hover {
     background: paleturquoise;
 }

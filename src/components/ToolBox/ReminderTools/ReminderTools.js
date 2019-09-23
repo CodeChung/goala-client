@@ -1,7 +1,7 @@
 import React from 'react';
 import Column from './Column';
 import { DragDropContext } from 'react-beautiful-dnd';
-import './ActionTools.css';
+import './ReminderTools.css'
 import styled from 'styled-components';
 import YesNo from '../Blocks/YesNo/YesNo';
 import Count from '../Blocks/Count/Count';
@@ -30,25 +30,25 @@ const initialData = {
         'task-12': { id: 'task-12', content: <Trash /> },
     },
     columns: {
-        'column-action': {
-            id: 'column-1',
-            title: 'Action',
+        'column-reminder': {
+            id: 'column-reminder',
+            title: 'Reminder',
             taskIds: ['task-1']
         },
         'column-toolbox': {
-            id: 'column-2',
+            id: 'column-toolbox',
             title: 'Toolbox',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
             taskIds: ['task-2', 'task-3', 'task-4','task-5', 'task-6', 'task-7', 'task-8', 'task-9']
         },
         'column-trash': {
-            id: 'column-3',
+            id: 'column-trash',
             title: 'Trash',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
             taskIds: ['task-12']
         }
     },
-    columnOrder: ['column-action', 'column-toolbox', 'column-trash']
+    columnOrder: ['column-reminder', 'column-toolbox', 'column-trash']
 }
 
 const Container = styled.div `
@@ -56,7 +56,7 @@ const Container = styled.div `
 
 `
 
-class ActionTools extends React.Component {
+class ReminderTools extends React.Component {
     state = initialData;
 
     onDragStart = () => {
@@ -140,6 +140,7 @@ class ActionTools extends React.Component {
     render() {
         const columns = this.state.columnOrder.map(columnId => {
             const column = this.state.columns[columnId]
+            console.log(column)
             const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
 
             return <Column key={column.id} column={column} tasks={tasks} />
@@ -165,4 +166,4 @@ class ActionTools extends React.Component {
     }
 }
 
-export default ActionTools;
+export default ReminderTools;

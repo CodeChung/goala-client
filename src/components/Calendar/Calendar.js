@@ -8,18 +8,13 @@ class Calendar extends React.Component {
     state = {
         currentMonth: new Date().getMonth(),
         selectedDate: new Date(),
-        page: {},
-        refresh: false
+        date: null,
     }
-    renderDays() {}
-    renderCells() {}
-    onDateClick = day => {}
     nextMonth() {
         const { currentMonth } = this.state
         const newMonth = currentMonth >= 11 ? 0 : currentMonth + 1
         this.setState({
             currentMonth: newMonth,
-            refresh: true
         })
     }
     prevMonth() {
@@ -27,14 +22,22 @@ class Calendar extends React.Component {
         const newMonth = currentMonth <= 0 ? 11 : currentMonth - 1
         this.setState({
             currentMonth: newMonth,
-            refresh: true
         })
     }
+    resetDate() {
+        console.log('reset')
+        this.setState({ date: null })
+    }
+    openDate(date) {
+        this.setState({ date })
+    }
     render() {
-        const { page, currentMonth } = this.state
-        if (Object.keys(page).length) {
+        const { date, currentMonth } = this.state
+        if (date) {
             return (
-                <CalendarView page={page} />
+                <CalendarView 
+                    resetDate={() => this.resetDate()}
+                    date={date} />
             )
         } else {
             return (
@@ -67,10 +70,10 @@ class Calendar extends React.Component {
                             Saturday
                         </div>
                     </div>
-                    <CalendarDays 
+                    <CalendarDays
+                        openDate={(date) => this.openDate(date)}
                         currentMonth={currentMonth}
                         />
-                    {this.renderCells()}
                 </div>
             )
         }

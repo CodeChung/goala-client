@@ -23,7 +23,7 @@ class CalendarDays extends React.Component {
     addCell(number) {
         let { days, count } = this.state
         if (count % 7 === 0) {
-            days.push(<CalendarCell key={count} number={number} type='left-cell' />)
+            days.push(<CalendarCell openDate={(date) => this.props.openDate(date)} key={count} number={number} type='left-cell' />)
         } else {
             days.push(<CalendarCell key={count} number={number} type='' />)
         }

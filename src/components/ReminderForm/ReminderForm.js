@@ -1,5 +1,6 @@
 import React from 'react';
 import './ReminderForm.css';
+import ReminderTools from '../ToolBox/ReminderTools/ReminderTools';
 
 class ReminderForm extends React.Component {
     state = {
@@ -21,18 +22,8 @@ class ReminderForm extends React.Component {
                     onClick={(e) => this.handleClick(e)}>
                     back
                 </button>
-                {!title && <label>Title</label>}
-                <input
-                    placeholder='Title'
-                    value={title}
-                    onChange={(e) => this.setState({ title: e.target.value })}
-                    />
-                <label>Time</label>
-                <input
-                    type='checkbox' />
-                <label>Place</label>
-                <input
-                    type='checkbox' />
+                {title}
+                <ReminderTools />
             </form>
         )
     }

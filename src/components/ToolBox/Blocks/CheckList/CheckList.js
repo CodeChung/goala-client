@@ -30,7 +30,7 @@ class CheckList extends React.Component {
                     value={text}
                     />
                 <input
-                    onClick={() => this.toggleCheck()}
+                    onChange={() => this.toggleCheck()}
                     checked={checked}
                     type='checkbox'
                     />

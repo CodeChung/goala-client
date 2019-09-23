@@ -1,16 +1,16 @@
 import React from 'react';
 import './CalendarCell.css';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class CalendarCell extends React.Component {
     render() {
         return (
-            <Link  
+            <div 
+                onClick={() => this.props.openDate(new Date())}
                 className={'calendar-cell ' + this.props.type}
                 to='/'>
                 {this.props.number || 'XXX'}
-            </Link>
+            </div>
         )
     }
 }
