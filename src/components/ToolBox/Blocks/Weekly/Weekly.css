@@ -21,6 +21,10 @@
     align-items: center;
 }
 
+.weekly-day:hover {
+    background-color: rgb(193, 231, 246)
+}
+
 .weekly-day-left {
     border-left: 1px solid rgb(144, 144, 144);
     border-radius: 3px 0px 0px 3px;

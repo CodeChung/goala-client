@@ -10,13 +10,14 @@ import Text from '../Blocks/Text/Text';
 import CheckList from '../Blocks/CheckList/CheckList';
 import Trash from '../Blocks/Trash/Trash';
 import Weekly from '../Blocks/Weekly/Weekly';
+import Clock from '../Blocks/Clock/Clock';
 
 // tasks.content is where I could store individual component blocks
 const initialData = {
     tasks: { 
         'task-1': { id: 'task-1', content: 'Title' },
-        'task-2': { id: 'task-2', content: 'Eat' },
-        'task-3': { id: 'task-3', content: <YesNo value={true} />},
+        'task-2': { id: 'task-2', content: <Clock /> },
+        'task-3': { id: 'task-3', content: <YesNo />},
         'task-4': { id: 'task-4', content: <Count value={({ num: '', den: '', units: ''})} /> },
         'task-5': { id: 'task-5', content: <Notes /> },
         'task-6': { id: 'task-6', content: <Text /> },
@@ -28,29 +29,30 @@ const initialData = {
         'task-12': { id: 'task-12', content: <Trash /> },
     },
     columns: {
-        'column-1': {
+        'column-action': {
             id: 'column-1',
             title: 'Action',
-            taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+            taskIds: ['task-1']
         },
-        'column-2': {
+        'column-toolbox': {
             id: 'column-2',
             title: 'Toolbox',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: ['task-5', 'task-6', 'task-7', 'task-8']
+            taskIds: ['task-2', 'task-3', 'task-4','task-5', 'task-6', 'task-7', 'task-8']
         },
-        'column-3': {
+        'column-trash': {
             id: 'column-3',
             title: 'Trash',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
             taskIds: ['task-12']
         }
     },
-    columnOrder: ['column-1', 'column-2', 'column-3']
+    columnOrder: ['column-action', 'column-toolbox', 'column-trash']
 }
 
 const Container = styled.div `
     display: flex;
+
 `
 
 class ActionTools extends React.Component {
@@ -143,19 +145,16 @@ class ActionTools extends React.Component {
         })
         return (
             <div className='action-tools'>
-                <div className='action-title'
-                    contentEditable='true'
-                    value={'Action Title'}
-                    >
-                        mksdfl
-                </div> 
                 <DragDropContext
                     onDragStart={this.onDragStart}
                     onDragEnd={this.onDragEnd}
                 >
                     <Container>
-                        <h4>Values</h4>
-                        {columns}
+                        {columns[0]}
+                        <div className='action-side'>
+                            {columns[1]}
+                            {columns[2]}
+                        </div>
                     </Container>
                 </DragDropContext>
                 <button>Save</button>

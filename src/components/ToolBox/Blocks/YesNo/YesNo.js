@@ -7,15 +7,14 @@ class YesNo extends React.Component {
     }
     componentDidMount() {
         const { value } = this.props
-        this.setState({ value })
+        if (value) {
+            this.setState({ value: value.on})
+        }
     }
     toggleValue() {
-        console.log('hi')
         const { value } = this.state
-        console.log(value, !value)
-        this.setState({ value: !value }, function () {
-            console.log(this.state.value)
-        })
+        console.log(this.state.value)
+        this.setState({ value: !value })
     }
     render() {
         const { value } = this.props

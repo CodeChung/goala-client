@@ -1,0 +1,21 @@
+.meridiem {
+    transition: 1s;
+}
+
+.clock-block {
+    display: flex;
+}
+
+.clock-block input {
+    width: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.clock-block input:focus {
+    outline: none;
+}

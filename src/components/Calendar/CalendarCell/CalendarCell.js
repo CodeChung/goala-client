@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 class CalendarCell extends React.Component {
     render() {
         return (
-            <Link t0='/'>
-                <div className={'calendar-cell ' + this.props.type}>
-                    {this.props.number || 'XXX'}
-                </div>
+            <Link  
+                className={'calendar-cell ' + this.props.type}
+                to='/'>
+                {this.props.number || 'XXX'}
             </Link>
         )
     }

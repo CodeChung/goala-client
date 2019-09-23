@@ -4,5 +4,5 @@
 
 .actions-main {
     float: left;
-    width: calc(100% - 200px);
+    width: 100%;
 }

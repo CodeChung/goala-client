@@ -22,17 +22,15 @@ class CalendarDays extends React.Component {
     }
     addCell(number) {
         let { days, count } = this.state
-        console.log(count)
         if (count % 7 === 0) {
             days.push(<CalendarCell key={count} number={number} type='left-cell' />)
         } else {
             days.push(<CalendarCell key={count} number={number} type='' />)
         }
-        count++
-        console.log(count)
+        console.log(count + 1)
         this.setState({
+            count: count + 1,
             days,
-            count: count
         })
     }
     renderCells(currentMonth) {
@@ -40,8 +38,6 @@ class CalendarDays extends React.Component {
         const monthOffset = moment().month(currentMonth).startOf('month').day()
         const monthLength = moment().month(currentMonth).daysInMonth()
         const monthOffsetEnd = monthOffset + monthLength
-        
-        this.setState({ days })
 
         // add in irrelevant month blocks
         for (let i = 0; i < monthOffset; i++) {

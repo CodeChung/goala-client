@@ -1,6 +1,7 @@
 .calendar-days {
     display: flex;
     flex-wrap: wrap;
+    height: calc(100% - 80px);
 }
 
 .calendar-days a {
@@ -12,4 +13,9 @@
     color: black;
     border-bottom: none;
     border-right: none;
+    transition: .5s ease-in-out;
+}
+
+.calendar-days a:hover {
+    background: paleturquoise;
 }

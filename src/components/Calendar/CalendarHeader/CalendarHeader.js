@@ -8,17 +8,17 @@ class CalendarHeader extends React.Component {
         return (
             <div className='calendar-header'>
                 <div className="">
-                    <div className="icon" onClick={this.props.prevMonth}>
+                    <div className="calendar-icon" onClick={this.props.prevMonth}>
                         Prev
                     </div>
                 </div>
                 <div className="">
-                    <span>
+                    <span className='current-month'>
                     {months[this.props.currentMonth]}
                     </span>
                 </div>
                 <div className="" onClick={this.props.nextMonth}>
-                    <div className="icon">
+                    <div className="calendar-icon">
                         Next
                     </div>
                 </div>

@@ -2,5 +2,27 @@
     z-index: 1;
     background: white;
     position: absolute;
-    width: 50%;
+    width: 100%;
+}
+
+.Action {
+    box-sizing: border-box;
+    width: 65%;
+    float: left;
+}
+
+.Toolbox {
+    height: 80vh;
+    overflow: scroll;
+}
+
+.Trash {
+    height: 20vh;
+}
+
+.action-side {
+    box-sizing: border-box;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
 }
