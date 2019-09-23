@@ -6,6 +6,10 @@ import styled from 'styled-components';
 import YesNo from '../Blocks/YesNo/YesNo';
 import Count from '../Blocks/Count/Count';
 import Notes from '../Blocks/Notes/Notes';
+import Text from '../Blocks/Text/Text';
+import CheckList from '../Blocks/CheckList/CheckList';
+import Trash from '../Blocks/Trash/Trash';
+import Weekly from '../Blocks/Weekly/Weekly';
 
 // tasks.content is where I could store individual component blocks
 const initialData = {
@@ -15,13 +19,13 @@ const initialData = {
         'task-3': { id: 'task-3', content: <YesNo value={true} />},
         'task-4': { id: 'task-4', content: <Count value={({ num: '', den: '', units: ''})} /> },
         'task-5': { id: 'task-5', content: <Notes /> },
-        'task-6': { id: 'task-6', content: 'Eat' },
-        'task-7': { id: 'task-7', content: 'Go for a walk' },
-        'task-8': { id: 'task-8', content: 'Go running' },
+        'task-6': { id: 'task-6', content: <Text /> },
+        'task-7': { id: 'task-7', content: <CheckList /> },
+        'task-8': { id: 'task-8', content: <Weekly /> },
         'task-9': { id: 'task-9', content: 'Take out the garbage' },
         'task-10': { id: 'task-10', content: 'Eat' },
         'task-11': { id: 'task-11', content: 'Go for a walk' },
-        'task-12': { id: 'task-12', content: 'Go running' },
+        'task-12': { id: 'task-12', content: <Trash /> },
     },
     columns: {
         'column-1': {
@@ -33,13 +37,13 @@ const initialData = {
             id: 'column-2',
             title: 'Toolbox',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: ['task-5', ]
+            taskIds: ['task-5', 'task-6', 'task-7', 'task-8']
         },
         'column-3': {
             id: 'column-3',
             title: 'Trash',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: []
+            taskIds: ['task-12']
         }
     },
     columnOrder: ['column-1', 'column-2', 'column-3']
@@ -139,6 +143,12 @@ class ActionTools extends React.Component {
         })
         return (
             <div className='action-tools'>
+                <div className='action-title'
+                    contentEditable='true'
+                    value={'Action Title'}
+                    >
+                        mksdfl
+                </div> 
                 <DragDropContext
                     onDragStart={this.onDragStart}
                     onDragEnd={this.onDragEnd}
@@ -148,7 +158,8 @@ class ActionTools extends React.Component {
                         {columns}
                     </Container>
                 </DragDropContext>
-                
+                <button>Save</button>
+                <button>Delete</button>
             </div>
         )
     }

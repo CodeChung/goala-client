@@ -5,6 +5,7 @@
 }
 
 .block-notepad:focus {
+    width: 160px;
     height: 300px;
     transition: 2s;
 }
