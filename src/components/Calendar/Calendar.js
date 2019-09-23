@@ -2,11 +2,13 @@ import React from 'react';
 import './Calendar.css';
 import CalendarHeader from './CalendarHeader/CalendarHeader';
 import CalendarDays from './CalendarDays/CalendarDays';
+import CalendarView from './CalendarView/CalendarView';
 
 class Calendar extends React.Component {
     state = {
         currentMonth: new Date().getMonth(),
         selectedDate: new Date(),
+        page: {},
         refresh: false
     }
     renderDays() {}
@@ -29,43 +31,50 @@ class Calendar extends React.Component {
         })
     }
     render() {
-        const { currentMonth } = this.state
-        return (
-            <div className='calendar'>
-                <CalendarHeader 
-                    currentMonth={currentMonth}
-                    nextMonth={() => this.nextMonth()}
-                    prevMonth={() => this.prevMonth()}
-                    />
-                <div className='calendar-weekdays'>
-                    <div className='weekday'>
-                        Sunday
+        const { page, currentMonth } = this.state
+        if (Object.keys(page).length) {
+            return (
+                <CalendarView page={page} />
+            )
+        } else {
+            return (
+                <div className='calendar'>
+                    <CalendarHeader 
+                        currentMonth={currentMonth}
+                        nextMonth={() => this.nextMonth()}
+                        prevMonth={() => this.prevMonth()}
+                        />
+                    <div className='calendar-weekdays'>
+                        <div className='weekday'>
+                            Sunday
+                        </div>
+                        <div className='weekday'>
+                            Monday
+                        </div>
+                        <div className='weekday'>
+                            Tuesday
+                        </div>
+                        <div className='weekday'>
+                            Wednesday
+                        </div>
+                        <div className='weekday'>
+                            Thursday
+                        </div>
+                        <div className='weekday'>
+                            Friday
+                        </div>
+                        <div className='weekday'>
+                            Saturday
+                        </div>
                     </div>
-                    <div className='weekday'>
-                        Monday
-                    </div>
-                    <div className='weekday'>
-                        Tuesday
-                    </div>
-                    <div className='weekday'>
-                        Wednesday
-                    </div>
-                    <div className='weekday'>
-                        Thursday
-                    </div>
-                    <div className='weekday'>
-                        Friday
-                    </div>
-                    <div className='weekday'>
-                        Saturday
-                    </div>
+                    <CalendarDays 
+                        currentMonth={currentMonth}
+                        />
+                    {this.renderCells()}
                 </div>
-                <CalendarDays 
-                    currentMonth={currentMonth}
-                    />
-                {this.renderCells()}
-            </div>
-        )
+            )
+        }
+        
     }
 }
 
