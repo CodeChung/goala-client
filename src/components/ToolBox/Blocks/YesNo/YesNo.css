@@ -1,0 +1,13 @@
+.yes-no {
+    display: flex;
+    outline: 1px solid black;
+    margin: 0;
+    border-radius: 25px;
+}
+
+.active-yes, .active-no {
+    background: black;
+    color: white;
+    transition: 3s;
+    
+}

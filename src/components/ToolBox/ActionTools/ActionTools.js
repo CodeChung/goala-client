@@ -3,15 +3,18 @@ import Column from './Column';
 import { DragDropContext } from 'react-beautiful-dnd';
 import './ActionTools.css';
 import styled from 'styled-components';
+import YesNo from '../Blocks/YesNo/YesNo';
+import Count from '../Blocks/Count/Count';
+import Notes from '../Blocks/Notes/Notes';
 
 // tasks.content is where I could store individual component blocks
 const initialData = {
     tasks: { 
         'task-1': { id: 'task-1', content: 'Title' },
         'task-2': { id: 'task-2', content: 'Eat' },
-        'task-3': { id: 'task-3', content: 'Go for a walk' },
-        'task-4': { id: 'task-4', content: 'Go running' },
-        'task-5': { id: 'task-5', content: 'Take out the garbage' },
+        'task-3': { id: 'task-3', content: <YesNo value={true} />},
+        'task-4': { id: 'task-4', content: <Count value={({ num: '', den: '', units: ''})} /> },
+        'task-5': { id: 'task-5', content: <Notes /> },
         'task-6': { id: 'task-6', content: 'Eat' },
         'task-7': { id: 'task-7', content: 'Go for a walk' },
         'task-8': { id: 'task-8', content: 'Go running' },
@@ -30,11 +33,11 @@ const initialData = {
             id: 'column-2',
             title: 'Toolbox',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: []
+            taskIds: ['task-5', ]
         },
         'column-3': {
             id: 'column-3',
-            title: 'Done',
+            title: 'Trash',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
             taskIds: []
         }

@@ -1,0 +1,10 @@
+.block-notepad {
+    border: 1px solid grey;
+    transition: 2s;
+    width: 150px;
+}
+
+.block-notepad:focus {
+    height: 300px;
+    transition: 2s;
+}
