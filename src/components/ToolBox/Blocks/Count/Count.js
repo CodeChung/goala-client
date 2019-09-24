@@ -21,6 +21,7 @@ class Count extends React.Component {
             <div className='block block-count'>
                 <h2>Count</h2>
                 <input
+                    className='number'
                     type='number'
                     placeholder='#'
                     onChange={(e) => this.onChange('num', e)}
@@ -34,6 +35,7 @@ class Count extends React.Component {
                     value={den}
                     />
                 <input
+                    className='units'
                     placeholder='units'
                     onChange={(e) => this.onChange('units', e)}
                     value={units}

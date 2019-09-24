@@ -4,8 +4,8 @@
 }
 
 .block-notepad:focus {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     transition: 1s ease-in;
     outline: none;
     background: #ffff88;

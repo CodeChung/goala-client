@@ -12,11 +12,15 @@ import Trash from '../Blocks/Trash/Trash';
 import Weekly from '../Blocks/Weekly/Weekly';
 import Clock from '../Blocks/Clock/Clock';
 import CountDown from '../Blocks/CountDown/CountDown';
+import Date from '../Blocks/Date/Date';
+import TrashColumn from './TrashColumn';
+import { faToolbox } from '@fortawesome/free-solid-svg-icons';
+import Title from '../Blocks/Title/Title';
 
 // tasks.content is where I could store individual component blocks
 const initialData = {
     tasks: { 
-        'task-1': { id: 'task-1', content: 'Pick up some eggs (Title Block)' },
+        'task-1': { id: 'task-1', content: <Title />},
         'task-2': { id: 'task-2', content: <Clock /> },
         'task-3': { id: 'task-3', content: <YesNo />},
         'task-4': { id: 'task-4', content: <Count value={({ num: '', den: '', units: ''})} /> },
@@ -25,7 +29,7 @@ const initialData = {
         'task-7': { id: 'task-7', content: <CheckList /> },
         'task-8': { id: 'task-8', content: <Weekly /> },
         'task-9': { id: 'task-9', content: <CountDown /> },
-        'task-10': { id: 'task-10', content: 'Eat' },
+        'task-10': { id: 'task-10', content: <Date value={({ date: new Date() })}/> },
         'task-11': { id: 'task-11', content: 'Go for a walk' },
         'task-12': { id: 'task-12', content: <Trash /> },
     },
@@ -39,7 +43,7 @@ const initialData = {
             id: 'column-toolbox',
             title: 'Toolbox',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: ['task-2', 'task-3', 'task-4','task-5', 'task-6', 'task-7', 'task-8', 'task-9']
+            taskIds: ['task-2', 'task-3', 'task-4','task-5', 'task-6', 'task-7', 'task-8', 'task-9', 'task-10']
         },
         'column-trash': {
             id: 'column-trash',
@@ -48,7 +52,8 @@ const initialData = {
             taskIds: ['task-12']
         }
     },
-    columnOrder: ['column-reminder', 'column-toolbox', 'column-trash']
+    columnOrder: ['column-reminder', 'column-toolbox', 'column-trash'],
+    toolboxSequence: ['task-2', 'task-3', 'task-4','task-5', 'task-6', 'task-7', 'task-8', 'task-9', 'task-10']
 }
 
 const Container = styled.div `
@@ -140,10 +145,16 @@ class ReminderTools extends React.Component {
     render() {
         const columns = this.state.columnOrder.map(columnId => {
             const column = this.state.columns[columnId]
-            console.log(column)
+            console.log(column.id)
             const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-
-            return <Column key={column.id} column={column} tasks={tasks} />
+            if (column.id === 'column-trash') {
+                return <TrashColumn column={column} tasks={([{ id: 'task-12', content: <Trash /> }])} type={column.id} />
+            }
+            if (column.id === 'column-toolbox') {
+                const tasks = this.state.toolboxSequence.map(task => this.state.tasks[task])
+                return <Column key={column.id} column={column} tasks={tasks} type={column.id} />    
+            }
+            return <Column key={column.id} column={column} tasks={tasks} type={column.id} />
         })
         return (
             <div className='reminder-tools'>

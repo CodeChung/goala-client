@@ -3,36 +3,32 @@ import './YesNo.css';
 
 class YesNo extends React.Component {
     state = {
-        value: true
+        yes: false
     }
     componentDidMount() {
         const { value } = this.props
         if (value) {
-            this.setState({ value: value.on})
+            this.setState({ yes: value.yes })
         }
     }
-    toggleValue() {
-        const { value } = this.state
-        console.log(this.state.value)
-        this.setState({ value: !value })
+    toggleButton() {
+        const { yes } = this.state
+        this.setState({ yes: !yes })
     }
     render() {
-        const { value } = this.props
+        const { yes } = this.state
         return (
             <div className='yes-no'>
-                <button
-                    onClick={() => this.toggleValue()}
-                    className={ 'active-bool ' + (value && 'active-yes') }
-                >
+                <div 
+                    onClick={() => this.toggleButton()}
+                    className={'block-bool ' + (yes && 'bool-active')}>
                     Yes
-                </button>
-                <button
-                    onClick={() => this.toggleValue()}
-                    className={ 'active-bool ' + (!value && 'active-no') }
-                    // className={ 'active-bool ' (!value && 'active-no') }
-                >
+                </div>
+                <div 
+                    onClick={() => this.toggleButton()}
+                    className={'block-bool ' + (!yes && 'bool-active')}>
                     No
-                </button>
+                </div>
             </div>
         )
     }

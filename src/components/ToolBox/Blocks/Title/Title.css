@@ -1,0 +1,10 @@
+.block-title input {
+    border: none;
+    outline: none;
+    font-size: 35px;
+    background: inherit;
+}
+
+.block-title:focus {
+    outline: none;
+}
