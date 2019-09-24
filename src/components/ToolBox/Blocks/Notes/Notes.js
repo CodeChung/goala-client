@@ -2,13 +2,28 @@ import React from 'react';
 import './Notes.css';
 
 class Notes extends React.Component {
+    state = {
+        content: 'Sticky Note'
+    }
+    componentDidMount() {
+        const { value } = this.props;
+        if (value) {
+            this.setState({ content: value.content })
+        }
+    }
+    updateContent(event) {
+        event.preventDefault()
+        this.setState({ content: event.target.value })
+    }
     render() {
+        const { content } = this.state
         return (
-            <div className='block-notes'>
+            <div className='block block-notes'>
                 <div
-                    className='block-notepad'
+                    onChange={(e) => this.updateContent(e)}
+                    className='block block-notepad'
+                    value={ (content.length && content) || 'Sticky Note'}
                     contentEditable='true'>
-                    Keep notes here
                 </div>
             </div>
         )

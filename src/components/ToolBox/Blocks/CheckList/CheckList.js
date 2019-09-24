@@ -23,7 +23,7 @@ class CheckList extends React.Component {
     render() {
         const { text, checked } = this.state
         return (
-            <div className='block-checklist'>
+            <div className='block block-checklist'>
                 <input 
                     placeholder='checklist'
                     onChange={(e) => this.updateText(e)}

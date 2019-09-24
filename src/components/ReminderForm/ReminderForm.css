@@ -1,14 +1,44 @@
 .reminder-form {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    /* display: block; Hidden by default */
+    position: absolute;
+    top: 0;
     z-index: 1; /* Sit on top */
-    left: calc(200px + 24%);
-    top: 10%;
-    width: 40%; /* Full width */
-    height: 80%; /* Full height */
+    /* left: calc(200px + 24%); */
+    width: calc(100% - 200px); /* Full width */
+    height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-    border-radius: 70px;
-    color: white;
+    /* border-radius: 70px; */
+    color: black;
+    display: flex;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.reminder-toggle {
+    /* height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 52px;
+    display: flex;
+    justify-content: center;
+    transition: .5s ease-out; */
+    padding: 15px 15px;
+  font-size: 52px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #black;
+  background-color: inherit;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.reminder-toggle:hover {
+    /* color: white; */
+}
+
+.reminder-toggle:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }

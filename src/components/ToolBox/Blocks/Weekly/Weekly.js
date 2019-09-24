@@ -23,7 +23,7 @@ class Weekly extends React.Component {
     }
     render() {
         return (
-            <div className='block-weekly'>
+            <div className='block block-weekly'>
                 <h3>Weekly Schedule</h3>
                 <div className='weekly-board'>
                     <div className={'weekly-day weekly-day-left ' + (this.state.Su && 'day-active')}

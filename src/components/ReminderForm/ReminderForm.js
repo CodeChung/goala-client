@@ -1,5 +1,7 @@
 import React from 'react';
 import './ReminderForm.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import ReminderTools from '../ToolBox/ReminderTools/ReminderTools';
 
 class ReminderForm extends React.Component {
@@ -18,10 +20,10 @@ class ReminderForm extends React.Component {
         const { title } = this.state
         return (
             <form className='reminder-form'>
-                <button 
-                    onClick={(e) => this.handleClick(e)}>
-                    back
-                </button>
+                <FontAwesomeIcon 
+                    className='reminder-toggle' 
+                    onClick={(e) => this.handleClick(e)} 
+                    icon={faArrowAltCircleLeft} />
                 {title}
                 <ReminderTools />
             </form>

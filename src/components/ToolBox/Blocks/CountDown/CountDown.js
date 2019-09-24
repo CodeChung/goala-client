@@ -15,7 +15,7 @@ class CountDown extends React.Component {
     render() {
         const { count } = this.state
         return (
-            <div className='block-countdown'>
+            <div className='block block-countdown'>
                 <h2>Countdown</h2>
                 <input
                     type='number'

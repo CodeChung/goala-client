@@ -5,3 +5,19 @@
     z-index: 1;
     background-color: blanchedalmond;
 }
+
+.block {
+    transition: 1s;
+}
+
+.block h2 {
+    display: none;
+}
+
+.block:hover h2 {
+    display: inline !important;
+}
+
+.block:hover .block-main {
+    display: none;
+}

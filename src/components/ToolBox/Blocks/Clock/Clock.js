@@ -54,9 +54,9 @@ class Clock extends React.Component {
     render() {
         const { meridiem, hour, minute, error } = this.state
         return (
-            <div className='block-clock'>
+            <div className='block block-clock'>
                 <h2>Clock</h2>
-                <div className='clock-block'>
+                <div className='clock-block block-main'>
                     <input onChange={(e) => this.updateHour(e)} type='number' value={hour} />
                     <input onChange={(e) => this.updateHour(e)} type='number' value={hour} />
                     :

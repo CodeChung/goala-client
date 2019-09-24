@@ -1,8 +1,11 @@
-.actions-page {
-    box-sizing: border-box;
+.add-reminder {
+    font-size: 30px;
+    border-radius: 50%;
+    margin-top: 25px;
+    width: 45px;
+    height: 45px;
 }
 
-.actions-main {
-    float: left;
-    width: 100%;
+.add-reminder:focus {
+    outline: none;
 }

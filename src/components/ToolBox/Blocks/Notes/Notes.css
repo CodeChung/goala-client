@@ -1,11 +1,14 @@
 .block-notepad {
-    border: 1px solid grey;
     transition: 2s;
     width: 150px;
 }
 
 .block-notepad:focus {
-    width: 160px;
+    width: 300px;
     height: 300px;
-    transition: 2s;
+    transition: 1s ease-in;
+    outline: none;
+    background: #ffff88;
+    border-radius: 2px;
+    padding: 30px;
 }

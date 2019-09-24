@@ -16,7 +16,7 @@ import CountDown from '../Blocks/CountDown/CountDown';
 // tasks.content is where I could store individual component blocks
 const initialData = {
     tasks: { 
-        'task-1': { id: 'task-1', content: 'Title' },
+        'task-1': { id: 'task-1', content: 'Pick up some eggs (Title Block)' },
         'task-2': { id: 'task-2', content: <Clock /> },
         'task-3': { id: 'task-3', content: <YesNo />},
         'task-4': { id: 'task-4', content: <Count value={({ num: '', den: '', units: ''})} /> },
@@ -146,21 +146,21 @@ class ReminderTools extends React.Component {
             return <Column key={column.id} column={column} tasks={tasks} />
         })
         return (
-            <div className='action-tools'>
+            <div className='reminder-tools'>
                 <DragDropContext
                     onDragStart={this.onDragStart}
                     onDragEnd={this.onDragEnd}
                 >
                     <Container>
-                        {columns[0]}
-                        <div className='action-side'>
-                            {columns[1]}
+                        <div className='reminder-main'>
+                            {columns[0]}
                             {columns[2]}
+                        </div>
+                        <div className='reminder-side'>
+                            {columns[1]}
                         </div>
                     </Container>
                 </DragDropContext>
-                <button>Save</button>
-                <button>Delete</button>
             </div>
         )
     }

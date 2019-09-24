@@ -1,50 +1,59 @@
 import React from 'react';
+import Reminder from '../../components/Reminder/Reminder';
+import ReminderForm from '../../components/ReminderForm/ReminderForm';
 import './ActionsPage.css';
-import ToolBox from '../../components/ToolBox/ToolBox';
-import Action from '../../components/Action/Action';
-import ActionsList from '../../components/ActionsList/ActionsList';
-
-const exampleActions = [
-    {
-        id: 1,
-        title: 'go to the gym',
-        sequence: []
-    },
-    {
-        id: 2,
-        title: 'eat healthy',
-        sequence: []
-    },
-    {
-        id: 3,
-        title: 'saxaphone class',
-        sequence: []
-    }
-]
 
 class ActionsPage extends React.Component {
     state = {
-        toolbox: [],
-        actions: exampleActions,
-        action: {},
-        showAction: false
+        formActive: false,
     }
-    toggleAction() {
-        const { showAction } = this.state
-        this.setState({ showAction: !showAction })
+    componentDidMount() {
+        // this is where I'll fetch reminders
+        // reminder data for recurring and upcoming
+        // map these into a list of Reminder components passed down reminder as prop
+        // also pass down ReminderForm component the reminder obj data as a prop so it has it's settings saved when loaded.
+
+        // reminder model:
+        // {
+        //     title,
+        //     date,
+        //     time,
+        //     etc,
+        // }
+    }
+    toggleForm() {
+        const { formActive } = this.state
+        this.setState({
+            formActive: !formActive
+        })
     }
     render() {
-        const { action, actions, showAction } = this.state
+        const { formActive } = this.state
+        if (formActive) {
+            return (
+                <section className='reminders-page'>
+                    <ReminderForm toggleForm={() => this.toggleForm()} />
+                </section>
+            )
+        }
         return (
-            <section className='actions-page'>
-                <div className='actions-main'>
-                    { !showAction && <ActionsList actions={actions} toggleAction={() => this.toggleAction()} />}
-                    { showAction && <Action action={action} /> }
-                </div>
-                <ToolBox view='action' />
+            <section className='reminders-page'>
+                <h1>ActionsPage</h1>
+                <h2>Recurring</h2>
+                {/* These reminder components will actually be passed down entire reminder data objects  */}
+                <Reminder data={{title:'eating healthy', date:1, time: 1}} toggleForm={() => this.toggleForm()} />
+                <h2>Upcoming</h2>
+                <Reminder data={{title:'rock climbing', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
+                <Reminder data={{title:'budgeting', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
+                <button
+                    className='add-reminder'
+                    onClick={() => this.toggleForm()}
+                    >
+                    +
+                </button>
             </section>
         )
     }
 }
 
-export default ActionsPage
+export default ActionsPage;

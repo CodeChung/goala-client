@@ -1,0 +1,32 @@
+.Reminder {
+    width: 100%;
+    border: none;
+    height: 80%;
+}
+
+.reminder-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: auto;
+}
+
+.reminder-side {
+
+}
+
+.reminder-tools {
+    width: 100%;
+}
+
+.Toolbox {
+    border: none !important;
+}
+
+.Trash {
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    border: none;
+}

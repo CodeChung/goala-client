@@ -10,7 +10,7 @@ class Text extends React.Component {
         return (
             <div
                 contentEditable='true' 
-                className='block-text'
+                className='block block-text'
             >
                 {this.props.value.text || this.state.text}
             </div>

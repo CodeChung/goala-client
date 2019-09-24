@@ -18,7 +18,7 @@ class Count extends React.Component {
     render() {
         const { num, den, units } = this.state
         return (
-            <div className='block-count'>
+            <div className='block block-count'>
                 <h2>Count</h2>
                 <input
                     type='number'

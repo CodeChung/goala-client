@@ -28,6 +28,14 @@ class RemindersPage extends React.Component {
         })
     }
     render() {
+        const { formActive } = this.state
+        if (formActive) {
+            return (
+                <section className='reminders-page'>
+                    <ReminderForm toggleForm={() => this.toggleForm()} />
+                </section>
+            )
+        }
         return (
             <section className='reminders-page'>
                 <h1>RemindersPage</h1>
@@ -43,7 +51,6 @@ class RemindersPage extends React.Component {
                     >
                     +
                 </button>
-                {this.state.formActive && <ReminderForm toggleForm={() => this.toggleForm()} />}
             </section>
         )
     }
