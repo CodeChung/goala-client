@@ -2,6 +2,7 @@ import React from 'react';
 import Reminder from '../../components/Reminder/Reminder';
 import ReminderForm from '../../components/ReminderForm/ReminderForm';
 import './ActionsPage.css';
+import BlocksPage from '../BlocksPage/BlocksPage';
 
 class ActionsPage extends React.Component {
     state = {
@@ -32,7 +33,8 @@ class ActionsPage extends React.Component {
         if (formActive) {
             return (
                 <section className='reminders-page'>
-                    <ReminderForm toggleForm={() => this.toggleForm()} />
+                    {/* <ReminderForm toggleForm={() => this.toggleForm()} /> */}
+                    <BlocksPage toggleForm={() => this.toggleForm()} />
                 </section>
             )
         }

@@ -4,7 +4,7 @@ import './Title.css';
 
 class Title extends React.Component {
     state = {
-        title: 'Title'
+        title: 'Subtitle'
     }
     componentDidMount() {
         const { value } = this.props

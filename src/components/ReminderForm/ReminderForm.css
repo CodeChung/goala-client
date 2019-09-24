@@ -23,15 +23,14 @@
     justify-content: center;
     transition: .5s ease-out; */
     padding: 15px 15px;
-  font-size: 52px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #black;
-  background-color: inherit;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #black;
+    background-color: inherit;
+    border: none;
+    border-radius: 15px;
 }
 
 .reminder-toggle:hover {
@@ -39,6 +38,6 @@
 }
 
 .reminder-toggle:active {
-    box-shadow: 0 5px #666;
+    /* box-shadow: 0 5px #666; */
     transform: translateY(4px);
 }

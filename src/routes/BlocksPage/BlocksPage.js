@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './BlocksPage.css';
 import Title from '../../components/ToolBox/Blocks/Title/Title';
@@ -192,7 +194,7 @@ const ITEMS = [
 
 class BlocksPage extends Component {
     state = {
-        [uuid()]: [],
+        blocks: [],
         trash: []
     };
     onDragEnd = result => {
@@ -282,22 +284,24 @@ class BlocksPage extends Component {
                         )}
                     </Droppable>
                     <Content>
-                        <Button onClick={this.addList}>
-                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                        <div className='blocks-page-header'>
+                            <Button onClick={() => this.props.toggleForm()} >
+                                <FontAwesomeIcon 
+                                    className='reminder-toggle' 
+                                    icon={faArrowAltCircleLeft} />
+                                <ButtonText>Return</ButtonText>
+                            </Button>
+                            <input
+                                value='title'
                                 />
-                            </svg>
-                            <ButtonText>Add List</ButtonText>
-                        </Button>
+                        </div>
                         <div className='blocks-saved'>
                             {Object.keys(this.state).map((list, i) => (
                                 <Droppable key={list} droppableId={list}>
                                     {(provided, snapshot) => (
                                         list !== 'trash'
                                         ?
-                                        <Sequence provided={provided} snapshot={snapshot} list={this.state[list]} />
+                                        <Sequence provided={provided} snapshot={snapshot} list={this.state.blocks} />
                                         :
                                         <Trash provided={provided} snapshot={snapshot} list={[]}/>
                                     )}

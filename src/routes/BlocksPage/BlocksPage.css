@@ -5,6 +5,37 @@
     overflow: auto;
 }
 
+.blocks-page-header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.blocks-page-header input {
+    width: 70%;
+    box-sizing: border-box;
+    padding: 5px;
+    height: 60px;
+    font-size: 30px;
+}
+
+.blocks-page-header input:focus {
+    outline: none;
+}
+
 .toolbox-list {
     overflow: auto;
+}
+
+.block-saved-list {
+    height: calc(100vh - 200px);
+}
+
+.block-trash {
+    height: 40px;
+    overflow: hidden;
+}
+
+.block-trash:hover {
+    background: greenyellow;
 }
