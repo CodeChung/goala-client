@@ -10,6 +10,7 @@ import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';
 import EntryPage from '../../routes/EntryPage/EntryPage';
+import BlocksPage from '../../routes/BlocksPage/BlocksPage';
 
 class User extends React.Component {
     state = {
@@ -36,6 +37,8 @@ class User extends React.Component {
                             component={ActionsPage} />
                         <Route path='/reminders'
                             component={RemindersPage} />
+                        <Route path='/blocks'
+                            component={BlocksPage} />
                         <Route path='/saved'
                             component={SavedPage} />
                         <Route path='/search'
