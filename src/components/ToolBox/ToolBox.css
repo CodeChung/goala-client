@@ -21,3 +21,11 @@
 .block:hover .block-main {
     display: none;
 }
+
+.trash-column {
+    background: black !important;
+}
+
+.trash-column div {
+    background: black;
+}

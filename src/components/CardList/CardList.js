@@ -14,6 +14,7 @@ class CardList extends React.Component {
     render() {
         const cardsList = this.props.cards.map(card => 
             <Card 
+                upDate={(date) => this.props.upDate(date)}
                 key={card.id}
                 id={card.id}
                 date={card.date}

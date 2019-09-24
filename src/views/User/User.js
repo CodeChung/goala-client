@@ -9,11 +9,11 @@ import SavedPage from '../../routes/SavedPage/SavedPage';
 import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';
+import EntryPage from '../../routes/EntryPage/EntryPage';
 
 class User extends React.Component {
     state = {
-        display: ''
-        
+        display: '',
     }
     showNav() {
         this.setState({display: ''})

@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './Card.css';
 import Date from './Date/Date';
-import ToolBox from '../ToolBox/ToolBox';
 
 class Card extends React.Component {
     render() {
         let { id, date, saved, actions, reminders, text } = this.props
         return (
-            <div className='entry-card'>
+            <div
+                onClick={() => this.props.upDate(date)}
+                className='entry-card'>
                 <h2>Emojimotion</h2>
                 <div 
                     onClick={ saved = !saved }
@@ -24,7 +25,6 @@ class Card extends React.Component {
                     {text}
                 </p>
                 <p>[tags:]</p>
-                <ToolBox view='entry'/>
             </div>
         )
     }

@@ -23,7 +23,7 @@ const TaskList = styled.div`
 class TrashColumn extends React.Component {
     render() {
         return (
-            <Container className={this.props.column.title}>
+            <Container className={'trash-column ' + this.props.column.title}>
                 <Droppable droppableId={this.props.column.id}>
                     {(provided, snapshot) => (
                         <TaskList

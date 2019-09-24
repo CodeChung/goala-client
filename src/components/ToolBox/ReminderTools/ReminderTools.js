@@ -30,7 +30,6 @@ const initialData = {
         'task-8': { id: 'task-8', content: <Weekly /> },
         'task-9': { id: 'task-9', content: <CountDown /> },
         'task-10': { id: 'task-10', content: <Date value={({ date: new Date() })}/> },
-        'task-11': { id: 'task-11', content: 'Go for a walk' },
         'task-12': { id: 'task-12', content: <Trash /> },
     },
     columns: {
@@ -49,7 +48,7 @@ const initialData = {
             id: 'column-trash',
             title: 'Trash',
             // taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
-            taskIds: ['task-12']
+            taskIds: []
         }
     },
     columnOrder: ['column-reminder', 'column-toolbox', 'column-trash'],
@@ -148,7 +147,7 @@ class ReminderTools extends React.Component {
             console.log(column.id)
             const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
             if (column.id === 'column-trash') {
-                return <TrashColumn column={column} tasks={([{ id: 'task-12', content: <Trash /> }])} type={column.id} />
+                return <TrashColumn column={column} tasks={([])} type={column.id} />
             }
             if (column.id === 'column-toolbox') {
                 const tasks = this.state.toolboxSequence.map(task => this.state.tasks[task])

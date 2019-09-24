@@ -2,27 +2,21 @@
     height: 75px;
     display: flex;
     align-items: center;
-    padding-left: 10%;
-    padding-top: 30px;
+    width: 400px;
+    position: relative;
+    right: 20px;
 }
 
-.searchbar form::after {
-    content: ' ';
-    width: 2px;
-    height: 4em;
-    background-color: black;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    /* box-shadow: 3px 3px 2px red; */
+.searchbar form {
+    width: 400px;
 }
+
 
 .searchbar form input {
     font-size: 25px;
     border: none;
     border-bottom: 1px solid black;
-    width: 300px;
+    width: 350px;
 }
 
 .searchbar form input:focus {
