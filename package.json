@@ -1,8 +1,8 @@
 {
-  "name": "coachbot-client",
+  "name": "goala-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://codechung.github.io/coachbot-client/",
+  "homepage": ".",
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@fortawesome/fontawesome-svg-core": "^1.2.21",

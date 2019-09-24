@@ -5,6 +5,10 @@
     font-size: 35px;
 }
 
+.block-count h2 {
+    display: none;
+}
+
 .block-count input {
     width: 85px;
     border: none;
@@ -22,4 +26,14 @@
 .number {
     min-width: 30px !important;
     width: 30px !important;
+}
+
+
+.block-count:hover h2 {
+    display: block;
+    font-size: 10px;
+}
+
+.block-count:active .block-count-input {
+    display: none;
 }

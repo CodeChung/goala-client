@@ -1,3 +1,7 @@
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 .App {
   text-align: center;
 }
@@ -26,7 +30,9 @@
 html, body {
   margin: 0; 
   height: 100%; 
-  overflow: hidden;
+  overflow: auto;
+  width: 100vw;
+  height: 100vh;
 }
 
 @keyframes App-logo-spin {
