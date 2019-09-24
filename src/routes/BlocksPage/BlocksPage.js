@@ -12,6 +12,7 @@ import Weekly from '../../components/ToolBox/Blocks/Weekly/Weekly';
 import CountDown from '../../components/ToolBox/Blocks/CountDown/CountDown';
 import Date from '../../components/ToolBox/Blocks/Date/Date';
 import Sequence from './Sequence';
+import Trash from '../../components/ToolBox/Blocks/Trash/Trash';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -191,7 +192,8 @@ const ITEMS = [
 
 class BlocksPage extends Component {
     state = {
-        [uuid()]: []
+        [uuid()]: [],
+        trash: []
     };
     onDragEnd = result => {
         const { source, destination } = result;
@@ -293,7 +295,11 @@ class BlocksPage extends Component {
                             {Object.keys(this.state).map((list, i) => (
                                 <Droppable key={list} droppableId={list}>
                                     {(provided, snapshot) => (
-                                        <Sequence provided={provided} snapshot={snapshot} list={this.state[list]}/>
+                                        list !== 'trash'
+                                        ?
+                                        <Sequence provided={provided} snapshot={snapshot} list={this.state[list]} />
+                                        :
+                                        <Trash provided={provided} snapshot={snapshot} list={[]}/>
                                     )}
                                 </Droppable>
                             ))}
