@@ -291,9 +291,7 @@ class BlocksPage extends Component {
                                     icon={faArrowAltCircleLeft} />
                                 <ButtonText>Return</ButtonText>
                             </Button>
-                            <input
-                                value='title'
-                                />
+                            <Title value={({title: 'Title'})} />
                         </div>
                         <div className='blocks-saved'>
                             {Object.keys(this.state).map((list, i) => (

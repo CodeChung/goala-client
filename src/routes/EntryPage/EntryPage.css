@@ -1,0 +1,11 @@
+.entry-text {
+    text-align: left;
+    white-space: pre-wrap;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.entry-text:focus {
+    outline: none
+}
+

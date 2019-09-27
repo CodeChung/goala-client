@@ -18,6 +18,7 @@
 
 .entry-bookmark svg {
     color: black;
+    transition: .8s ease-out;
 }
 
 .entry-bookmark svg:hover {

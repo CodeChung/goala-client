@@ -1,15 +1,12 @@
 import React from 'react';
 import './CalendarView.css';
+import EntryPage from '../../../routes/EntryPage/EntryPage';
 
 class CalendarView extends React.Component {
     render() {
         return (
             <div className='calendar-view'>
-                <button
-                    onClick={() => this.props.resetDate()}
-                >
-                    Back arrow</button>
-                {this.props.date.toString()}
+                <EntryPage resetDate={() => this.props.resetDate()} />
             </div>
         )
     }

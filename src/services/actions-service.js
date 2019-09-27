@@ -1,9 +1,9 @@
 import config from '../config'
 import TokenService from './token-service';
 
-const GoalsService = {
-    getGoals() {
-        return fetch(`${config.API_ENDPOINT}/goals`, {
+const ActionsService = {
+    getActions() {
+        return fetch(`${config.API_ENDPOINT}/actions`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -62,4 +62,4 @@ const GoalsService = {
     }
 }
 
-export default GoalsService
+export default ActionsService
