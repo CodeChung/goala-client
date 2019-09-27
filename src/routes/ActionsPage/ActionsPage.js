@@ -4,6 +4,7 @@ import './ActionsPage.css';
 import BlocksPage from '../BlocksPage/BlocksPage';
 import ActionsService from '../../services/actions-service';
 import GoalsService from '../../services/goals-service';
+import Goal from '../../components/Goal/Goal';
 
 class ActionsPage extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class ActionsPage extends React.Component {
             })
             .catch(res => this.setState({ error: res.error }))
     }
-    activateGoal(goalId) {
+    activateForm(goalId) {
         const { goals } = this.state
         const activeGoal = goals.find(goal => goal.id === goalId)
         this.setState({ activeGoal })
@@ -40,7 +41,10 @@ class ActionsPage extends React.Component {
             return (
                 <section className='reminders-page'>
                     {/* <ReminderForm toggleForm={() => this.toggleForm()} /> */}
-                    <BlocksPage blockSequence={activeGoal.block_sequence}  toggleForm={() => this.toggleForm()} />
+                    <BlocksPage 
+                        goal={activeGoal}
+                        blockSequence={activeGoal.block_sequence}  
+                        toggleForm={() => this.toggleForm()} />
                 </section>
             )
         }
@@ -50,7 +54,10 @@ class ActionsPage extends React.Component {
                 goal => <div 
                         key={goal.id}
                         className='goal'>
-                        <Reminder goal={goal} activateGoal={(id) => this.activateGoal(id)} toggleForm={() => this.toggleForm()} />
+                        <Goal 
+                            goal={goal} 
+                            activateForm={(id) => this.activateForm(id)} 
+                            toggleForm={() => this.toggleForm()} />
                     </div> 
             )
             return (

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './BlocksPage.css';
+import BlocksService from '../../services/blocks-service';
 import Title from '../../components/ToolBox/Blocks/Title/Title';
 import Count from '../../components/ToolBox/Blocks/Count/Count';
 import Notes from '../../components/ToolBox/Blocks/Notes/Notes';
@@ -194,9 +195,28 @@ const ITEMS = [
 
 class BlocksPage extends Component {
     state = {
+        active: [],
         blocks: [],
         trash: []
     };
+    componentDidMount() {
+        // Determines if block form is goal or reminder
+        // then it fetches <Block /> components based on blockId
+        const { active } = this.state
+        const { goal, reminder } = this.props
+        console.log(goal, reminder)
+        
+        if (goal) {
+            const blockSeq = goal.block_sequence
+            console.log('BLOCK SEQUENCE ', blockSeq)
+            BlocksService.getBlocksByIds(blockSeq)
+                .then(blocks => console.log('BLOCKS BY ID, ', blocks))
+        }
+
+        if (reminder) {
+
+        }
+    }
     onDragEnd = result => {
         const { source, destination } = result;
 

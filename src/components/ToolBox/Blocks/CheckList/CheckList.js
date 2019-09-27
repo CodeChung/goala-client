@@ -3,18 +3,19 @@ import propTypes from 'prop-types';
 import './CheckList.css';
 
 class CheckList extends React.Component {
-    // probably should sanitize this later
+    //TODO probably should sanitize this later
     state = {
-        text: '',
+        text: 'checklist',
         checked: false,
     }
     componentDidMount() {
         const { text } = this.props
-        this.setState({ text })
+        if (text) {
+            this.setState({ text })
+        }
     }
-    updateText(e) {
-        e.preventDefault()
-        this.setState({ text: e.target.value})
+    updateText = event => {
+        this.setState({ text: event.target.value})
     }
     toggleCheck() {
         const { checked } = this.state
@@ -24,9 +25,8 @@ class CheckList extends React.Component {
         const { text, checked } = this.state
         return (
             <div className='block block-checklist'>
-                <input 
-                    placeholder='checklist'
-                    onChange={(e) => this.updateText(e)}
+                <input
+                    onChange={this.updateText}
                     value={text}
                     />
                 <input

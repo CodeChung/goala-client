@@ -1,31 +1,37 @@
 import React from 'react';
 import Reminder from '../../components/Reminder/Reminder';
 import ReminderForm from '../../components/ReminderForm/ReminderForm';
+import RemindersService from '../../services/reminders-service';
 import './ReminderPage.css';
 
 class RemindersPage extends React.Component {
     state = {
+        activeReminder: null,
+        upcomingReminders: [],
+        recurringReminders: [],
         formActive: false,
     }
     componentDidMount() {
-        // this is where I'll fetch reminders
-        // reminder data for recurring and upcoming
-        // map these into a list of Reminder components passed down reminder as prop
-        // also pass down ReminderForm component the reminder obj data as a prop so it has it's settings saved when loaded.
+        RemindersService.getReminders() 
+            .then(reminders => {
+                let recurringReminders = reminders.filter(reminder => reminder.schedule.schedule)
+                let upcomingReminders = reminders.filter(reminder => reminder.schedule.date)
 
-        // reminder model:
-        // {
-        //     title,
-        //     date,
-        //     time,
-        //     etc,
-        // }
+                this.setState({ recurringReminders, upcomingReminders })
+            })
+            .catch(res => this.setState({ error: res.error }))
     }
     toggleForm() {
         const { formActive } = this.state
         this.setState({
             formActive: !formActive
         })
+    }
+    activateForm(reminderId) {
+        const { upcomingReminders, recurringReminders } = this.state
+        const activeReminder = [...upcomingReminders, ...recurringReminders]
+            .find(reminder => reminder.id === reminderId)
+        this.setState({ activeReminder })
     }
     render() {
         const { formActive } = this.state
@@ -36,15 +42,31 @@ class RemindersPage extends React.Component {
                 </section>
             )
         }
+        
+        const { recurringReminders, upcomingReminders } = this.state
+        let recurringReminderComponents = recurringReminders.map((reminder) => {
+            return <Reminder 
+                        activateReminder={(id) => this.activateForm(id)}
+                        reminder={reminder} 
+                        key={reminder.id} 
+                        schedule={reminder.schedule}
+                        toggleForm={() => this.toggleForm()} />
+        })
+        let upcomingReminderComponents = upcomingReminders.map((reminder) => {
+            return <Reminder 
+                        activateReminder={(id) => this.activateForm(id)}
+                        reminder={reminder} 
+                        key={reminder.id} 
+                        schedule={reminder.schedule}
+                        toggleForm={() => this.toggleForm()} />
+        })
         return (
             <section className='reminders-page'>
                 <h1>RemindersPage</h1>
-                <h2>Recurring</h2>
-                {/* These reminder components will actually be passed down entire reminder data objects  */}
-                <Reminder data={{title:'hi', date:1, time: 1}} toggleForm={() => this.toggleForm()} />
                 <h2>Upcoming</h2>
-                <Reminder data={{title:'hi', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
-                <Reminder data={{title:'hi', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
+                {upcomingReminderComponents}
+                <h2>Recurring</h2>
+                {recurringReminderComponents}
                 <button
                     className='add-reminder'
                     onClick={() => this.toggleForm()}

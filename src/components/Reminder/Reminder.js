@@ -12,21 +12,21 @@ class Reminder extends React.Component {
         this.setState({ modal: !modal })
     }
     render() {
-        const { goal } = this.props
+        const { reminder } = this.props
         return (
             <div 
                 onClick={() => {
-                    this.props.activateGoal(goal.id)
+                    this.props.activateReminder(reminder.id)
                     this.props.toggleForm()
                 }}
                 className='reminder'
                 >
                 <div className='reminder-title'>
-                    { goal.title }
+                    { reminder.title }
                 </div>
                 <div className='reminder-details'>
-                    { 'goal id: ' + goal.id }
-                    { 'action id: ' + goal.action_id}
+                    { 'reminder id: ' + reminder.id }
+                    { 'reminder '}
                 </div>
             </div>
         )

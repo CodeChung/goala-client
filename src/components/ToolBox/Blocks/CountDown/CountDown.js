@@ -12,12 +12,16 @@ class CountDown extends React.Component {
             this.setState({ count: value.count })
         }
     }
+    onChange = event => {
+        this.setState({ count: event.target.value })
+    }
     render() {
         const { count } = this.state
         return (
             <div className='block block-countdown'>
                 <h2>Countdown</h2>
                 <input
+                    onChange={this.onChange}
                     type='number'
                     value={count}
                     />
