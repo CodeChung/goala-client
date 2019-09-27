@@ -7,6 +7,7 @@ import GoalsService from '../../services/goals-service';
 
 class ActionsPage extends React.Component {
     state = {
+        activeGoal: null,
         actions: [],
         goals: [],
         formActive: false,
@@ -22,6 +23,11 @@ class ActionsPage extends React.Component {
             })
             .catch(res => this.setState({ error: res.error }))
     }
+    activateGoal(goalId) {
+        const { goals } = this.state
+        const activeGoal = goals.find(goal => goal.id === goalId)
+        this.setState({ activeGoal })
+    }
     toggleForm() {
         const { formActive } = this.state
         this.setState({
@@ -29,12 +35,12 @@ class ActionsPage extends React.Component {
         })
     }
     render() {
-        const { formActive, actions, goals } = this.state
+        const { activeGoal, formActive, actions, goals } = this.state
         if (formActive) {
             return (
                 <section className='reminders-page'>
                     {/* <ReminderForm toggleForm={() => this.toggleForm()} /> */}
-                    <BlocksPage toggleForm={() => this.toggleForm()} />
+                    <BlocksPage blockSequence={activeGoal.block_sequence}  toggleForm={() => this.toggleForm()} />
                 </section>
             )
         }
@@ -44,14 +50,14 @@ class ActionsPage extends React.Component {
                 goal => <div 
                         key={goal.id}
                         className='goal'>
-                        {goal.title}
+                        <Reminder goal={goal} activateGoal={(id) => this.activateGoal(id)} toggleForm={() => this.toggleForm()} />
                     </div> 
             )
             return (
                 <div 
                     key={action.id}
                     className='action'>
-                    <h3>{action.title}</h3>
+                    <h2>{action.title}</h2>
                     {goalList}
                 </div>
                 )
@@ -63,13 +69,6 @@ class ActionsPage extends React.Component {
                 <div className='actions'>
                     {actionList}
                 </div>
-
-                <h2>Recurring</h2>
-                {/* These reminder components will actually be passed down entire reminder data objects  */}
-                <Reminder data={{title:'eating healthy', date:1, time: 1}} toggleForm={() => this.toggleForm()} />
-                <h2>Upcoming</h2>
-                <Reminder data={{title:'rock climbing', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
-                <Reminder data={{title:'budgeting', date:1, time: 1}} toggleForm={() => this.toggleForm()}/>
                 <button
                     className='add-reminder'
                     onClick={() => this.toggleForm()}
