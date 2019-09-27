@@ -8,30 +8,25 @@ class CalendarDays extends React.Component {
         days: [],
         refresh: false,
         offset: 0,
-        count: 0,
     }
     componentDidMount() {
         const { currentMonth } = this.props
         this.renderCells(currentMonth)
     }
-    componentDidUpdate(prevProps) {
-        if (prevProps.currentMonth !== this.props.currentMonth) {
-            console.log('newmonth')
-            this.renderCells(this.props.currentMonth)
-        }
-    }
-    addCell(number) {
-        let { days, count } = this.state
-        if (count % 7 === 0) {
-            days.push(<CalendarCell openDate={(date) => this.props.openDate(date)} key={count} number={number} type='left-cell' />)
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.currentMonth !== this.props.currentMonth) {
+    //         let days = []
+    //         this.setState({ refresh: true, days })
+    //         console.log('i updated', this.props.currentMonth, days, this.state.days)
+    //         this.renderCells(this.props.currentMonth)
+    //     }
+    // }
+    addCell(array, number) {
+        if (array.length % 7 === 0) {
+            return (<CalendarCell openDate={(date) => this.props.openDate(date)} key={array.length} number={number} type='left-cell' />)
         } else {
-            days.push(<CalendarCell key={count} number={number} type='' />)
+            return (<CalendarCell key={array.length} number={number} type='' />)
         }
-        console.log(count + 1)
-        this.setState({
-            count: count + 1,
-            days,
-        })
     }
     renderCells(currentMonth) {
         const { days } = this.state
@@ -39,35 +34,33 @@ class CalendarDays extends React.Component {
         const monthLength = moment().month(currentMonth).daysInMonth()
         const monthOffsetEnd = monthOffset + monthLength
 
+        let cells = []
+
+        console.log(monthOffset, monthLength, monthOffsetEnd)
         // add in irrelevant month blocks
         for (let i = 0; i < monthOffset; i++) {
-            this.addCell()
+            cells.push(this.addCell(cells))
         }
         // we'll have a fetch request to query all entries with same month, then sort by date
         // map each day data with calendarcell component
         // fetch()
         //     .then(monthData => monthData.forEach(day => days.push(<CalendarCell key={} date={day.date})))
         for (let i = 1; i <= monthLength; i++) {
-            this.addCell(i)
+            cells.push(this.addCell(cells, i))
         }
 
-        if (days.length % 7 !== 0) {
-            const length = days.length
+        if (cells.length % 7 !== 0) {
+            const length = cells.length
             for (let i = 0; i < 7 - length % 7; i++) {
-                this.addCell()
+                cells.push(this.addCell(cells))
             }
         }
 
-        // for (let i = monthOffsetEnd; i < 35; i++) {
-        //     days.push(<CalendarCell key={i + 1} />)
-        // }
-        this.setState({ 
-            days,
-            refresh: true,
-         })
+        return cells
     }
     render() {
-        const { days } = this.state
+        const { currentMonth } = this.props
+        const days = this.renderCells(currentMonth)
         
         // const endOfWeek = weeks.map( (week, index) => week.endOf('month').format('YYYY-MM-DD') )
         return (

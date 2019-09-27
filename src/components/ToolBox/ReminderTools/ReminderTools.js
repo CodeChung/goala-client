@@ -167,6 +167,7 @@ class ReminderTools extends React.Component {
                             {columns[2]}
                         </div>
                         <div className='reminder-side'>
+                            {faToolbox}
                             {columns[1]}
                         </div>
                     </Container>

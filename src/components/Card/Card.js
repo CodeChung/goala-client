@@ -7,7 +7,7 @@ import Date from './Date/Date';
 
 class Card extends React.Component {
     render() {
-        let { id, date, saved, actions, reminders, text } = this.props
+        let { date, saved, text } = this.props
         return (
             <div
                 onClick={() => this.props.upDate(date)}

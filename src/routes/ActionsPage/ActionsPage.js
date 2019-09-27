@@ -1,5 +1,4 @@
 import React from 'react';
-import Reminder from '../../components/Reminder/Reminder';
 import './ActionsPage.css';
 import BlocksPage from '../BlocksPage/BlocksPage';
 import ActionsService from '../../services/actions-service';
@@ -40,7 +39,6 @@ class ActionsPage extends React.Component {
         if (formActive) {
             return (
                 <section className='reminders-page'>
-                    {/* <ReminderForm toggleForm={() => this.toggleForm()} /> */}
                     <BlocksPage 
                         goal={activeGoal}
                         blockSequence={activeGoal.block_sequence}  

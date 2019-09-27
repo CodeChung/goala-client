@@ -9,7 +9,6 @@ import SavedPage from '../../routes/SavedPage/SavedPage';
 import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';
-import EntryPage from '../../routes/EntryPage/EntryPage';
 import BlocksPage from '../../routes/BlocksPage/BlocksPage';
 
 class User extends React.Component {

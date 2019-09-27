@@ -12,9 +12,9 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
 `;
-const Title = styled.h3`
-    padding: 8px;
-`;
+// const Title = styled.h3`
+//     padding: 8px;
+// `;
 const TaskList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;

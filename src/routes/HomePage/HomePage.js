@@ -206,6 +206,13 @@ class HomePage extends React.Component {
                 </section>
             )
         }
+        if (keyword) {
+            return (
+                <section className='home-page'>
+                    This will have a list of entries with text containing ${keyword}
+                </section>
+            )
+        }
         return (
             <section className='home-page'>
                 <SearchBar 
