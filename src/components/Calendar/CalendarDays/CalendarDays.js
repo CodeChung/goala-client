@@ -25,7 +25,7 @@ class CalendarDays extends React.Component {
         if (array.length % 7 === 0) {
             return (<CalendarCell openDate={(date) => this.props.openDate(date)} key={array.length} number={number} type='left-cell' />)
         } else {
-            return (<CalendarCell key={array.length} number={number} type='' />)
+            return (<CalendarCell openDate={(date) => this.props.openDate(date)} key={array.length} number={number} type='' />)
         }
     }
     renderCells(currentMonth) {
