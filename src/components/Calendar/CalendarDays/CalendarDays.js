@@ -29,7 +29,6 @@ class CalendarDays extends React.Component {
         }
     }
     renderCells(currentMonth) {
-        const { days } = this.state
         const monthOffset = moment().month(currentMonth).startOf('month').day()
         const monthLength = moment().month(currentMonth).daysInMonth()
         const monthOffsetEnd = monthOffset + monthLength

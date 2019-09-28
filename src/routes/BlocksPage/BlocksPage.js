@@ -195,23 +195,28 @@ const ITEMS = [
 
 class BlocksPage extends Component {
     state = {
-        active: [],
-        blocks: [],
-        trash: [],
+        columns: {
+            active: [],
+            blocks: [],
+            trash: [],
+        },
         error: null,
     };
     componentDidMount() {
         // Determines if block form is goal or reminder
         // then it fetches <Block /> components based on blockId
-        const { active } = this.state
+        const columns = {}
+        const { active } = this.state.columns
         const { goal, reminder } = this.props
-        console.log(goal, reminder)
         
         if (goal) {
             const blockSeq = goal.block_sequence
             console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
-                .then(blocks => this.setState({ blocks }))
+                .then(blocks => {
+                    columns.blocks = blocks
+                    this.setState({ columns })
+                })
                 .catch(err => this.setState({ error: err.error }))
         }
 
@@ -231,7 +236,7 @@ class BlocksPage extends Component {
             case destination.droppableId:
                 this.setState({
                     [destination.droppableId]: reorder(
-                        this.state[source.droppableId],
+                        this.state.columns[source.droppableId],
                         source.index,
                         destination.index
                     )
@@ -241,7 +246,7 @@ class BlocksPage extends Component {
                 this.setState({
                     [destination.droppableId]: copy(
                         ITEMS,
-                        this.state[destination.droppableId],
+                        this.state.columns[destination.droppableId],
                         source,
                         destination
                     )
@@ -250,8 +255,8 @@ class BlocksPage extends Component {
             default:
                 this.setState(
                     move(
-                        this.state[source.droppableId],
-                        this.state[destination.droppableId],
+                        this.state.columns[source.droppableId],
+                        this.state.columns[destination.droppableId],
                         source,
                         destination
                     )
@@ -317,12 +322,12 @@ class BlocksPage extends Component {
                             <Title value={({title: 'Title'})} />
                         </div>
                         <div className='blocks-saved'>
-                            {Object.keys(this.state).map((list, i) => (
+                            {Object.keys(this.state.columns).map((list, i) => (
                                 <Droppable key={list} droppableId={list}>
                                     {(provided, snapshot) => (
                                         list !== 'trash'
                                         ?
-                                        <Sequence provided={provided} snapshot={snapshot} list={this.state.blocks} />
+                                        <Sequence provided={provided} snapshot={snapshot} list={this.state.columns.blocks} />
                                         :
                                         <Trash provided={provided} snapshot={snapshot} list={[]}/>
                                     )}

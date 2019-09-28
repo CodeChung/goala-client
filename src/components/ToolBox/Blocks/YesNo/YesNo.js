@@ -6,10 +6,8 @@ class YesNo extends React.Component {
         yes: false
     }
     componentDidMount() {
-        const { value } = this.props
-        if (value) {
-            this.setState({ yes: value.yes })
-        }
+        const yes = this.props.value ? this.props.value.yes : 'false'
+        this.setState({ yes })
     }
     toggleButton() {
         const { yes } = this.state

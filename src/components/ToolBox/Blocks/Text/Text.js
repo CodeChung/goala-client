@@ -11,7 +11,7 @@ class Text extends React.Component {
         this.setState({ text: event.target.value })
     }
     render() {
-        const text = this.props.text ? this.props.text : this.state.text
+        const text = this.props.value.text ? this.props.value.text : this.state.text
         return (
             <div className='block block-text'>
                 <ContentEditable

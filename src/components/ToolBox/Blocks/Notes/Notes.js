@@ -17,13 +17,14 @@ class Notes extends React.Component {
     }
     render() {
         const { content } = this.state
+        const propContent = this.props.value ? this.props.value.text : null
         return (
             <div className='block block-notes'>
                 <div
                     onChange={(e) => this.updateContent(e)}
                     className='block block-notepad'
-                    value={ (content.length && content) || 'Sticky Note'}
                     contentEditable='true'>
+                    { propContent || content}
                 </div>
             </div>
         )
