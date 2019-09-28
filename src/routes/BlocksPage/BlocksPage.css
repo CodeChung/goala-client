@@ -3,6 +3,9 @@
     width: 100%;
     box-sizing: border-box;
     overflow: auto;
+
+    /* might change */
+    display: flex;
 }
 
 .blocks-page-header {
@@ -28,7 +31,8 @@
 }
 
 .block-saved-list {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); */
+    
 }
 
 .block-trash {

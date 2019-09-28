@@ -73,7 +73,7 @@ class Sequence extends React.Component {
                 className='block-saved-list'
                 ref={provided.innerRef}
                 isDraggingOver={snapshot.isDraggingOver}>
-                {list.length
+                {list && list.length
                     ? list.map(
                         (item, index) => (
                             <Draggable

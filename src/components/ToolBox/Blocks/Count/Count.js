@@ -8,8 +8,11 @@ class Count extends React.Component {
         units: 'units'
     }
     componentDidMount() {
-        const { num, den, units } = this.props.value
-        this.setState({ num, den, units})
+        if (this.props.value) {
+            const { num, den, units } = this.props.value
+            this.setState({ num, den, units})
+        }
+
     }
     onChange(type, event) {
         event.preventDefault()
