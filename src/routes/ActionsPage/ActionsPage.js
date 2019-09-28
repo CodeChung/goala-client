@@ -38,7 +38,7 @@ class ActionsPage extends React.Component {
         const { activeGoal, formActive, actions, goals } = this.state
         if (formActive) {
             return (
-                <section className='reminders-page'>
+                <section className='actions-page'>
                     <BlocksPage 
                         goal={activeGoal}
                         blockSequence={activeGoal.block_sequence}  

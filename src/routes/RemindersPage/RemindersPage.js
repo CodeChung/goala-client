@@ -3,6 +3,7 @@ import Reminder from '../../components/Reminder/Reminder';
 import ReminderForm from '../../components/ReminderForm/ReminderForm';
 import RemindersService from '../../services/reminders-service';
 import './ReminderPage.css';
+import BlocksPage from '../BlocksPage/BlocksPage';
 
 class RemindersPage extends React.Component {
     state = {
@@ -34,13 +35,21 @@ class RemindersPage extends React.Component {
         this.setState({ activeReminder })
     }
     render() {
-        const { formActive } = this.state
+        const { formActive, activeReminder } = this.state
         if (formActive) {
             return (
                 <section className='reminders-page'>
-                    <ReminderForm toggleForm={() => this.toggleForm()} />
+                        <BlocksPage
+                            reminder={activeReminder}
+                            blockSequence={activeReminder.block_sequence}  
+                            toggleForm={() => this.toggleForm()} />
                 </section>
             )
+            // return (
+            //     <section className='reminders-page'>
+            //         <ReminderForm toggleForm={() => this.toggleForm()} />
+            //     </section>
+            // )
         }
         
         const { recurringReminders, upcomingReminders } = this.state
