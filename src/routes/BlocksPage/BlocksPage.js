@@ -21,17 +21,22 @@ import Trash from '../../components/ToolBox/Blocks/Trash/Trash';
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
     debugger
+    
     console.log(list, startIndex, endIndex)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
+    if (endIndex < 0) {
+        return result
+    }
     result.splice(endIndex, 0, removed);
-
+    
     return result;
 };
 /**
  * Moves an item from one list to another list.
  */
 const copy = (source, destination, droppableSource, droppableDestination) => {
+    debugger
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const item = sourceClone[droppableSource.index];
@@ -41,6 +46,7 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const move = (source, destination, droppableSource, droppableDestination) => {
+    debugger
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const [removed] = sourceClone.splice(droppableSource.index, 1);
@@ -159,7 +165,7 @@ const ButtonText = styled.div`
 
 
 // // ITEMS holds all the sidebar template blocks on the right
-const ITEMS = [
+const SIDEBAR_ITEMS = [
     {
         id: uuid(),
         content: <Title />
@@ -234,9 +240,9 @@ class BlocksPage extends Component {
             return;
         }
         switch (source.droppableId) {
+            // this is for reordering within an array
+            // if source matches destination
             case destination.droppableId:
-                debugger
-                console.log('source droppable',source.droppableId, ' destination droppable ', destination.droppableId)
                 this.setState({
                     columns: {
                         blocks: reorder(
@@ -246,16 +252,31 @@ class BlocksPage extends Component {
                     )}
                 });
                 break;
+            // in case the Tile comes from sidebar 
+            // if destination is trash, we ignore
+            // if destination is main block, we update blocks with copy
             case 'ITEMS':
                 debugger
-                this.setState({
-                    [destination.droppableId]: copy(
-                        ITEMS,
-                        this.state.columns.blocks[destination.droppableId],
-                        source,
-                        destination
-                    )
-                });
+                if (destination.droppableId !== 69) {
+                    this.setState({
+                        columns: {
+                            blocks: copy(
+                            SIDEBAR_ITEMS,
+                            this.state.columns.blocks,
+                            source,
+                            destination
+                        )}
+                    });
+                }
+                break;
+            case 96:
+                debugger
+                console.log('main blocks dont cry')
+                if (destination.droppableId === 69) {
+                    debugger
+                    const blocks = this.state.columns.blocks.filter( (block, index) => index !== source.index )
+                    this.setState({ columns: { blocks } })
+                }
                 break;
             default:
                 debugger
@@ -298,7 +319,7 @@ class BlocksPage extends Component {
                                 className='toolbox-list'
                                 ref={provided.innerRef}
                                 isDraggingOver={snapshot.isDraggingOver}>
-                                {ITEMS.map((item, index) => (
+                                {SIDEBAR_ITEMS.map((item, index) => (
                                     <Draggable
                                         key={item.id}
                                         draggableId={item.id}
