@@ -111,6 +111,41 @@ class Sequence extends React.Component {
                                     </Item>
                                 )}
                             </Draggable>
+                            // <Draggable
+                            //     key={item.id}
+                            //     draggableId={item.id}
+                            //     index={index}>
+                            //     {(provided, snapshot) => (
+                            //         <Item
+                            //             className='block-container-saved'
+                            //             ref={
+                            //                 provided.innerRef
+                            //             }
+                            //             {...provided.draggableProps}
+                            //             isDragging={
+                            //                 snapshot.isDragging
+                            //             }
+                            //             style={
+                            //                 provided
+                            //                     .draggableProps
+                            //                     .style
+                            //             }>
+                            //             <Handle
+                            //                 {...provided.dragHandleProps}>
+                            //                 <svg
+                            //                     width="24"
+                            //                     height="24"
+                            //                     viewBox="0 0 24 24">
+                            //                     <path
+                            //                         fill="currentColor"
+                            //                         d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
+                            //                     />
+                            //                 </svg>
+                            //             </Handle>
+                            //             <BaseBlock block={item} />
+                            //         </Item>
+                            //     )}
+                            // </Draggable>
                         )
                     )
                     : !provided.placeholder && (

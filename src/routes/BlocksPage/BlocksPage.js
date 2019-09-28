@@ -20,8 +20,6 @@ import Trash from '../../components/ToolBox/Blocks/Trash/Trash';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
-    debugger
-    
     console.log(list, startIndex, endIndex)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -36,7 +34,6 @@ const reorder = (list, startIndex, endIndex) => {
  * Moves an item from one list to another list.
  */
 const copy = (source, destination, droppableSource, droppableDestination) => {
-    debugger
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const item = sourceClone[droppableSource.index];
@@ -46,7 +43,6 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const move = (source, destination, droppableSource, droppableDestination) => {
-    debugger
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const [removed] = sourceClone.splice(droppableSource.index, 1);
@@ -168,39 +164,35 @@ const ButtonText = styled.div`
 const SIDEBAR_ITEMS = [
     {
         id: uuid(),
-        content: <Title />
+        type: 'title'
     },
     {
         id: uuid(),
-        content: <Count value={({ num: '', den: '', units: ''})} /> 
+        type: 'count',
     },
     {
         id: uuid(),
-        content: <Notes />
+        type: 'notes',
     },
     {
         id: uuid(),
-        content: <Text />
+        type: 'text',
     },
     {
         id: uuid(),
-        content: <CheckList />
+        type: 'checklist'
     },
     {
         id: uuid(),
-        content: <Weekly />
+        type: 'weekly',
     },
     {
         id: uuid(),
-        content: <CountDown />
+        type: 'countdown',
     },
     {
         id: uuid(),
-        content: <Date />
-    },
-    {
-        id: uuid(),
-        content: <CheckList />
+        type: 'date',
     },
 ];
 
@@ -256,7 +248,6 @@ class BlocksPage extends Component {
             // if destination is trash, we ignore
             // if destination is main block, we update blocks with copy
             case 'ITEMS':
-                debugger
                 if (destination.droppableId !== 69) {
                     this.setState({
                         columns: {
@@ -269,17 +260,14 @@ class BlocksPage extends Component {
                     });
                 }
                 break;
-            case 96:
-                debugger
+            case 'active-blocks':
                 console.log('main blocks dont cry')
                 if (destination.droppableId === 69) {
-                    debugger
                     const blocks = this.state.columns.blocks.filter( (block, index) => index !== source.index )
                     this.setState({ columns: { blocks } })
                 }
                 break;
             default:
-                debugger
                 this.setState(
                     move(
                         this.state.columns[source.droppableId],
@@ -300,7 +288,7 @@ class BlocksPage extends Component {
     // But in this example everything is just done in one place for simplicity
     render() {
         const activeBlocks = (
-            <Droppable key={96} droppableId={96}>
+            <Droppable key={96} droppableId='active-blocks'>
                 {(provided, snapshot) => <Sequence provided={provided} snapshot={snapshot} list={this.state.columns.blocks} />}
             </Droppable>
         )
@@ -325,25 +313,60 @@ class BlocksPage extends Component {
                                         draggableId={item.id}
                                         index={index}>
                                         {(provided, snapshot) => (
-                                            <React.Fragment>
-                                                <Item
-                                                    className='block-container'
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    isDragging={snapshot.isDragging}
-                                                    style={
-                                                        provided.draggableProps
-                                                            .style
-                                                    }>
-                                                    {item.content}
-                                                </Item>
-                                                {snapshot.isDragging && (
-                                                    <Clone>{item.content}</Clone>
-                                                )}
-                                            </React.Fragment>
+                                            <Item
+                                                className='block-container-saved'
+                                                ref={
+                                                    provided.innerRef
+                                                }
+                                                {...provided.draggableProps}
+                                                isDragging={
+                                                    snapshot.isDragging
+                                                }
+                                                style={
+                                                    provided
+                                                        .draggableProps
+                                                        .style
+                                                }>
+                                                <Handle
+                                                    {...provided.dragHandleProps}>
+                                                    <svg
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
+                                                        />
+                                                    </svg>
+                                                </Handle>
+                                                <BaseBlock block={({ type: item.type, value: {value: null} })} />
+                                            </Item>
                                         )}
                                     </Draggable>
+                                    // <Draggable
+                                    //     key={item.id}
+                                    //     draggableId={item.id}
+                                    //     index={index}>
+                                    //     {(provided, snapshot) => (
+                                    //         <React.Fragment>
+                                    //             <Item
+                                    //                 className='block-container'
+                                    //                 ref={provided.innerRef}
+                                    //                 {...provided.draggableProps}
+                                    //                 {...provided.dragHandleProps}
+                                    //                 isDragging={snapshot.isDragging}
+                                    //                 style={
+                                    //                     provided.draggableProps
+                                    //                         .style
+                                    //                 }>
+                                    //                 {item.content}
+                                    //             </Item>
+                                    //             {snapshot.isDragging && (
+                                    //                 <Clone>{item.content}</Clone>
+                                    //             )}
+                                    //         </React.Fragment>
+                                    //     )}
+                                    // </Draggable>
                                 ))}
                             </Kiosk>
                         )}
