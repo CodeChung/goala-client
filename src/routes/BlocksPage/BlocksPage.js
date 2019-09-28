@@ -197,7 +197,8 @@ class BlocksPage extends Component {
     state = {
         active: [],
         blocks: [],
-        trash: []
+        trash: [],
+        error: null,
     };
     componentDidMount() {
         // Determines if block form is goal or reminder
@@ -210,7 +211,8 @@ class BlocksPage extends Component {
             const blockSeq = goal.block_sequence
             console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
-                .then(blocks => console.log('BLOCKS BY ID, ', blocks))
+                .then(blocks => this.setState({ blocks }))
+                .catch(err => this.setState({ error: err.error }))
         }
 
         if (reminder) {
@@ -267,6 +269,7 @@ class BlocksPage extends Component {
     render() {
         return (
             <section className='blocks-page'>
+                {this.state.error}
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="ITEMS" isDropDisabled={true}>
                         {(provided, snapshot) => (

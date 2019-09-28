@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import BaseBlock from '../../components/ToolBox/Blocks/BaseBlock/BaseBlock';
 import { Draggable } from 'react-beautiful-dnd';
 
 const sequence = []
@@ -106,7 +107,7 @@ class Sequence extends React.Component {
                                                 />
                                             </svg>
                                         </Handle>
-                                        {item.content}
+                                        <BaseBlock block={item} />
                                     </Item>
                                 )}
                             </Draggable>

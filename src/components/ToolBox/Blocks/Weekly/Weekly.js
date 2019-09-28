@@ -13,9 +13,18 @@ class Weekly extends React.Component {
         Sa: false,
     }
     componentDidMount() {
-        // if (this.props.value) {
-        //     this.setState(this.props.value)
-        // }
+        if (this.props.value.days) {
+            const days = this.props.value.days
+            const state = {}
+            Object.keys(this.state).forEach(key => {
+                console.log(key, days)
+                if (days.includes(key)) {
+                    state[key] = true
+                }
+            })
+
+            this.setState(state)
+        }
     }
     toggleDay(day) {
         const val = this.state[day]

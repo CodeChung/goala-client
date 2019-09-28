@@ -3,6 +3,7 @@ import TokenService from './token-service';
 
 const BlocksService = {
     getBlocksByIds(ids) {
+        console.log(ids, 'Thine ids')
         return fetch(`${config.API_ENDPOINT}/blocks`, {
             method: 'POST',
             headers: {
