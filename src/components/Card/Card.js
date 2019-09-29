@@ -12,8 +12,11 @@ class Card extends React.Component {
             <div
                 onClick={() => this.props.upDate(date)}
                 className='entry-card'>
-                <h2>Emojimotion</h2>
                 {title}
+                <Date date={date}/>
+                <p contentEditable='true'>
+                    {text}
+                </p>
                 <div 
                     onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
@@ -21,10 +24,6 @@ class Card extends React.Component {
                 </div>
                 <p>chapter</p>
                 <p>emoticon that represents mood</p>
-                <Date date={date}/>
-                <p contentEditable='true'>
-                    {text}
-                </p>
                 <p>[tags:]</p>
             </div>
         )

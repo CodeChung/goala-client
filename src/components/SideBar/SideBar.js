@@ -68,15 +68,6 @@ class SideBar extends React.Component {
                     </div>
                     Saved
                 </Link>
-                <Link to='/search'
-                    onClick={() => this.setCurrentNav('search')}
-                    className={ currentView === 'search' ? 'nav-active' : undefined }>
-                    <div className='sidebar-icon'>
-                        <FontAwesomeIcon 
-                            icon={faSearch} /> 
-                    </div>
-                    Search
-                </Link>
                 <Link to='/login' 
                     className='nav-end'
                     onClick={() => this.props.logout()}>

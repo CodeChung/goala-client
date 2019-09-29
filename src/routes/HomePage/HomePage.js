@@ -6,153 +6,6 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import EntryPage from '../EntryPage/EntryPage';
 import EntriesService from '../../services/entries-service';
 
-const exampleCards = [
-    {
-        id: 1,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 2,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 1,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 2,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        saved: true,
-        actions: [],
-        reminders: [],
-        text: 'Today was a great day. This will probably be html'
-    },
-]
-
 class HomePage extends React.Component {
     state = {
         page: 0,
@@ -201,11 +54,12 @@ class HomePage extends React.Component {
         console.log(keyword)
     }
     render() {
-        const { date, keyword } = this.state
+        const { entries, date, keyword } = this.state
         if (date) {
+            const data = entries.find(entry => entry.date === date)
             return (
                 <section className='home-page'>
-                    <EntryPage date={date} resetDate={() => this.resetDate()} />
+                    <EntryPage data={data}  date={date} resetDate={() => this.resetDate()} />
                 </section>
             )
         }
@@ -228,15 +82,6 @@ class HomePage extends React.Component {
                     <CardList upDate={(date) => this.upDate(date)} cards={this.state.entries} />
                 </div>
                 {this.state.loading && <Spinner />}
-                HomePage
-                <br></br>
-                Implement scroll feed
-                <br></br>
-                To the right I want some border
-                <br></br>
-                when entry is clicked to edit
-                I want transition to single entry, long and vertical transition for below
-                I want an actions board and a reminders board with draggable components
             </section>
         )
     }

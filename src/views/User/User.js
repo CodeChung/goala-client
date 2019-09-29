@@ -37,8 +37,6 @@ class User extends React.Component {
                             component={BlocksPage} />
                         <Route path='/saved'
                             component={SavedPage} />
-                        <Route path='/search'
-                            component={SearchPage} />
                         <Route component={MissingPage} />
                     </Switch>
                 </main>
