@@ -1,9 +1,11 @@
 import React from 'react';
+import moment from 'moment'
 import './Date.css';
 
 class Date extends React.Component {
     render() {
-        const { date } = this.props
+        let { date } = this.props
+        date = moment(date).toDate()
         return (
             <div className='entry-date'>
                 <div className='entry-date-number'>

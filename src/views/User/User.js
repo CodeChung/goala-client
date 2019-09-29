@@ -13,13 +13,10 @@ import BlocksPage from '../../routes/BlocksPage/BlocksPage';
 
 class User extends React.Component {
     state = {
-        display: '',
+        view: 'Home'
     }
-    showNav() {
-        this.setState({display: ''})
-    }
-    hideNav() {
-        this.setState({display: 'hidden'})
+    updateView = (view) => {
+        this.setState({ view })
     }
     render() {
         return (

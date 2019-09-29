@@ -7,12 +7,13 @@ import Date from './Date/Date';
 
 class Card extends React.Component {
     render() {
-        let { date, saved, text } = this.props
+        let { date, saved, text, title } = this.props
         return (
             <div
                 onClick={() => this.props.upDate(date)}
                 className='entry-card'>
                 <h2>Emojimotion</h2>
+                {title}
                 <div 
                     onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
@@ -35,7 +36,8 @@ Card.propTypes = {
     date: PropTypes.instanceOf(Date),
     saved: PropTypes.bool,
     actions: PropTypes.array,
-    reminders: PropTypes.array
+    reminders: PropTypes.array,
+    upDate: PropTypes.func,
 }
 
 export default Card;

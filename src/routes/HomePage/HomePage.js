@@ -4,6 +4,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import EntryPage from '../EntryPage/EntryPage';
+import EntriesService from '../../services/entries-service';
 
 const exampleCards = [
     {
@@ -162,19 +163,21 @@ class HomePage extends React.Component {
         date: null,
     }
     componentDidMount() {
-        // This is where we will fetch with pagination
-        // 10 entries sorted by user id and date
-        // 
-        this.addNewStories()
+        this.addNewEntries()
     }
-    addNewStories() {
-        const { page, itemCount } = this.state
-        const entries = exampleCards.slice(itemCount * page, itemCount)
-        this.setState({
-            entries,
-            loading: false,
-            page: page + 1
-        })
+    addNewEntries() {
+        let { entries, page, itemCount } = this.state
+
+        EntriesService.getEntriesById()
+            .then(res => {
+                entries = [...entries, ...res]
+                this.setState({
+                    entries,
+                    loading: false,
+                    page: page + 1
+                })
+            })
+            .catch(res => this.setState({ error: res.error }))
     }
     handleScroll(e) {
         const element = e.target
