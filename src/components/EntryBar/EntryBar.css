@@ -1,10 +1,22 @@
 .entry-bar {
     /* width: 100%; */
-    display: block;
+    display: flex;
     position: absolute;
     bottom: 0px;
-    border: 1px solid rgb(175, 175, 223);
+    border: 1.4px solid rgb(145, 145, 145);
+    background: rgb(212, 212, 212);
+    border-radius: 5px;
     border-bottom: none;
     height: 70px;
     width: 70%;
+    align-items: center;
+}
+
+.entry-bar-split::after {
+    border: 1px solid blue;
+    content: '';
+}
+
+entry-bar-goals {
+    
 }

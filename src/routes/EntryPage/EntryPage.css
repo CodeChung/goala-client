@@ -1,9 +1,9 @@
 .entry-page {
-    padding-top: 50px;
     /* display: flex; */
     width: 80%;
     text-align: left;
     height: 100%;
+    margin: 0 auto;
 }
 
 .entry-page-bookmark {
@@ -27,13 +27,13 @@
     margin-right: 20px;
     position: relative;
     top: 50px;
-    left: -100px;
+    left: -75px;
     transition: .3s;
 }
 
 .entry-back-arrow:active {
     /* box-shadow: 0 5px #666; */
-    transform: translateY(6px);
+    transform: translateX(-6px);
 }
 
 .entry-body {

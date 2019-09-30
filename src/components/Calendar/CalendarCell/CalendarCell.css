@@ -3,7 +3,19 @@
 }
 
 .calendar-cell {
-    padding: 10px;
+}
+
+.cell-date {
+    font-size: 40px;
+    text-align: left;
+    border: 1px solid black;
+    border-top:none;
+    border-left: none;
+    width: 60px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 .cell-text {
@@ -11,4 +23,5 @@
     text-align: left;
     overflow: hidden;
     font-size: 12px;
+    padding: 10px;
 }

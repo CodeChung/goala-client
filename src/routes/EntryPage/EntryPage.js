@@ -14,7 +14,8 @@ class EntryPage extends React.Component {
         date: null, 
         id: null, 
         text: 'Text', 
-        title: 'Title'
+        title: 'Title',
+        loading: true,
     }
     componentDidMount() {
         let { date, data } = this.props
@@ -37,7 +38,7 @@ class EntryPage extends React.Component {
             const saved = data.saved
             this.setState({ date, id, text, title, saved })
         }
-        
+        this.setState({ loading: false })
     }
     handleTitle = event => {
         this.setState({ title: event.target.value })
@@ -46,9 +47,17 @@ class EntryPage extends React.Component {
         this.setState({ text: event.target.value })
     }
     render() {
-        const { error, date, saved, text, title } = this.state
-        return (
+        const { loading, error, date, saved, text, title } = this.state
+        
+        if (loading) {
+            return (
+                <section className='entry-page'>
+                    Loading Babe
+                </section>
+            )
+        }
 
+        return (
             <section className='entry-page'>
                 {error}
                 <div 	                
