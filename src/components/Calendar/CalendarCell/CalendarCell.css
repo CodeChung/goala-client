@@ -1,3 +1,14 @@
 .left-cell {
     border-left: none !important;
 }
+
+.calendar-cell {
+    padding: 10px;
+}
+
+.cell-text {
+    font-weight: 300;
+    text-align: left;
+    overflow: hidden;
+    font-size: 12px;
+}

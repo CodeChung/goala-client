@@ -203,11 +203,9 @@ class BlocksPage extends Component {
         }
 
         if (reminder) {
-            debugger
             const blockSeq = reminder.block_sequence
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
-                    debugger
                     columns.blocks = blocks
                     this.setState({ columns })
                 })

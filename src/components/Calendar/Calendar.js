@@ -26,19 +26,19 @@ class Calendar extends React.Component {
             currentMonth: newMonth,
         })
     }
-    resetDate() {
+    resetData() {
         console.log('reset')
-        this.setState({ date: null })
+        this.setState({ data: null })
     }
     openData(data) {
         this.setState({ data })
     }
     render() {
         const { data, date, currentMonth } = this.state
-        if (date) {
+        if (data) {
             return (
                 <CalendarView 
-                    resetDate={() => this.resetDate()}
+                    resetData={() => this.resetData()}
                     data={data}
                     date={date} />
             )

@@ -37,7 +37,6 @@ class CalendarDays extends React.Component {
                         const day = moment(entry.date).format('DD')
                         activeDays[day] = index
                     })
-                    debugger
                     const days = this.renderCells(this.props.currentMonth, activeDays, entries)
                     this.setState({ entries, activeDays, days })
                 })

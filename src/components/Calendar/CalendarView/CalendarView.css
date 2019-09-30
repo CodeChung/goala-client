@@ -1,0 +1,10 @@
+.calendar-view {
+    height: 100vh;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+.calendar-view .entry-page {
+    width: 100%;
+}

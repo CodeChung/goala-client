@@ -18,8 +18,12 @@ class CalendarCell extends React.Component {
                 }}
                 className={'calendar-cell ' + this.props.type}
                 to='/'>
-                {this.props.number || 'XXX'}
-                {this.props.data && this.props.data.title}
+                <div className='cell-date'>
+                    {this.props.number || 'XXX'}
+                </div>
+                <div className='cell-text'>
+                    {this.props.data && this.props.data.text}
+                </div>
             </div>
         )
     }
