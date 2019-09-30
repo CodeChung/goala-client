@@ -1,0 +1,26 @@
+.entry-stamp {
+    border: 1px solid skyblue;
+    padding: 5px;
+    border-radius: 25px;
+    background: skyblue;
+    margin: 0.5px 2px;
+    font-weight: 100;
+    transition: .15s;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    color: rgb(29, 29, 29);
+}
+
+.entry-stamp-active {
+    opacity: 80%;
+}
+
+.entry-stamp:hover {
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.entry-stamp:active {
+    transform: translateY(2px);
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+}

@@ -16,6 +16,34 @@ const RemindersService = {
                     : res.json()
             )
     },
+    getRemindersByDate(date) {
+        return fetch(`${config.API_ENDPOINT}/reminders/date/${date}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+    getRemindersByDay(day) {
+        return fetch(`${config.API_ENDPOINT}/reminders/day/${day}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    }
 
     // postGoal(goal) {
     //     return fetch(`${config.API_ENDPOINT}/goals`, {

@@ -10,7 +10,6 @@ const GoalsService = {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             },
         })
-        .then(res => {debugger; return res})
             .then(res =>
                 (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
