@@ -8,7 +8,9 @@ class Calendar extends React.Component {
     state = {
         currentMonth: new Date().getMonth(),
         selectedDate: new Date(),
+        data: null,
         date: null,
+        entries: [],
     }
     nextMonth() {
         const { currentMonth } = this.state
@@ -28,15 +30,16 @@ class Calendar extends React.Component {
         console.log('reset')
         this.setState({ date: null })
     }
-    openDate(date) {
-        this.setState({ date })
+    openData(data) {
+        this.setState({ data })
     }
     render() {
-        const { date, currentMonth } = this.state
+        const { data, date, currentMonth } = this.state
         if (date) {
             return (
                 <CalendarView 
                     resetDate={() => this.resetDate()}
+                    data={data}
                     date={date} />
             )
         } else {
@@ -71,7 +74,7 @@ class Calendar extends React.Component {
                         </div>
                     </div>
                     <CalendarDays
-                        openDate={(date) => this.openDate(date)}
+                        openData={(date) => this.openData(date)}
                         currentMonth={currentMonth}
                         />
                 </div>

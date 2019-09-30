@@ -59,7 +59,7 @@ class HomePage extends React.Component {
             const data = entries.find(entry => entry.date === date)
             return (
                 <section className='home-page'>
-                    <EntryPage data={data}  date={date} resetDate={() => this.resetDate()} />
+                    <EntryPage data={data} resetDate={() => this.resetDate()} />
                 </section>
             )
         }

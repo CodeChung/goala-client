@@ -6,7 +6,7 @@ class CalendarView extends React.Component {
     render() {
         return (
             <div className='calendar-view'>
-                <EntryPage resetDate={() => this.props.resetDate()} />
+                <EntryPage data={this.props.data} date={this.props.date} resetDate={() => this.props.resetDate()} />
             </div>
         )
     }

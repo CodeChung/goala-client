@@ -1,5 +1,6 @@
 import config from '../config'
 import TokenService from './token-service';
+import moment from 'moment';
 
 const EntriesService = {
     getEntryByDate(date) {
@@ -30,6 +31,21 @@ const EntriesService = {
                     : res.json()
             )       
     },
+    getEntriesByMonth(month) {
+        const monthString = moment(month + 1, 'MM').format('YYYY-MM-DD')
+        return fetch(`${config.API_ENDPOINT}/entries/month/${monthString}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )       
+    }
 
     // postGoal(goal) {
     //     return fetch(`${config.API_ENDPOINT}/goals`, {

@@ -22,9 +22,6 @@ class Card extends React.Component {
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
                     <FontAwesomeIcon icon={faBookmark} />
                 </div>
-                <p>chapter</p>
-                <p>emoticon that represents mood</p>
-                <p>[tags:]</p>
             </div>
         )
     }

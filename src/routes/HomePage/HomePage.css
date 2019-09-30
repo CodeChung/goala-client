@@ -27,3 +27,7 @@
 .journal-feed .card-list .entry-card:hover {
     box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
 }
+
+.journal-feed .card-list .entry-card:active {
+    transform: translateY(3px);
+}

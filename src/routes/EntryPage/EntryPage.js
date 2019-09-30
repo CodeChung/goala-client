@@ -5,6 +5,7 @@ import Date from '../../components/Card/Date/Date';
 import './EntryPage.css';
 import ContentEditable from 'react-contenteditable';
 import moment from 'moment';
+import EntriesService from '../../services/entries-service';
 
 class EntryPage extends React.Component {
     state = {
@@ -15,14 +16,27 @@ class EntryPage extends React.Component {
         title: 'Title'
     }
     componentDidMount() {
-        const { data } = this.props
-        const date = moment(data.date).format('YYYY-MM-DD')
-        const id = data.id
-        const text = data.text
-        const title = data.title
-        const saved = data.saved
+        let { date, data } = this.props
+
+        if (date) {
+            EntriesService.getEntryByDate(date)
+                .then(res => {
+                    const {id, text, title, saved} = res
+                    date = moment(date).format('YYYY-MM-DD')
+                    this.setState({ id, text, title, saved, date})
+                })
+                .catch(res => this.setState({ error: res.error }))
+        }
+
+        if (data) {
+            date = moment(data.date).format('YYYY-MM-DD')
+            const id = data.id
+            const text = data.text
+            const title = data.title
+            const saved = data.saved
+            this.setState({ date, id, text, title, saved })
+        }
         
-        this.setState({ date, id, text, title, saved })
     }
     handleTitle = event => {
         this.setState({ title: event.target.value })
@@ -31,10 +45,11 @@ class EntryPage extends React.Component {
         this.setState({ text: event.target.value })
     }
     render() {
-        const { date, saved, text, title } = this.state
+        const { error, date, saved, text, title } = this.state
         return (
 
             <section className='entry-page'>
+                {error}
                 <div 	                
                     className={ saved ? 'entry-page-bookmark active-mark' : 'entry-page-bookmark' }>
                     <FontAwesomeIcon icon={faBookmark} />	

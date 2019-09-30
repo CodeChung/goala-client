@@ -9,9 +9,11 @@ class CheckList extends React.Component {
         checked: false,
     }
     componentDidMount() {
-        const { text } = this.props
-        if (text) {
-            this.setState({ text })
+        const { value } = this.props
+        if (value) {
+            let checked = value.checked
+            let text = value.value
+            this.setState({ checked, text })
         }
     }
     updateText = event => {
