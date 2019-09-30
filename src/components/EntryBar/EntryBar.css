@@ -1,0 +1,10 @@
+.entry-bar {
+    /* width: 100%; */
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    border: 1px solid rgb(175, 175, 223);
+    border-bottom: none;
+    height: 70px;
+    width: 70%;
+}

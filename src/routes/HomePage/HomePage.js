@@ -24,6 +24,7 @@ class HomePage extends React.Component {
         EntriesService.getEntriesById()
             .then(res => {
                 entries = [...entries, ...res]
+                entries = entries.reverse()
                 this.setState({
                     entries,
                     loading: false,

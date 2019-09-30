@@ -9,3 +9,9 @@
 .add-reminder:focus {
     outline: none;
 }
+
+.reminders-page h2 {
+    text-align: left;
+    width: 40%;
+    margin: 25px auto;
+}

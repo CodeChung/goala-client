@@ -6,6 +6,7 @@ import './EntryPage.css';
 import ContentEditable from 'react-contenteditable';
 import moment from 'moment';
 import EntriesService from '../../services/entries-service';
+import EntryBar from '../../components/EntryBar/EntryBar';
 
 class EntryPage extends React.Component {
     state = {
@@ -73,7 +74,8 @@ class EntryPage extends React.Component {
                         disabled={false}
                         onChange={this.handleText}
                         /> 
-                </div>    
+                </div>   
+                <EntryBar date={date} /> 
             </section>
         )
     }

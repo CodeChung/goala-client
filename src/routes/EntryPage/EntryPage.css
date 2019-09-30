@@ -1,7 +1,9 @@
 .entry-page {
     padding-top: 50px;
-    display: flex;
+    /* display: flex; */
     width: 80%;
+    text-align: left;
+    height: 100%;
 }
 
 .entry-page-bookmark {
@@ -24,7 +26,8 @@
     font-size: 45px;
     margin-right: 20px;
     position: relative;
-    top: 5px;
+    top: 50px;
+    left: -100px;
     transition: .3s;
 }
 
