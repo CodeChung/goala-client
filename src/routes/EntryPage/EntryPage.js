@@ -7,6 +7,8 @@ import ContentEditable from 'react-contenteditable';
 import moment from 'moment';
 import EntriesService from '../../services/entries-service';
 import EntryBar from '../../components/EntryBar/EntryBar';
+import Tile from '../../components/Tile/Tile';
+import LogView from '../LogView/LogView';
 
 class EntryPage extends React.Component {
     state = {
@@ -16,6 +18,9 @@ class EntryPage extends React.Component {
         text: 'Text', 
         title: 'Title',
         loading: true,
+        logs: [],
+        data: null,
+        logView: false,
     }
     componentDidMount() {
         let { date, data } = this.props
@@ -46,14 +51,31 @@ class EntryPage extends React.Component {
     handleText = event => {
         this.setState({ text: event.target.value })
     }
+    addTile = tile => {
+        let { text } = this.state
+        text += Tile(tile, (log) => this.updateLog(log))
+        console.log('tiled')
+        this.setState({ text })
+    }
+    updateLog(newLog) {
+        const { logs } = this.state
+        logs.push(newLog)
+        this.setState({ logs })
+    }
     render() {
-        const { loading, error, date, saved, text, title } = this.state
+        const { loading, error, date, logs, saved, text, title, logView } = this.state
         
         if (loading) {
             return (
                 <section className='entry-page'>
-                    Loading Babe
+                    Loading 
                 </section>
+            )
+        }
+
+        if (logs.length && logView) {
+            return (
+                <LogView logs={logs} />
             )
         }
 
@@ -82,9 +104,9 @@ class EntryPage extends React.Component {
                         html={text}
                         disabled={false}
                         onChange={this.handleText}
-                        /> 
+                        />
                 </div>   
-                <EntryBar date={date} /> 
+                <EntryBar addTile={(tile) => this.addTile(tile)} date={date} /> 
             </section>
         )
     }

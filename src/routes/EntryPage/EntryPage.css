@@ -70,3 +70,41 @@
     outline: none
 }
 
+.entry-text-stamp {
+    color: antiquewhite;
+    background: black !important;
+    border-radius: 8px;
+    font-size: 28px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+}
+
+.entry-text-stamp:active, .entry-text-stamp:focus {
+    outline: none;
+}
+
+.entry-text-stamp:hover + .stamp-hidden{
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.stamp-hidden {
+    background: lightskyblue;
+    width: 220px;
+    height: 280px;
+    border-radius: 0 10px 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.15s, opacity 0.2s linear;
+    position: absolute;
+}
+
+.text-stamp-container {
+    display: inline-block;
+    margin: 0 10px;
+}

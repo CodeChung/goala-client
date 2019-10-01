@@ -24,7 +24,6 @@ class EntryBar extends React.Component {
             
             RemindersService.getRemindersByDay(day)
                 .then(reminders => {
-                    debugger
                     const currentReminders = [...this.state.reminders, ...reminders]
                     this.setState({ reminders: currentReminders })
                 })
@@ -32,8 +31,19 @@ class EntryBar extends React.Component {
     }
     render() {
         const { goals, reminders } =  this.state
-        const goalsTiles = goals.map((goal, index) => <EntryStamp title={goal.title} />)
-        const remindersTiles = reminders.map((reminder, index) => <EntryStamp title={reminder.title} />)
+        const goalsTiles = goals.map((goal) => 
+            <EntryStamp 
+                key={`goal-${goal.id}`}
+                addTile={(goal) => this.props.addTile(goal)} 
+                title={goal.title} 
+                goal={goal} />)
+        const remindersTiles = reminders.map((reminder) => 
+            <EntryStamp 
+                key={`reminder-${reminder.id}`} 
+                addTile={(reminder) => this.props.addTile(reminder)} 
+                title={reminder.title}
+                reminder={reminder} />
+        )
         return (
             <div className='entry-bar'>
                 <div className='entry-bar-section entry-bar-goals'>
