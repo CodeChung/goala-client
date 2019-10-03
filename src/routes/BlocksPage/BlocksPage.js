@@ -328,7 +328,11 @@ class BlocksPage extends Component {
         
         let title = 'Title'
 
-        title = this.props.goal.title || this.props.reminder.title
+        if (this.props.goal) {
+            title = this.props.goal.title
+        } else if (this.props.reminder) {
+            title = this.props.reminder.title
+        }
         
         return (
             <section className='blocks-page'>
