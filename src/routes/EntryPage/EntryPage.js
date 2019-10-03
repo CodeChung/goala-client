@@ -15,12 +15,14 @@ class EntryPage extends React.Component {
         saved: false,
         date: null, 
         id: null, 
+        originalText: 'Original Text for Comparison',
         text: 'Text', 
         title: 'Title',
         loading: true,
         logs: [],
         data: null,
         logView: false,
+        error: null
     }
     componentDidMount() {
         let { date, data } = this.props
@@ -30,7 +32,7 @@ class EntryPage extends React.Component {
                 .then(res => {
                     const {id, text, title, saved} = res
                     date = moment(date).format('YYYY-MM-DD')
-                    this.setState({ id, text, title, saved, date})
+                    this.setState({ id, text, title, saved, date, originalText: text, originalTitle: title })
                 })
                 .catch(res => this.setState({ error: res.error }))
         }
@@ -41,9 +43,24 @@ class EntryPage extends React.Component {
             const text = data.text
             const title = data.title
             const saved = data.saved
-            this.setState({ date, id, text, title, saved })
+            this.setState({ date, id, text, title, saved, originalText: text, originalTitle: title })
         }
         this.setState({ loading: false })
+    }
+    componentWillUnmount() {
+        console.log('UNMOUNTING MY LIEGE')
+        const { id, originalText, originalTitle, text, title } = this.state
+        if (originalText !== text) {
+            debugger
+            EntriesService.updateEntryText(id, text)
+                .then(res => res)
+                .catch(res => this.setState({ error: res.error }))
+        }
+        if (originalTitle !== title) {
+            EntriesService.updateEntryTitle(id, title)
+                .then(res => res)
+                .catch(res => this.setState({ error: res.error }))
+        }
     }
     handleTitle = event => {
         this.setState({ title: event.target.value })

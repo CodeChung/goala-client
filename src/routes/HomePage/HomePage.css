@@ -23,6 +23,7 @@
     width: 400px;
     height: 400px;
     transition: .3s;
+    text-align: left;
 }
 
 .journal-feed .card-list .entry-card:hover {

@@ -16,6 +16,20 @@ const GoalsService = {
                     : res.json()
             )
     },
+    getGoalByGoalId(goalId) {
+        return fetch(`${config.API_ENDPOINT}/goals/${goalId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     getGoals() {
         return fetch(`${config.API_ENDPOINT}/goals`, {
             method: 'GET',

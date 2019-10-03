@@ -45,7 +45,38 @@ const EntriesService = {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )       
-    }
+    },
+    updateEntryText(id, text) {
+        debugger;
+        return fetch(`${config.API_ENDPOINT}/entries/text/${id}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify({text: text})
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )       
+    },
+    updateEntryTitle(id, title) {
+        return fetch(`${config.API_ENDPOINT}/entries/title/${id}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({title})
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )       
+    },
 
     // postGoal(goal) {
     //     return fetch(`${config.API_ENDPOINT}/goals`, {

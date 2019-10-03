@@ -43,6 +43,20 @@ const RemindersService = {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )
+    },
+    getReminderByReminderId(reminderId) {
+        return fetch(`${config.API_ENDPOINT}/reminders/${reminderId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
     }
 
     // postGoal(goal) {

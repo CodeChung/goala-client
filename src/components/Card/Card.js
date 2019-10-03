@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './Card.css';
 import Date from './Date/Date';
+import ContentEditable from 'react-contenteditable';
 
 class Card extends React.Component {
     render() {
@@ -14,9 +15,11 @@ class Card extends React.Component {
                 className='entry-card'>
                 {title}
                 <Date date={date}/>
-                <p contentEditable='true'>
-                    {text}
-                </p>
+                <ContentEditable
+                    innerRef={this.ContentEditable}
+                    html={text}
+                    disabled={true}
+                    />
                 <div 
                     onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
