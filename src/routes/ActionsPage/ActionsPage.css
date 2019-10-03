@@ -9,3 +9,25 @@
 .add-reminder:focus {
     outline: none;
 }
+
+.actions {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.action-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.action-header h2 {
+    text-transform: uppercase;
+    font-weight: 200;
+    border-bottom: 1px solid black;
+    min-width: 60px;
+    text-align: left;
+    position: relative;
+    right: 120px;
+}

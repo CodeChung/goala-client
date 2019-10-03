@@ -7,8 +7,24 @@ import Date from './Date/Date';
 import ContentEditable from 'react-contenteditable';
 
 class Card extends React.Component {
+    state = {
+        date: null, 
+        saved: null, 
+        text: null, 
+        title: null,
+        highlight: null,
+    }
+    componentDidMount() {
+        let { date, highlight, saved, text, title, } = this.props
+
+        if (highlight) {
+            debugger
+            text = text.replace(highlight, `<span class='highlight-baby'>${highlight}</span>`)
+        }
+        this.setState({ date, highlight, saved, text, title })
+    }
     render() {
-        let { date, saved, text, title } = this.props
+        let { date, saved, text, title } = this.state
         return (
             <div
                 onClick={() => this.props.upDate(date)}

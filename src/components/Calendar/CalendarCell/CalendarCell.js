@@ -1,6 +1,7 @@
 import React from 'react';
 import './CalendarCell.css';
 import PropTypes from 'prop-types';
+import ContentEditable from 'react-contenteditable';
 
 class CalendarCell extends React.Component {
     state = {
@@ -22,7 +23,11 @@ class CalendarCell extends React.Component {
                     {this.props.number || ''}
                 </div>
                 <div className='cell-text'>
-                    {this.props.data && this.props.data.text}
+                    {this.props.data && <ContentEditable
+                    innerRef={this.ContentEditable}
+                    html={this.props.data.text}
+                    disabled={true}
+                    />}
                 </div>
             </div>
         )

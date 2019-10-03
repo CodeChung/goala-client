@@ -31,6 +31,20 @@ const EntriesService = {
                     : res.json()
             )       
     },
+    getEntriesByKeyword(keyword) {
+        return fetch(`${config.API_ENDPOINT}/entries/search/${keyword}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )       
+    },
     getEntriesByMonth(month) {
         const monthString = moment(month + 1, 'MM').format('YYYY-MM-DD')
         return fetch(`${config.API_ENDPOINT}/entries/month/${monthString}`, {

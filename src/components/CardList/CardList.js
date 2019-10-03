@@ -22,6 +22,7 @@ class CardList extends React.Component {
                 actions={card.actions}
                 reminders={card.reminders}
                 text={card.text}
+                keyword={this.props.keyword}
                 />
         )
         return (

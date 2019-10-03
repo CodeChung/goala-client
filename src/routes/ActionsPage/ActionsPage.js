@@ -51,7 +51,7 @@ class ActionsPage extends React.Component {
             const goalList = goals.filter(goal => goal.action_id === action.id).map(
                 goal => <div 
                         key={goal.id}
-                        className='goal'>
+                        className='goal-container'>
                         <Goal 
                             goal={goal} 
                             activateForm={(id) => this.activateForm(id)} 
@@ -62,7 +62,9 @@ class ActionsPage extends React.Component {
                 <div 
                     key={action.id}
                     className='action'>
-                    <h2>{action.title}</h2>
+                    <div className='action-header'>
+                        <h2>{action.title}</h2>
+                    </div>
                     {goalList}
                 </div>
                 )

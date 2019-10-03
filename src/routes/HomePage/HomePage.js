@@ -14,6 +14,8 @@ class HomePage extends React.Component {
         loading: true,
         keyword: '',
         date: null,
+        searchActive: false,
+        searchEntries: [],
     }
     componentDidMount() {
         this.addNewEntries()
@@ -52,10 +54,23 @@ class HomePage extends React.Component {
         // here we'll get request /entries/:keyword
         // saved returned cards in state
         const { keyword } = this.state
-        console.log(keyword)
+        if (!keyword) {
+            this.setState({ searchActive: false })
+        } else {
+            EntriesService.getEntriesByKeyword(keyword)
+                .then(searchEntries => {
+                    console.log(searchEntries)
+                    this.setState({
+                        searchEntries,
+                        searchActive: true,
+                    })
+                })
+                .catch(res => this.setState({ error: res.error }))
+            this.setState({ searchActive: true })
+        }
     }
     render() {
-        const { entries, date, keyword } = this.state
+        const { entries, date, keyword, searchActive, searchEntries, } = this.state
         if (date) {
             const data = entries.find(entry => entry.date === date)
             return (
@@ -64,10 +79,17 @@ class HomePage extends React.Component {
                 </section>
             )
         }
-        if (keyword) {
+        if (searchActive) {
             return (
                 <section className='home-page'>
-                    This will have a list of entries with text containing ${keyword}
+                    <SearchBar 
+                    updateKeyword={ (keyword) => this.updateKeyword(keyword) }
+                    search={() => this.searchJournal() }
+                    />
+                    Hello Active 
+                    <div className='journal-feed'>
+                        <CardList upDate={(date) => this.upDate(date)} cards={searchEntries} highlight={keyword} />
+                    </div>
                 </section>
             )
         }
@@ -80,7 +102,7 @@ class HomePage extends React.Component {
                 <div className='journal-feed'
                     onScroll={(e) => this.handleScroll(e)}
                     >
-                    <CardList upDate={(date) => this.upDate(date)} cards={this.state.entries} />
+                    <CardList upDate={(date) => this.upDate(date)} cards={entries} />
                 </div>
                 {this.state.loading && <Spinner />}
             </section>

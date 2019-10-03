@@ -1,0 +1,18 @@
+.goal {
+    border: 1px solid powderblue;
+    border-radius: 20px;
+    width: 100%;
+    margin: 5px auto;
+    padding: 10px;
+}
+
+.goal-title {
+    font-weight: 700;
+    text-align: left;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.goal-details {
+    text-align: right;
+}

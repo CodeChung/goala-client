@@ -1,5 +1,6 @@
 import React from 'react';
 import './Goal.css';
+import moment from 'moment';
 
 class Goal extends React.Component {
     state={
@@ -23,8 +24,9 @@ class Goal extends React.Component {
                     { goal.title }
                 </div>
                 <div className='goal-details'>
-                    { 'goal id: ' + goal.id }
-                    { 'action id: ' + goal.action_id }
+                    {/* { 'goal id: ' + goal.id }
+                    { 'action id: ' + goal.action_id } */}
+                    { `Last Logged: ${moment(goal.last_logged).format('MM-DD-YY')}`}
                 </div>
             </div>
         )

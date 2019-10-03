@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
-    sumbitSearch(event) {
+    submitSearch(event) {
         event.preventDefault()
         this.props.search()
     }
@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
         return (
             <div className='searchbar'>
                 <form
-                    onSubmit={ (e) => this.sumbitSearch(e) }
+                    onSubmit={ (e) => this.submitSearch(e) }
                     >
                     <button >
                         <FontAwesomeIcon icon={faSearch} />
