@@ -12,6 +12,7 @@ import LogView from '../LogView/LogView';
 
 class EntryPage extends React.Component {
     state = {
+        saveButton: true,
         saved: false,
         date: null, 
         id: null, 
@@ -82,8 +83,22 @@ class EntryPage extends React.Component {
     activateLog() {
         this.setState({ activateLog: true })
     }
+    saveChanges() {
+        const { id, originalText, originalTitle, text, title } = this.state
+        if (originalText !== text) {
+            EntriesService.updateEntryText(id, text)
+                .then(res => this.setState({ originalText: text }))
+                .catch(res => this.setState({ error: res.error }))
+        }
+        if (originalTitle !== title) {
+            EntriesService.updateEntryTitle(id, title)
+                .then(res => this.setState({ originalTitle: title }))
+                .catch(res => this.setState({ error: res.error }))
+        }
+        this.setState({saveButton: false})
+    }
     render() {
-        const { loading, error, date, logs, saved, text, title, logView } = this.state
+        const { originalText, originalTitle, loading, error, date, logs, saved, text, title, logView, saveButton } = this.state
         
         if (loading) {
             return (
@@ -117,6 +132,7 @@ class EntryPage extends React.Component {
                             className='entry-title'
                             onChange={this.handleTitle}
                             value={title} />
+                        {((originalText !== text || originalTitle !== title) && saveButton) && <button onClick={() => this.saveChanges()}>Save Changes</button>}
                     </div>
                     <ContentEditable
                         className='entry-text'

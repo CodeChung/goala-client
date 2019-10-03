@@ -3,6 +3,27 @@ import TokenService from './token-service';
 import moment from 'moment';
 
 const EntriesService = {
+    createNewEntry() {
+        return fetch(`${config.API_ENDPOINT}/entries/`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({
+                title: 'New Title',
+                date: moment(new Date()).format('YYYY-MM-DD'),
+                text: 'Start your entry for today...',
+                blocks: null,
+                saved: false,
+            })
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     getEntryByDate(date) {
         return fetch(`${config.API_ENDPOINT}/entries/date/${date}`, {
             method: 'GET',

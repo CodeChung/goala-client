@@ -5,6 +5,7 @@ import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import EntryPage from '../EntryPage/EntryPage';
 import EntriesService from '../../services/entries-service';
+import moment from 'moment';
 
 class HomePage extends React.Component {
     state = {
@@ -19,11 +20,20 @@ class HomePage extends React.Component {
     }
     componentDidMount() {
         this.addNewEntries()
+            .then(entries => {
+                if (entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date()).format('MM-DD-YYYY')) {
+                    debugger
+                    EntriesService.createNewEntry()
+                        .then(entries => this.setState({ entries }))
+                        .catch(res => this.setState({ error: res.error }))
+                }
+            })
+        
     }
     addNewEntries() {
         let { entries, page, itemCount } = this.state
 
-        EntriesService.getEntriesById()
+        return EntriesService.getEntriesById()
             .then(res => {
                 entries = [...entries, ...res]
                 entries = entries.reverse()
@@ -32,6 +42,7 @@ class HomePage extends React.Component {
                     loading: false,
                     page: page + 1
                 })
+                return entries
             })
             .catch(res => this.setState({ error: res.error }))
     }
