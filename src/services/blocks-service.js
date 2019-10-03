@@ -18,6 +18,23 @@ const BlocksService = {
                     : res.json()
                 })
     },
+    updateBlockSequence(sequence, type, id) {
+        console.log(`Type, type, reading all about it ${ type }`)
+        return fetch(`${config.API_ENDPOINT}/blocks/${type}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({ block_sequence: sequence })
+        })
+            .then(res => {
+                debugger
+                return (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+                })
+    }
 
     // getActions() {
     //     return fetch(`${config.API_ENDPOINT}/actions`, {

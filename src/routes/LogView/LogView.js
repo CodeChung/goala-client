@@ -6,6 +6,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import LogsService from '../../services/logs-service';
 import GoalsService from '../../services/goals-service';
 import RemindersService from '../../services/reminders-service';
+import BlocksService from '../../services/blocks-service';
 
 class LogView extends React.Component {
     state = {
@@ -41,22 +42,24 @@ class LogView extends React.Component {
                 this.setState({ log: log[0] })
 
                 // find if reminder or goal and get value
-                if (!this.state.log.value) {
-                    if (this.state.log.goal_id) {
-                        GoalsService.getGoalByGoalId(this.state.log.goal_id)
-                            .then(goal => this.setState({ goal: goal[0] }))
-                    } else if (this.state.log.reminder_id) {
-                        RemindersService.getReminderByReminderId(this.state.log.reminder_id)
-                            .then(reminder => this.setState({ reminder: reminder[0]}))
+                debugger
+                if (log[0]) {
+                    if (log[0].goal_id) {
+                        GoalsService.getGoalByGoalId(log[0].goal_id)
+                            .then(goal => {
+                                BlocksService.getBlocksByIds(goal.block_sequence)
+                                    .then(blocks => this.setState({ goal, blocks }))
+                            })
+                    } else if (log[0].reminder_id) {
+                        RemindersService.getReminderByReminderId(log[0].reminder_id)
+                            .then(reminder => {
+                                BlocksService.getBlocksByIds(reminder.block_sequence)
+                                    .then(blocks => this.setState({ reminder, blocks }))
+                            })
                     } else {
                         this.setState({ error: 'whoops, not found'})
                     }
                 }
-                debugger
-                // now check if reminder or goal and get block sequence
-                const { reminder, goal } = this.state
-                let block_sequence = this.state.goal ? this.state.goal.block_sequence : this.state.reminder.block_sequence
-                this.setState({ block_sequence })
             })
             .catch(res => this.setState({ error: res.error }))
 

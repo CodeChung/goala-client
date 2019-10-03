@@ -7,6 +7,7 @@ class Title extends React.Component {
         title: 'Subtitle'
     }
     componentDidMount() {
+        debugger
         const { value } = this.props
         if (value && value.title) {
             this.setState({ title: value.title})

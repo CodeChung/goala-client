@@ -71,8 +71,6 @@ class ActionsPage extends React.Component {
             })
         return (
             <section className='reminders-page'>
-                <h1>ActionsPage</h1>
-
                 <div className='actions'>
                     {actionList}
                 </div>

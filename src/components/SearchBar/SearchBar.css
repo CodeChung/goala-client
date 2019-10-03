@@ -5,6 +5,7 @@
     width: 400px;
     position: relative;
     right: 20px;
+    padding: 10px 0;
 }
 
 .searchbar form {

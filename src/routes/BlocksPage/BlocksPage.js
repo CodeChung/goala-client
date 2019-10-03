@@ -183,7 +183,12 @@ class BlocksPage extends Component {
             blocks: [],
             trash: [],
         },
+        originalSequence: [],
         error: null,
+        type: null,
+        id: null,
+        goal: null,
+        reminder: null,
     };
     componentDidMount() {
         // Determines if block form is goal or reminder
@@ -196,8 +201,14 @@ class BlocksPage extends Component {
             console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
+                    
                     columns.blocks = blocks
-                    this.setState({ columns })
+                    this.setState({ 
+                        columns, 
+                        id: goal.id,
+                        originalSequence: blocks, 
+                        type: 'goal' 
+                    })
                 })
                 .catch(err => this.setState({ error: err.error }))
         }
@@ -207,9 +218,38 @@ class BlocksPage extends Component {
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
                     columns.blocks = blocks
-                    this.setState({ columns })
+                    this.setState({ 
+                        columns, 
+                        id: reminder.id,
+                        originalSequence: blocks, 
+                        type: 'reminder' 
+                    })
                 })
                 .catch(err => this.setState({ error: err.error }))
+        }
+        this.setState({ type: 'goal'})
+    }
+    componentWillUnmount() {
+        const { columns, id, originalSequence, type } = this.state
+        if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
+            let Sequence = []
+            columns.blocks.forEach((block, index) => {
+                if (!Number.isInteger(block.id)) {
+                    // make new block and push id to sequence array
+
+                } else {
+                    Sequence.push(block.id)
+                }
+            })
+            BlocksService.updateBlockSequence(Sequence, type, id)
+                .then(updatedBlocks => {
+                    
+                    if (type === 'goal') {
+                        this.setState({ goal: updatedBlocks })
+                    } else if (type === 'reminder') {
+                        this.setState({ reminder: updatedBlocks })
+                    }
+                })
         }
     }
     onDragEnd = result => {
@@ -284,6 +324,12 @@ class BlocksPage extends Component {
                 {(provided, snapshot) => <Trash provided={provided} snapshot={snapshot} list={[]} />}
             </Droppable>
         )
+        const { goal, reminder } = this.state
+        
+        let title = 'Title'
+
+        title = this.props.goal.title || this.props.reminder.title
+        
         return (
             <section className='blocks-page'>
                 {this.state.error}
@@ -342,7 +388,7 @@ class BlocksPage extends Component {
                                     icon={faArrowAltCircleLeft} />
                                 <ButtonText>Return</ButtonText>
                             </Button>
-                            <Title value={({title: 'Title'})} />
+                            <Title value={({ title })} />
                         </div>
                         <div className='blocks-saved'>
                             {activeBlocks}
