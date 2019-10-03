@@ -51,9 +51,9 @@ class EntryPage extends React.Component {
     handleText = event => {
         this.setState({ text: event.target.value })
     }
-    addTile = tile => {
+    addTile = (tile, date) => {
         let { text } = this.state
-        text += Tile(tile, (log) => this.updateLog(log))
+        text += Tile(tile, date)
         console.log('tiled')
         this.setState({ text })
     }
@@ -61,6 +61,9 @@ class EntryPage extends React.Component {
         const { logs } = this.state
         logs.push(newLog)
         this.setState({ logs })
+    }
+    activateLog() {
+        this.setState({ activateLog: true })
     }
     render() {
         const { loading, error, date, logs, saved, text, title, logView } = this.state
@@ -106,7 +109,7 @@ class EntryPage extends React.Component {
                         onChange={this.handleText}
                         />
                 </div>   
-                <EntryBar addTile={(tile) => this.addTile(tile)} date={date} /> 
+                <EntryBar addTile={(tile) => this.addTile(tile, date)} date={date} /> 
             </section>
         )
     }

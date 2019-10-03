@@ -3,17 +3,21 @@ import './EntryStamp.css';
 
 class EntryStamp extends React.Component {
     state = {
-        tile: {}
+        tile: {type: null}
     }
     componentDidMount() {
         const { goal, reminder } = this.props
 
         if (goal) {
-            this.setState({ tile: goal})
+            this.setState({ 
+                tile: { ...goal, type: 'goal' },
+            })
         }
 
         if (reminder) {
-            this.setState({ tile: reminder })
+            this.setState({ 
+                tile: { ...reminder, type: 'reminder' },
+            })
         }
     }
     render() {

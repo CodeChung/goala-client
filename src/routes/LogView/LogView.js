@@ -1,28 +1,53 @@
 import React from 'react';
 import './LogView.css';
 import BaseBlock from '../../components/ToolBox/Blocks/BaseBlock/BaseBlock';
+import MissingPage from '../MissingPage/MissingPage';
+import Spinner from '../../components/Spinner/Spinner';
 
 class LogView extends React.Component {
     state = {
-        blocks: []
+        blocks: [],
+        error: null,
+        loading: true,
     }
     componentDidMount() {
         debugger
-        const { logs } = this.props
-        const blocks = logs[0].map((log, index) => {
-            return <BaseBlock block={log}/>
-        })
-        this.setState({ blocks })
+        let { logdate } = this.props.match.params;
+        const logId = logdate.split('=')[0]
+        const date = logdate.split('=')[1]
+
+        if (!logId) {
+            this.setState({ error: 'log id is missing'})
+        }
+        if (!date) {
+            this.setState({ error: 'date is missing'})
+        }
+
+        
+        this.setState({ loading: false })
     }
     render() {
-        const { blocks } = this.state
-        const { logs } = this.props
+        const { loading, error } = this.state
+        
+        if ( loading ) {
+            return <Spinner />
+        }
+        if ( error ) {
+            return <MissingPage message={error} />
+        }
         return (
             <div className='log-view'>
-                {logs.title}
-                {blocks}
+                LOGS
             </div>
         )
+        // const { blocks } = this.state
+        // const { logs } = this.props
+        // return (
+        //     <div className='log-view'>
+        //         {logs.title}
+        //         {blocks}
+        //     </div>
+        // )
     }
 }
 

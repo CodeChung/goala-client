@@ -10,6 +10,7 @@ import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';
 import BlocksPage from '../../routes/BlocksPage/BlocksPage';
+import LogView from '../../routes/LogView/LogView';
 
 class User extends React.Component {
     state = {
@@ -35,6 +36,8 @@ class User extends React.Component {
                             component={RemindersPage} />
                         <Route path='/blocks'
                             component={BlocksPage} />
+                        <Route path='/logs/:logdate'
+                            component={LogView} />
                         <Route path='/saved'
                             component={SavedPage} />
                         <Route component={MissingPage} />

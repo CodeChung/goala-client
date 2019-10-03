@@ -83,7 +83,9 @@
             user-select: none; 
 }
 
-.entry-text-stamp:active, .entry-text-stamp:focus {
+/* console.log(we have to implement this later for the stamp hover view please dont forget. */
+
+/* .entry-text-stamp:active, .entry-text-stamp:focus {
     outline: none;
 }
 
@@ -91,7 +93,7 @@
     display: block;
     visibility: visible;
     opacity: 1;
-}
+} */
 
 .stamp-hidden {
     background: lightskyblue;

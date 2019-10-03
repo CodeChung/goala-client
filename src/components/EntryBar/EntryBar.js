@@ -30,17 +30,20 @@ class EntryBar extends React.Component {
         }
     }
     render() {
+        const { date } = this.props
         const { goals, reminders } =  this.state
         const goalsTiles = goals.map((goal) => 
             <EntryStamp 
+                date={date}
                 key={`goal-${goal.id}`}
-                addTile={(goal) => this.props.addTile(goal)} 
+                addTile={(goal) => this.props.addTile(goal, date)} 
                 title={goal.title} 
                 goal={goal} />)
         const remindersTiles = reminders.map((reminder) => 
             <EntryStamp 
+                date={date}
                 key={`reminder-${reminder.id}`} 
-                addTile={(reminder) => this.props.addTile(reminder)} 
+                addTile={(reminder) => this.props.addTile(reminder, date)} 
                 title={reminder.title}
                 reminder={reminder} />
         )

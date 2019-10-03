@@ -12,7 +12,7 @@ class NonUser extends React.Component {
                 <nav>
                     <Link to='/'>
                         <span className='logo'>
-                            Goalf
+                            Goala
                         </span>
                     </Link>
                     <div className='new-user-links'>
