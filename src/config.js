@@ -1,5 +1,6 @@
 const config = {
-    API_ENDPOINT: process.env.API_ENDPOINT || 'http://localhost:8000/api',
+    // API_ENDPOINT: 'https://frozen-depths-14514.herokuapp.com/api',
+    API_ENDPOINT: 'http://localhost:8000/api',
     TOKEN_KEY: process.env.REACT_APP_API_KEY || 'goala-client-auth-token',
 }
 

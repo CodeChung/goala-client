@@ -14,7 +14,7 @@ class LoginForm extends Component {
     event.preventDefault()
     this.setState({ error: null })
     const { username, password } = event.target
-
+    
     AuthApiService.postLogin({
       username: username.value,
       password: password.value
