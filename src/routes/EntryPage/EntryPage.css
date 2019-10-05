@@ -63,7 +63,7 @@
     padding: 20px 0;
     font-size: 28px;
     font-weight: 300;
-
+    display: block;
 }
 
 .entry-text div {

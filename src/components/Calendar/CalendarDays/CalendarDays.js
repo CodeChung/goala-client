@@ -48,25 +48,8 @@ class CalendarDays extends React.Component {
         type += this.state.days.length > 34 ? ' calendar-cell-long' : ''
         let date = number > 9 ? '' + number : '0' + number
         let index = number && activeDays[date]
-        debugger
-        let cell = ( number && Number.isInteger(index) ) && this.state.days.length > 34  
-            ?
-            (number && Number.isInteger(index) ? <CalendarCell 
-                long={true}
-                data={entries[index]} 
-                openData={(data) => this.props.openData(data)} 
-                key={array.length} 
-                number={number} 
-                type={type} 
-                /> 
-            : <CalendarCell
-                long={true}
-                openData={(data) => this.props.openData(data)} 
-                key={array.length} 
-                number={number} 
-                type={type} /> )
-            : 
-            (number && Number.isInteger(index) ? <CalendarCell 
+        let cell = ( number && Number.isInteger(index) ) 
+            ? <CalendarCell 
                 data={entries[index]} 
                 openData={(data) => this.props.openData(data)} 
                 key={array.length} 
@@ -77,7 +60,7 @@ class CalendarDays extends React.Component {
                 openData={(data) => this.props.openData(data)} 
                 key={array.length} 
                 number={number} 
-                type={type} />)
+                type={type} />
         return cell }
     }
     renderCells(currentMonth, activeDays, entries) {

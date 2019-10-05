@@ -232,7 +232,6 @@ class BlocksPage extends Component {
     componentWillUnmount() {
         const { columns, id, originalSequence, type } = this.state
         if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
-            debugger
             console.log(JSON.stringify(originalSequence))
             console.log(JSON.stringify(columns.blocks))
             let Sequence = []

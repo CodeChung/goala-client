@@ -14,6 +14,14 @@
     box-sizing: border-box;
 }
 
+.reminder-form .entry-back-arrow {
+    left: 100px;
+}
+
+.reminder-settings {
+    width: 100%;
+}
+
 .reminder-toggle {
     /* height: 50px;
     width: 50px;

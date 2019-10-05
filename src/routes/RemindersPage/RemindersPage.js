@@ -10,6 +10,7 @@ import BlocksPage from '../BlocksPage/BlocksPage';
 class RemindersPage extends React.Component {
     state = {
         activeReminder: null,
+        unscheduledReminders: [],
         upcomingReminders: [],
         recurringReminders: [],
         formActive: false,
@@ -17,10 +18,12 @@ class RemindersPage extends React.Component {
     componentDidMount() {
         RemindersService.getReminders() 
             .then(reminders => {
-                let recurringReminders = reminders.filter(reminder => reminder.schedule.schedule)
-                let upcomingReminders = reminders.filter(reminder => reminder.schedule.date)
-
-                this.setState({ recurringReminders, upcomingReminders })
+                debugger
+                let recurringReminders = reminders.filter(reminder => reminder.schedule && reminder.schedule.schedule)
+                let upcomingReminders = reminders.filter(reminder => reminder.schedule && reminder.schedule.date)
+                let unscheduledReminders = reminders.filter(reminder => !!!reminder.schedule)
+                debugger
+                this.setState({ reminders, recurringReminders, unscheduledReminders, upcomingReminders })
             })
             .catch(res => this.setState({ error: res.error }))
     }
@@ -37,19 +40,16 @@ class RemindersPage extends React.Component {
         this.setState({ activeReminder })
     }
     render() {
-        const { formActive, activeReminder } = this.state
+        const { reminders } = this.props
+        const { formActive, activeReminder, recurringReminders, unscheduledReminders, upcomingReminders} = this.state
         if (formActive) {
             return (
                 <section className='reminders-page'>
-                        <BlocksPage
-                            reminder={activeReminder}
-                            blockSequence={activeReminder.block_sequence}  
-                            toggleForm={() => this.toggleForm()} />
+                    <ReminderForm reminders={[...recurringReminders, ...upcomingReminders]} returnPage={() => this.setState({ formActive: false })} />
                 </section>
             )
         }
         
-        const { recurringReminders, upcomingReminders } = this.state
         let recurringReminderComponents = recurringReminders.map((reminder) => {
             return <Reminder 
                         activateReminder={(id) => this.activateForm(id)}
@@ -66,6 +66,15 @@ class RemindersPage extends React.Component {
                         schedule={reminder.schedule}
                         toggleForm={() => this.toggleForm()} />
         })
+        let unscheduledReminderComponents = unscheduledReminders.map((reminder) => {
+            return <Reminder 
+                        activateReminder={(id) => this.activateForm(id)}
+                        reminder={reminder} 
+                        key={reminder.id} 
+                        schedule={reminder.schedule}
+                        toggleForm={() => this.toggleForm()} /> 
+        })
+        
         return (
             <section className='reminders-page'>
                 <div className='reminder-header'>
@@ -76,6 +85,10 @@ class RemindersPage extends React.Component {
                     <h2>Recurring</h2>
                 </div>
                 {recurringReminderComponents}
+                <div className='reminder-header'>
+                    <h2>Unscheduled</h2>
+                </div>
+                {unscheduledReminderComponents}
                 <button
                     className='add-reminder'
                     onClick={() => this.toggleForm()}
