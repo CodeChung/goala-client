@@ -3,6 +3,8 @@ import Reminder from '../../components/Reminder/Reminder';
 import ReminderForm from '../../components/ReminderForm/ReminderForm';
 import RemindersService from '../../services/reminders-service';
 import './ReminderPage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTools } from '@fortawesome/free-solid-svg-icons';
 import BlocksPage from '../BlocksPage/BlocksPage';
 
 class RemindersPage extends React.Component {
@@ -78,7 +80,7 @@ class RemindersPage extends React.Component {
                     className='add-reminder'
                     onClick={() => this.toggleForm()}
                     >
-                    +
+                    <FontAwesomeIcon icon={faTools} />
                 </button>
             </section>
         )

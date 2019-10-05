@@ -3,7 +3,6 @@ import TokenService from './token-service';
 
 const GoalsService = {
     createGoal(title, action_id) {
-        debugger
         return fetch(`${config.API_ENDPOINT}/goals`, {
             method: 'POST',
             headers: {

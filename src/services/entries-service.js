@@ -82,7 +82,6 @@ const EntriesService = {
             )       
     },
     updateEntryText(id, text) {
-        debugger;
         return fetch(`${config.API_ENDPOINT}/entries/text/${id}`, {
             method: 'POST',
             headers: {

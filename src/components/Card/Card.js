@@ -18,7 +18,6 @@ class Card extends React.Component {
         let { date, highlight, saved, text, title, } = this.props
 
         if (highlight) {
-            debugger
             text = text.replace(highlight, `<span class='highlight-baby'>${highlight}</span>`)
         }
         this.setState({ date, highlight, saved, text, title })

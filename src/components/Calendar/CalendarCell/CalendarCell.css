@@ -15,6 +15,10 @@
     overflow: hidden;
 }
 
+.calendar-cell-long {
+    height: calc(100% / 6);
+}
+
 .calendar-cell:hover {
     background: rgb(142, 240, 240);
 }

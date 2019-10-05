@@ -10,7 +10,6 @@ class Clock extends React.Component {
         error: ''
     }
     componentDidMount() {
-        debugger
         let hour, minute, meridiem
         const { value } = this.props
         hour = Math.floor(value.time / 100) % 12

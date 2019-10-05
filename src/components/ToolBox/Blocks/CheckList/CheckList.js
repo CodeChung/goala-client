@@ -26,7 +26,6 @@ class CheckList extends React.Component {
         }
     }
     componentWillUnmount() {
-        debugger
         if (this.props.log && JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
             LogsService.updateLogValue(this.props.log.blockId, this.props.log.date, this.props.log.log_id, this.state)
         }

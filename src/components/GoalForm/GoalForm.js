@@ -33,7 +33,6 @@ class GoalForm extends React.Component {
     }
     createGoal(event) {
         event.preventDefault()
-        debugger
         const { goalTitle, actionId } = this.state
         if (!actionId) {
             return this.setState({ error: 'Must specify action type'})
@@ -57,14 +56,12 @@ class GoalForm extends React.Component {
         this.setState({ deleteGoalTitle: event.target.value })
     }
     deleteAction = event => {
-        debugger
         const { deleteActionTitle } = this.state
         ActionsService.deleteAction(deleteActionTitle)
             .then(res => this.setState({ actions: res.actions }))
             .catch(res => this.setState({ error: res.error }))
     }
     deleteGoal = event => {
-        debugger
         const { deleteGoalTitle } = this.state
         GoalsService.deleteGoal(deleteGoalTitle)
             .then(res => this.setState({ goals: res.goals }))
@@ -73,7 +70,7 @@ class GoalForm extends React.Component {
     render() {
         const { error } = this.state
         const { actions, goals } = this.props
-        const options = actions.map(action => <option 
+        const options = [ {title: '--Choose an action', value: null }, ...actions].map(action => <option 
                 key={action.id} 
                 value={action.id}>
                 {action.title}

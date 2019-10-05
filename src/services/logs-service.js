@@ -32,7 +32,6 @@ const LogsService = {
             )
     },
     updateLogValue(blockId, date, logId, value) {
-        debugger
         let dateFormatted = moment(date).format('MM-DD-YYYY')
         return fetch(`${config.API_ENDPOINT}/logs/log/${logId}/${dateFormatted}`, {
             method: 'PUT',

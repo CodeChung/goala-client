@@ -1,11 +1,16 @@
 .reminder {
-    border: 1px solid powderblue;
+    border: 1px solid rgb(212, 255, 143);
     border-radius: 20px;
     width: 40%;
     margin: 5px auto;
     padding: 10px;
+    transition: .2s ease-in-out;
+    transition-delay: .8;
 }
 
+.reminder:hover {
+    background: rgb(212, 255, 143);
+}
 .reminder-title {
     font-weight: 700;
     text-align: left;

@@ -52,7 +52,6 @@ class EntryPage extends React.Component {
         console.log('UNMOUNTING MY LIEGE')
         const { id, originalText, originalTitle, text, title } = this.state
         if (originalText !== text) {
-            debugger
             EntriesService.updateEntryText(id, text)
                 .then(res => res)
                 .catch(res => this.setState({ error: res.error }))
