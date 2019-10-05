@@ -19,14 +19,14 @@
 }
 
 .units {
-    width: 85px !important;
+    width: 105px !important;
     min-width: 85px;
     padding-left: 10px;
 }
 
 .number {
-    min-width: 30px !important;
-    width: 30px !important;
+    max-width: 100px !important;
+    width: 50px !important;
 }
 
 

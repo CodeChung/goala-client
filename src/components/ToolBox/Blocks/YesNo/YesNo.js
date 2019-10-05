@@ -12,7 +12,6 @@ class YesNo extends React.Component {
     }
     componentWillUnmount() {
         if (this.props.log && JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
-            debugger
             LogsService.updateLogValue(this.props.log.blockId, this.props.log.date, this.props.log.log_id, this.state)
         }
     }

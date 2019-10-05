@@ -38,8 +38,6 @@ class User extends React.Component {
                             component={BlocksPage} />
                         <Route path='/logs/:logdate'
                             component={LogView} />
-                        <Route path='/saved'
-                            component={SavedPage} />
                         <Route component={MissingPage} />
                     </Switch>
                 </main>

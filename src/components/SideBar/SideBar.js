@@ -59,15 +59,6 @@ class SideBar extends React.Component {
                     </div>
                     Reminders
                 </Link>
-                <Link to='/saved'
-                    onClick={() => this.setCurrentNav('saved')}
-                    className={ currentView === 'saved' ? 'nav-active' : undefined }>
-                    <div className='sidebar-icon'>
-                        <FontAwesomeIcon 
-                            icon={faStar} /> 
-                    </div>
-                    Saved
-                </Link>
                 <Link to='/login' 
                     className='nav-end'
                     onClick={() => this.props.logout()}>

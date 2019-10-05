@@ -1,103 +1,153 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import './GoalForm.css';
+import ActionsService from '../../services/actions-service';
+import GoalsService from '../../services/goals-service';
 
 class GoalForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
-            duration: 1,
-            days: {
-                Sun: false,
-                Mon: false,
-                Tue: false,
-                Wed: false,
-                Thu: false,
-                Fri: false,
-                Sat: false,
-            },
-            error: '',
-            button: 'Add Goal',
-            formTitle: 'New Goal',
-            rerender: false,
+            actionTitle: '',
+            deleteActionTitle: '',
+            goalTitle: '',
+            deleteGoalTitle: '',
+            actionId: null,
+            error: null,
+            success: false,
         }
     }
-    switchActiveDay(day) {
-        const active = this.state[day] ? false : true
-        const { days } = this.state
-        days[day] = active
-        console.log(days)
-        this.setState({days})
+    componentDidMount() {
+        let actionTitle = this.props.actions[0] ? this.props.actions[0].title : ''
+        this.setState({ actionTitle })
     }
-    submitGoal(event) {
+    createAction(event) {
+        const { actionTitle } = this.state
         event.preventDefault()
-        const { title, days, duration } = this.state
-        const validSchedule = Object.keys(days).filter(day => days[day]).length
-
-        if (!title) {
-            const error = 'Goal must have title'
-            this.setState({error})
-        } else if (!validSchedule) {
-            const error = 'Must choose at least one day'
-            this.setState({error})
-        } else {
-            const goal = {
-                title,
-                schedule: days,
-                duration
-            }
-            this.props.addGoal(goal)
-            this.setState({error: ''})
+        ActionsService.createAction(actionTitle)
+            .then(res => {
+                this.setState({ reload: true })
+            })
+            .catch(res => this.setState({ error: res.error }))
+    }
+    createGoal(event) {
+        event.preventDefault()
+        debugger
+        const { goalTitle, actionId } = this.state
+        if (!actionId) {
+            return this.setState({ error: 'Must specify action type'})
         }
+        GoalsService.createGoal(goalTitle, actionId)
+            .then(res => {
+                this.setState({ reload: true })
+            })
+            .catch(res => this.setState({ error: res.error }))
+    }
+    updateActionTitle = event => {
+        this.setState({ actionTitle: event.target.value })
+    }
+    updateDeleteAction = event => {
+        this.setState({ deleteActionTitle: event.target.value })
+    }
+    updateGoalTitle = event => {
+        this.setState({ goalTitle: event.target.value })
+    }
+    updateDeleteGoal = event => {
+        this.setState({ deleteGoalTitle: event.target.value })
+    }
+    deleteAction = event => {
+        debugger
+        const { deleteActionTitle } = this.state
+        ActionsService.deleteAction(deleteActionTitle)
+            .then(res => this.setState({ actions: res.actions }))
+            .catch(res => this.setState({ error: res.error }))
+    }
+    deleteGoal = event => {
+        debugger
+        const { deleteGoalTitle } = this.state
+        GoalsService.deleteGoal(deleteGoalTitle)
+            .then(res => this.setState({ goals: res.goals }))
+            .catch(res => this.setState({ error: res.error }))
     }
     render() {
-        const days = Object.keys(this.state.days).map((day, index) => 
-            <button 
-                key={index}
-                type='button'
-                name='add-goal-schedule day'
-                onClick= {() => this.switchActiveDay(day)}
-                className={this.state.days[day] ? 'add-day' : 'add-day active-day'}>{day}</button>
-        )
+        const { error } = this.state
+        const { actions, goals } = this.props
+        const options = actions.map(action => <option 
+                key={action.id} 
+                value={action.id}>
+                {action.title}
+                </option>)
+        const goalOptions = goals.map(goal => <option
+            key={goal.id} 
+            value={goal.id}>
+            {goal.title}
+            </option>)
         return (
-            <form 
-                className='add-goal-form' 
-                onSubmit={(e) => this.submitGoal(e)} >
-                <legend>{this.props.formTitle || this.state.formTitle}</legend>
-                <label htmlFor='add-goal-title'>
-                    Title
-                </label>
-                <input
-                    onChange={(e) => this.setState({title: e.target.value})}
-                    required
-                    name='add-goal-title'
-                    id='add-goal-title'
-                    />
-                <div className='add-goal-schedule'>
-                    <label htmlFor='add-schedule'>
-                        Schedule
-                    </label>
-                    {days}
+            <div className='goal-form'>
+                <FontAwesomeIcon 
+                    className='entry-back-arrow' 
+                    onClick={() => this.props.addGoal()} 
+                    icon={faArrowAltCircleLeft} />
+                <div className='goal-settings'>
+                    <div className='new-goal'>
+                        {error}
+                        <form
+                            onSubmit={(e) => this.createAction(e)}
+                            >
+                            <legend><h2>Add New Action</h2></legend>
+                            <label>Title</label>
+                            <input 
+                                onChange={this.updateActionTitle}
+                                />
+                            <button>Add Action</button>
+                        </form>
+                        <form
+                            onSubmit={(e) => this.createGoal(e)}
+                            >
+                            <legend><h2>Add New Goal</h2></legend>
+                            <label>Action Type:</label>
+                            <select
+                                onChange={(event) => this.setState({ actionId: event.target.value })}
+                                >
+                                {options}
+                            </select>
+                            <br/>
+                            <label>Title</label>
+                            <input onChange={this.updateGoalTitle} />
+                            <button>Add Goal</button>
+                        </form>
+                    </div>
+                    <div className='delete-goal'>
+                        <form
+                            onSubmit={(e) => this.deleteAction(e)}
+                            >
+                            <legend><h2>Delete Action</h2></legend>
+                            <select
+                                onChange={this.updateDeleteAction}
+                                >
+                                {options}
+                            </select>
+                            <button>Delete</button>
+                        </form>
+                        <form
+                            onSubmit={(e) => this.deleteGoal(e)}
+                            >
+                            <legend><h2>Delete Goal</h2></legend>
+                                <select
+                                    onChange={this.updateDeleteGoal}
+                                    >
+                                    {goalOptions}
+                                </select>
+                            <button>Delete</button>
+                        </form>
+                    </div>
                 </div>
-                <label htmlFor='add-goal-duration'>
-                    Days to Complete
-                </label>
-                <input
-                    onChange={(e) => this.setState({duration: e.target.value})}
-                    required
-                    name='add-goal-duration'
-                    id='add-goal-duration'
-                    type='number'
-                    />
-                {this.state.error}
-                <button 
-                    disabled={this.state.error}
-                    type='submit'>
-                    {this.props.button || this.state.button}
-                </button>
-            </form>
+                
+            </div>
         )
     }
+    
 }
 
 export default GoalForm;

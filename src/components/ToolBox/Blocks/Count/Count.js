@@ -20,8 +20,8 @@ class Count extends React.Component {
         this.setState({ [type]: event.target.value })
     }
     componentWillUnmount() {
-        if (JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
-            LogsService.updateLogValue(3, this.state)
+        if (this.props.log && JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
+            LogsService.updateLogValue(this.props.log.blockId, this.props.log.date, this.props.log.log_id, this.state)
         }
     }
     render() {

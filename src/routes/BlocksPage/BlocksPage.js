@@ -197,7 +197,7 @@ class BlocksPage extends Component {
         const { goal, reminder } = this.props
         
         if (goal) {
-            const blockSeq = goal.block_sequence
+            const blockSeq = goal.block_sequence ? goal.block_sequence : []
             console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
@@ -214,7 +214,7 @@ class BlocksPage extends Component {
         }
 
         if (reminder) {
-            const blockSeq = reminder.block_sequence
+            const blockSeq = reminder.block_sequence ? reminder.block_sequence : []
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
                     columns.blocks = blocks

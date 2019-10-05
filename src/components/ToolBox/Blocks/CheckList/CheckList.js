@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import './CheckList.css';
+import LogsService from '../../../../services/logs-service';
 
 class CheckList extends React.Component {
     //TODO probably should sanitize this later
@@ -9,11 +10,25 @@ class CheckList extends React.Component {
         checked: false,
     }
     componentDidMount() {
-        const { value } = this.props
-        if (value) {
+        const { log, value } = this.props
+
+        if (log && log.value) {
+            Object.keys(log.value).forEach(key => {
+                Object.keys(log.value[key]).forEach(k2y => {
+                    this.setState({ [`${k2y}`]: log.value[key][k2y] })
+                })
+            })
+        }
+        else if (value) {
             let checked = value.checked
-            let text = value.value
+            let text = value.text
             this.setState({ checked, text })
+        }
+    }
+    componentWillUnmount() {
+        debugger
+        if (this.props.log && JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
+            LogsService.updateLogValue(this.props.log.blockId, this.props.log.date, this.props.log.log_id, this.state)
         }
     }
     updateText = event => {

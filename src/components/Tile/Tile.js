@@ -27,7 +27,7 @@ function Tile(tile, date) {
         logId = `r-${id}=${logDate}`
     }
 
-    return ` <a href='/logs/${logId}' contentEditable='false' class='text-stamp-container'><button class='entry-text-stamp'> ${title} </button><div class='stamp-hidden'>Hide me</div></a> `
+    return ` <a href='/logs/${logId}' contentEditable='false' class='text-stamp-container'> <button class='entry-text-stamp'> ${title} </button><div class='stamp-hidden'>Hide me</div> </a> `
 }
 
 export default Tile;

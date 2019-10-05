@@ -10,7 +10,13 @@ class Clock extends React.Component {
         error: ''
     }
     componentDidMount() {
-        const { hour, minute, meridiem } = this.props
+        debugger
+        let hour, minute, meridiem
+        const { value } = this.props
+        hour = Math.floor(value.time / 100) % 12
+        minute = value.time % 100
+        meridiem = Boolean(Math.floor(value.time / 100) < 12)
+
         this.setState({ hour, minute, meridiem })
     }
     toggleMeridiem() {
@@ -58,9 +64,7 @@ class Clock extends React.Component {
                 <h2>Clock</h2>
                 <div className='clock-block block-main'>
                     <input onChange={(e) => this.updateHour(e)} type='number' value={hour} />
-                    <input onChange={(e) => this.updateHour(e)} type='number' value={hour} />
                     :
-                    <input onChange={(e) => this.updateMinute(e)} type='number' value={minute}/>
                     <input onChange={(e) => this.updateMinute(e)} type='number' value={minute}/>
                     <div className='meridiem' onClick={() => this.toggleMeridiem()}>
                         {meridiem ? 'am' : 'pm'}

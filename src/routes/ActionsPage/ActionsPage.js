@@ -4,10 +4,14 @@ import BlocksPage from '../BlocksPage/BlocksPage';
 import ActionsService from '../../services/actions-service';
 import GoalsService from '../../services/goals-service';
 import Goal from '../../components/Goal/Goal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTools } from '@fortawesome/free-solid-svg-icons';
+import GoalForm from '../../components/GoalForm/GoalForm';
 
 class ActionsPage extends React.Component {
     state = {
         activeGoal: null,
+        newGoal: false,
         actions: [],
         goals: [],
         formActive: false,
@@ -34,8 +38,12 @@ class ActionsPage extends React.Component {
             formActive: !formActive
         })
     }
+    addGoal() {
+        const { newGoal } = this.state
+        this.setState({ newGoal: !newGoal })
+    }
     render() {
-        const { activeGoal, formActive, actions, goals } = this.state
+        const { activeGoal, formActive, actions, goals, newGoal } = this.state
         if (formActive) {
             return (
                 <section className='actions-page'>
@@ -45,6 +53,10 @@ class ActionsPage extends React.Component {
                         toggleForm={() => this.toggleForm()} />
                 </section>
             )
+        }
+
+        if (newGoal) {
+            return <GoalForm actions={actions} goals={goals} addGoal={() => this.addGoal()} />
         }
 
         let actionList = actions.map(action => {
@@ -76,9 +88,9 @@ class ActionsPage extends React.Component {
                 </div>
                 <button
                     className='add-reminder'
-                    onClick={() => this.toggleForm()}
+                    onClick={() => this.addGoal()}
                     >
-                    +
+                    <FontAwesomeIcon icon={faTools} />
                 </button>
             </section>
         )

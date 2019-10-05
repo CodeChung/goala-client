@@ -2,6 +2,22 @@ import config from '../config'
 import TokenService from './token-service';
 
 const GoalsService = {
+    createGoal(title, action_id) {
+        debugger
+        return fetch(`${config.API_ENDPOINT}/goals`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({ title, action_id })
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     getGoalsByDay(day) {
         return fetch(`${config.API_ENDPOINT}/goals/day/${day}`, {
             method: 'GET',
@@ -87,7 +103,7 @@ const GoalsService = {
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
         )
-    }
+    },
 }
 
 export default GoalsService

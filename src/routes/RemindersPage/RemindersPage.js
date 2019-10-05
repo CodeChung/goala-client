@@ -45,11 +45,6 @@ class RemindersPage extends React.Component {
                             toggleForm={() => this.toggleForm()} />
                 </section>
             )
-            // return (
-            //     <section className='reminders-page'>
-            //         <ReminderForm toggleForm={() => this.toggleForm()} />
-            //     </section>
-            // )
         }
         
         const { recurringReminders, upcomingReminders } = this.state
@@ -71,10 +66,13 @@ class RemindersPage extends React.Component {
         })
         return (
             <section className='reminders-page'>
-                <h1>RemindersPage</h1>
-                <h2>Upcoming</h2>
+                <div className='reminder-header'>
+                    <h2>Upcoming</h2>
+                </div>
                 {upcomingReminderComponents}
-                <h2>Recurring</h2>
+                <div className='reminder-header'>
+                    <h2>Recurring</h2>
+                </div>
                 {recurringReminderComponents}
                 <button
                     className='add-reminder'

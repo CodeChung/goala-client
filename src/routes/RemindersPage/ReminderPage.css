@@ -15,3 +15,82 @@
     width: 40%;
     margin: 25px auto;
 }
+
+.reminder-header {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.reminder-header h2 {
+    text-transform: uppercase;
+    font-weight: 200;
+    border-bottom: 1px solid rgb(23, 255, 224);
+    min-width: 60px;
+    text-align: left;
+    position: relative;
+    right: 120px;
+}
+
+.reminder-header h2::first-letter {
+    font-size: 40px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    width: 70px;
+    border-radius: 3px;
+    border-bottom: none;
+}
+
+
+
+/* adsjknknja */
+
+.add-reminder {
+    font-size: 30px;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding-bottom: 25px;
+    width: 120px;
+    height: 45px;
+}
+
+.add-reminder:focus {
+    outline: none;
+}
+
+.actions {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.action-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    letter-spacing: 3px;
+}
+
+.reminder-header h2 {
+    text-transform: uppercase;
+    font-weight: 200;
+    border-bottom: 1px solid rgb(172, 202, 88);
+    min-width: 60px;
+    text-align: left;
+    position: relative;
+    right: 120px;
+}
+
+.action-header h2::first-letter {
+    font-size: 40px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    width: 70px;
+    border-radius: 3px;
+    border-bottom: none;
+
+
+}
+
+.goal-form .entry-back-arrow {
+    left: -80px;
+}

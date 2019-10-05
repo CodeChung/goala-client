@@ -22,7 +22,7 @@ class LogView extends React.Component {
         goal: null,
         block_sequence: null,
         redirect: false, 
-        value: null,
+        values: {},
     }
     componentDidMount() {
         let { logdate } = this.props.match.params;
@@ -85,8 +85,8 @@ class LogView extends React.Component {
         const { blocks, values, loading, log, error, redirect } = this.state
         let logs = blocks && blocks.map(block => {
             let { type, value } = block
-            if (value && values[block.id]) {
-                debugger
+
+            if (value && values && values[block.id]) {
                 value = values[block.id]
             }
             return <div key={block.id} className='log-block'>{BlockMap(type, value, {...log, blockId: block.id})}</div>
@@ -99,7 +99,8 @@ class LogView extends React.Component {
             return <MissingPage message={error} />
         }
         if (redirect) {
-            return <EntryPage resetDate={() => this.resetDate()} date={log.date} />
+            return <Redirect to='/' />
+            // return <EntryPage resetDate={() => this.resetDate()} date={log.date} />
         }
         return (
             <section className='log-view'>
