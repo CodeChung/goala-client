@@ -1,5 +1,6 @@
 import React from 'react';
 import './Count.css';
+import LogsService from '../../../../services/logs-service';
 
 class Count extends React.Component {
     state = {
@@ -17,6 +18,11 @@ class Count extends React.Component {
     onChange(type, event) {
         event.preventDefault()
         this.setState({ [type]: event.target.value })
+    }
+    componentWillUnmount() {
+        if (JSON.stringify(this.props.value) !== JSON.stringify(this.state)) {
+            LogsService.updateLogValue(3, this.state)
+        }
     }
     render() {
         const { num, den, units } = this.state

@@ -1,5 +1,6 @@
 import config from '../config';
 import TokenService from './token-service';
+import moment from 'moment';
 
 const LogsService = {
     getLogByIdDate(logId, date) {
@@ -23,6 +24,24 @@ const LogsService = {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+    updateLogValue(blockId, date, logId, value) {
+        debugger
+        let dateFormatted = moment(date).format('MM-DD-YYYY')
+        return fetch(`${config.API_ENDPOINT}/logs/log/${logId}/${dateFormatted}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({ values: { [blockId]: value } })
+
         })
             .then(res =>
                 (!res.ok)

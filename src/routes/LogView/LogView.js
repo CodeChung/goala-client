@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import './LogView.css';
 import BaseBlock from '../../components/ToolBox/Blocks/BaseBlock/BaseBlock';
 import MissingPage from '../MissingPage/MissingPage';
@@ -7,6 +8,8 @@ import LogsService from '../../services/logs-service';
 import GoalsService from '../../services/goals-service';
 import RemindersService from '../../services/reminders-service';
 import BlocksService from '../../services/blocks-service';
+import BlockMap from '../../components/ToolBox/Blocks/BaseBlock/BlockMap';
+import EntryPage from '../EntryPage/EntryPage';
 
 class LogView extends React.Component {
     state = {
@@ -14,9 +17,12 @@ class LogView extends React.Component {
         error: null,
         loading: true,
         log: null,
+        originalBlocks: null,
         reminder: null,
         goal: null,
         block_sequence: null,
+        redirect: false, 
+        value: null,
     }
     componentDidMount() {
         let { logdate } = this.props.match.params;
@@ -42,42 +48,66 @@ class LogView extends React.Component {
                 this.setState({ log: log[0] })
 
                 // find if reminder or goal and get value
-                debugger
-                if (log[0]) {
-                    if (log[0].goal_id) {
-                        GoalsService.getGoalByGoalId(log[0].goal_id)
-                            .then(goal => {
-                                BlocksService.getBlocksByIds(goal.block_sequence)
-                                    .then(blocks => this.setState({ goal, blocks }))
-                            })
-                    } else if (log[0].reminder_id) {
-                        RemindersService.getReminderByReminderId(log[0].reminder_id)
-                            .then(reminder => {
-                                BlocksService.getBlocksByIds(reminder.block_sequence)
-                                    .then(blocks => this.setState({ reminder, blocks }))
-                            })
-                    } else {
-                        this.setState({ error: 'whoops, not found'})
-                    }
+                const { goal_id, reminder_id } = log[0]
+                if (goal_id) {
+                    GoalsService.getGoalByGoalId(goal_id)
+                        .then(goal => {
+                            this.setState({ goal: goal[0], sequence: goal[0].block_sequence })
+                            BlocksService.getBlocksByIds(goal[0].block_sequence)
+                                .then(blocks => this.setState({ blocks, originalBlocks: blocks }))
+                        })
                 }
+                if (reminder_id) {
+                    RemindersService.getReminderByReminderId(reminder_id)
+                        .then(reminder => {
+                            this.setState({ reminder: reminder[0], sequence: reminder[0].block_sequence })
+                            BlocksService.getBlocksByIds(reminder[0].block_sequence)
+                                .then(blocks => this.setState({ blocks, originalBlocks: blocks }))
+                        })
+                }
+
+                const { value } = log[0]
+                this.setState({ values: value })
             })
             .catch(res => this.setState({ error: res.error }))
 
         this.setState({ loading: false })
     }
-    render() {
-        const { loading, error } = this.state
+    componentWillUnmount() {
         
+    }
+    resetDate(){
+        const { log } = this.state
+        log.date = null
+        this.setState({ log })
+    }
+    render() {
+        const { blocks, values, loading, log, error, redirect } = this.state
+        let logs = blocks && blocks.map(block => {
+            let { type, value } = block
+            if (value && values[block.id]) {
+                debugger
+                value = values[block.id]
+            }
+            return <div key={block.id} className='log-block'>{BlockMap(type, value, {...log, blockId: block.id})}</div>
+        })
+
         if ( loading ) {
             return <Spinner />
         }
         if ( error ) {
             return <MissingPage message={error} />
         }
+        if (redirect) {
+            return <EntryPage resetDate={() => this.resetDate()} date={log.date} />
+        }
         return (
-            <div className='log-view'>
-                LOGS
-            </div>
+            <section className='log-view'>
+                <button onClick={() => this.setState({ redirect: true })}>Take Me Back</button>
+                <div className='logs-list'>
+                    {logs}
+                </div>
+            </section>
         )
         // const { blocks } = this.state
         // const { logs } = this.props

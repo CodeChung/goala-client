@@ -12,30 +12,30 @@ import Title from '../Title/Title';
 import YesNo from '../YesNo/YesNo';
 // key: block-type, value: block component
 
-function BlockMap(type, value) {
+function BlockMap(type, value, log) {
     switch(type) {
         case 'checklist':
-            return <CheckList value={value} />
+            return <CheckList value={value} log={log} />
         case 'clock':
-            return <Clock value={value} />
+            return <Clock value={value} log={log} />
         case 'count':
-            return <Count value={value} />
+            return <Count value={value} log={log} />
         case 'countdown':
-            return <CountDown value={value} />
+            return <CountDown value={value} log={log} />
         case 'date':
-            return <Date value={value} />
+            return <Date value={value} log={log} />
         case 'notes':
-            return <Notes value={value} />
+            return <Notes value={value} log={log} />
         case 'text':
-            return <Text value={value} />
+            return <Text value={value} log={log} />
         case 'title':
-            return <Title value={value} />
+            return <Title value={value} log={log} />
         case 'trash':
-                return <Trash value={value} />
+                return <Trash value={value} log={log} />
         case 'weekly':
-            return <Weekly value={value} />
+            return <Weekly value={value} log={log} />
         case 'yesno':
-            return <YesNo value={value} />
+            return <YesNo value={value} log={log} />
         default:
             return null
     }

@@ -1,0 +1,43 @@
+.log-view {
+    width: 60%;
+    margin: 50px auto;
+    display: flex;
+}
+
+.log-view button {
+    height: 50px;
+    width: 200px;
+    margin: 0 10px 0;
+    border-radius: 3px;
+}
+
+.logs-list {
+    width: 2000px;
+}
+
+.log-block {
+    padding: 5px 0;
+    border-radius: 3px;
+    margin: 5px 0;
+    background-color: aqua;
+}
+
+.log-block .block-weekly {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    background-color: aliceblue;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.log-block .block-notepad {
+    margin: 0 auto;
+}
+
+.log-block .yes-no {
+    max-width: 73px;
+    margin: 0 auto;
+}

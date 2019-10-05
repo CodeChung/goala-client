@@ -11,20 +11,27 @@ class Weekly extends React.Component {
         Th: false,
         F: false,
         Sa: false,
+        original: {}
     }
     componentDidMount() {
         if (this.props.value.days) {
             const days = this.props.value.days
             const state = {}
+            const original = {}
             Object.keys(this.state).forEach(key => {
                 console.log(key, days)
                 if (days.includes(key)) {
                     state[key] = true
+                    original[key] = true
                 }
             })
 
             this.setState(state)
         }
+    }
+    componentWillUnmount() {
+        const { original } = this.state;
+        
     }
     toggleDay(day) {
         const val = this.state[day]

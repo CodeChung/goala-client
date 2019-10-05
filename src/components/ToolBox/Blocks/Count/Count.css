@@ -3,6 +3,7 @@
     width: 100%;
     align-items: center;
     font-size: 35px;
+    justify-content: center;
 }
 
 .block-count h2 {
@@ -29,11 +30,11 @@
 }
 
 
-.block-count:hover h2 {
+/* .block-count:hover h2 {
     display: block;
     font-size: 10px;
-}
+} */
 
 .block-count:active .block-count-input {
-    display: none;
+    /* display: none; */
 }

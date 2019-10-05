@@ -4,10 +4,15 @@
 
 .clock-block {
     display: flex;
+    justify-content: center;
 }
 
 .clock-block input {
     width: 10px;
+}
+
+.block-clock {
+    justify-content: center;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
