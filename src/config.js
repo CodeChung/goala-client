@@ -1,6 +1,6 @@
 const config = {
-    API_ENDPOINT: 'http://localhost:8000/api' || process.env.API_ENDPOINT,
-    TOKEN_KEY: process.env.REACT_APP_API_KEY || 'coach-client-auth-token',
+    API_ENDPOINT: process.env.API_ENDPOINT || 'http://localhost:8000/api',
+    TOKEN_KEY: process.env.REACT_APP_API_KEY || 'goala-client-auth-token',
 }
 
 export default config
