@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LogView from './LogView';
+import HomePage from './HomePage';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<LogView />, div);
+  ReactDOM.render(<HomePage />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
