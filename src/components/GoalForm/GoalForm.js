@@ -70,8 +70,8 @@ class GoalForm extends React.Component {
     render() {
         const { error } = this.state
         const { actions, goals } = this.props
-        const options = [ {title: '--Choose an action', value: null }, ...actions].map(action => <option 
-                key={action.id} 
+        const options = [ {title: '--Choose an action', value: null }, ...actions].map((action, index) => <option 
+                key={index} 
                 value={action.id}>
                 {action.title}
                 </option>)

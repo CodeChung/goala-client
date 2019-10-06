@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RegistrationPage from './RegistrationPage';
+import RemindersPage from './RemindersPage';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<RegistrationPage />, div);
+  ReactDOM.render(<RemindersPage />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

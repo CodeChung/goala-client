@@ -6,13 +6,20 @@ import './Reminder.css';
 class Reminder extends React.Component {
     state={
         modal: false,
+        reminder: { title: '', id: null },
+    }
+    componentDidMount() {
+        const { reminder } = this.props
+        if (reminder) {
+            this.setState({ reminder })
+        }
     }
     handleClick() {
         const { modal } = this.state
         this.setState({ modal: !modal })
     }
     render() {
-        const { reminder } = this.props
+        const { reminder } = this.state
         return (
             <div 
                 onClick={() => {

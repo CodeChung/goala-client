@@ -14,7 +14,7 @@ class ReminderForm extends React.Component {
         
     }
     componentDidMount() {
-        const { title } = this.props
+        const title= this.props || ''
         const deleteReminderId = this.props.reminders[0] ? this.props.reminders[0].id : null
         this.setState({ title, deleteReminderId })
         

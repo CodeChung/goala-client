@@ -10,12 +10,14 @@ class Card extends React.Component {
     state = {
         date: null, 
         saved: null, 
-        text: null, 
+        text: '', 
         title: null,
         highlight: null,
     }
     componentDidMount() {
         let { date, highlight, saved, text, title, } = this.props
+        text = text || ''
+        date = date || new Date()
 
         if (highlight) {
             text = text.replace(highlight, `<span class='highlight-baby'>${highlight}</span>`)
@@ -29,7 +31,7 @@ class Card extends React.Component {
                 onClick={() => this.props.upDate(date)}
                 className='entry-card'>
                 <div className='entry-card-header'>
-                    <Date date={date}/>
+                    {date && <Date date={date}/>}
                     <h3>
                         {title}
                     </h3>
@@ -43,7 +45,7 @@ class Card extends React.Component {
                 </div>
                 
                 <div 
-                    onClick={ saved = !saved }
+                    // onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
                     <FontAwesomeIcon icon={faBookmark} />
                 </div>
@@ -54,7 +56,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
     id: PropTypes.number,
-    date: PropTypes.instanceOf(Date),
+    date: PropTypes.object,
     saved: PropTypes.bool,
     actions: PropTypes.array,
     reminders: PropTypes.array,

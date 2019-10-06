@@ -69,6 +69,7 @@ class RemindersPage extends React.Component {
 
         let recurringReminderComponents = recurringReminders.map((reminder) => {
             return <Reminder 
+                        title={reminder.title}
                         activateReminder={(id) => this.activateForm(id)}
                         reminder={reminder} 
                         key={reminder.id} 
@@ -77,6 +78,7 @@ class RemindersPage extends React.Component {
         })
         let upcomingReminderComponents = upcomingReminders.map((reminder) => {
             return <Reminder 
+                        title={reminder.title}
                         activateReminder={(id) => this.activateForm(id)}
                         reminder={reminder} 
                         key={reminder.id} 
@@ -85,6 +87,7 @@ class RemindersPage extends React.Component {
         })
         let unscheduledReminderComponents = unscheduledReminders.map((reminder) => {
             return <Reminder 
+                        title={reminder.title}
                         activateReminder={(id) => this.activateForm(id)}
                         reminder={reminder} 
                         key={reminder.id} 

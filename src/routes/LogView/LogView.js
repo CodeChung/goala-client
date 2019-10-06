@@ -25,8 +25,10 @@ class LogView extends React.Component {
         values: {},
     }
     componentDidMount() {
-        let { logdate } = this.props.match.params;
-        const logId = logdate.split('=')[0]
+        let logdate = this.props.match ? this.props.match.params.logdate : null;
+        
+        if (logdate) {
+            const logId = logdate.split('=')[0]
         const date = logdate.split('=')[1]
 
         if (!logId) {
@@ -70,7 +72,7 @@ class LogView extends React.Component {
                 this.setState({ values: value })
             })
             .catch(res => this.setState({ error: res.error }))
-
+        }
         this.setState({ loading: false })
     }
     componentWillUnmount() {

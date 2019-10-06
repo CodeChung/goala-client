@@ -14,7 +14,7 @@ class EntryPage extends React.Component {
     state = {
         saveButton: true,
         saved: false,
-        date: null, 
+        date: new Date(), 
         id: null, 
         originalText: 'Original Text for Comparison',
         text: 'Text', 
@@ -49,7 +49,6 @@ class EntryPage extends React.Component {
         this.setState({ loading: false })
     }
     componentWillUnmount() {
-        console.log('UNMOUNTING MY LIEGE')
         const { id, originalText, originalTitle, text, title } = this.state
         if (originalText !== text) {
             EntriesService.updateEntryText(id, text)

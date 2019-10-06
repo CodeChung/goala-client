@@ -5,13 +5,20 @@ import moment from 'moment';
 class Goal extends React.Component {
     state={
         modal: false,
+        goal: {},
+    }
+    componentDidMount() {
+        const { goal } = this.props
+        if (goal) {
+            this.setState({ goal })
+        }
     }
     handleClick() {
         const { modal } = this.state
         this.setState({ modal: !modal })
     }
     render() {
-        const { goal } = this.props
+        const { goal } = this.state
         return (
             <div 
                 onClick={() => {
