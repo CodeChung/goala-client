@@ -12,6 +12,7 @@ class HomePage extends React.Component {
         page: 0,
         itemCount: 5,
         entries: [],
+        error: null,
         loading: true,
         keyword: '',
         date: null,
@@ -25,7 +26,7 @@ class HomePage extends React.Component {
                 if (entries && !entries.length || entries && entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date()).format('MM-DD-YYYY')) {
                     EntriesService.createNewEntry()
                         .then(entries => this.setState({ entries }))
-                        .catch(res => this.setState({ error: res.error }))
+                        .catch(res => this.setState({ error: res.message }))
                 } 
             })
         
@@ -81,7 +82,7 @@ class HomePage extends React.Component {
         }
     }
     render() {
-        const { entries, date, keyword, searchActive, searchEntries, } = this.state
+        const { error, entries, date, keyword, searchActive, searchEntries, } = this.state
         if (date) {
             const data = entries.find(entry => entry.date === date)
             return (
@@ -110,6 +111,7 @@ class HomePage extends React.Component {
                     updateKeyword={ (keyword) => this.updateKeyword(keyword) }
                     search={() => this.searchJournal() }
                     />
+                { error }
                 <div className='journal-feed'
                     onScroll={(e) => this.handleScroll(e)}
                     >
