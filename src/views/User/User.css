@@ -10,10 +10,6 @@ nav a {
     margin: 10px 0;
 }
 
-.new-user-links a {
-    padding: 0 5px;
-}
-
 .hidden {
     display: none !important;
 }

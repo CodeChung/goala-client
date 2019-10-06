@@ -4,6 +4,7 @@ import LandingPage from '../../routes/LandingPage/LandingPage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MissingPage from '../../routes/MissingPage/MissingPage';
+import './NonUser.css';
 
 class NonUser extends React.Component {
     render() {

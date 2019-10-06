@@ -1,0 +1,13 @@
+.new-user nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-user-links {
+    display: flex;
+    font-size: 18px;
+}
+
+.new-user-links a {
+    padding: 0 20px;
+}

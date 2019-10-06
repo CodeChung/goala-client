@@ -66,8 +66,6 @@
     display: block;
 }
 
-.entry-text div {
-}
 
 .entry-text:focus {
     outline: none
@@ -112,4 +110,5 @@
 .text-stamp-container {
     display: inline-block;
     margin: 0 10px;
+    text-decoration: none;
 }

@@ -28,13 +28,20 @@ class Card extends React.Component {
             <div
                 onClick={() => this.props.upDate(date)}
                 className='entry-card'>
-                {title}
-                <Date date={date}/>
-                <ContentEditable
-                    innerRef={this.ContentEditable}
-                    html={text}
-                    disabled={true}
-                    />
+                <div className='entry-card-header'>
+                    <Date date={date}/>
+                    <h3>
+                        {title}
+                    </h3>
+                </div>
+                <div className='entry-card-body'>
+                    <ContentEditable
+                        innerRef={this.ContentEditable}
+                        html={text}
+                        disabled={true}
+                        />
+                </div>
+                
                 <div 
                     onClick={ saved = !saved }
                     className={ saved ? 'entry-bookmark' : 'entry-bookmark active-mark' }>
