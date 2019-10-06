@@ -11,7 +11,7 @@ class CheckList extends React.Component {
     }
     componentDidMount() {
         const { log, value } = this.props
-
+        debugger
         if (log && log.value) {
             Object.keys(log.value).forEach(key => {
                 Object.keys(log.value[key]).forEach(k2y => {
@@ -43,7 +43,7 @@ class CheckList extends React.Component {
             <div className='block block-checklist'>
                 <input
                     onChange={this.updateText}
-                    value={text}
+                    value={this.props.value.value || text}
                     />
                 <input
                     onChange={() => this.toggleCheck()}

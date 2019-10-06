@@ -27,7 +27,7 @@ const initialData = {
         'task-9': { id: 'task-9', content: <CountDown /> },
         'task-10': { id: 'task-10', content: 'Eat' },
         'task-11': { id: 'task-11', content: 'Go for a walk' },
-        'task-12': { id: 'task-12', content: <Trash /> },
+        'task-12': { id: 'task-12', content: <Trash list={[]} snapshot={({})} provided={({})} /> },
     },
     columns: {
         'column-action': {

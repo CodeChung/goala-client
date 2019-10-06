@@ -42,7 +42,6 @@ class RemindersPage extends React.Component {
         const { upcomingReminders, recurringReminders, unscheduledReminders } = this.state
         const activeReminder = [...upcomingReminders, ...unscheduledReminders, ...recurringReminders]
             .find(reminder => reminder.id === reminderId)
-        debugger
         this.setState({ activeReminder })
     }
     render() {

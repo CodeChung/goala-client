@@ -14,6 +14,7 @@ import Clock from '../Blocks/Clock/Clock';
 import CountDown from '../Blocks/CountDown/CountDown';
 import Date from '../Blocks/Date/Date';
 import TrashColumn from './TrashColumn';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 import Title from '../Blocks/Title/Title';
 
@@ -167,7 +168,7 @@ class ReminderTools extends React.Component {
                             {columns[2]}
                         </div>
                         <div className='reminder-side'>
-                            {faToolbox}
+                            <FontAwesomeIcon icon={faToolbox} />
                             {columns[1]}
                         </div>
                     </Container>

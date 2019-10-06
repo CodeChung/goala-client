@@ -62,9 +62,9 @@ class Clock extends React.Component {
             <div className='block block-clock'>
                 <h2>Clock</h2>
                 <div className='clock-block block-main'>
-                    <input onChange={(e) => this.updateHour(e)} type='number' value={hour} />
+                    <input onChange={(e) => this.updateHour(e)} type='number' value={hour || 0} />
                     :
-                    <input onChange={(e) => this.updateMinute(e)} type='number' value={minute}/>
+                    <input onChange={(e) => this.updateMinute(e)} type='number' value={minute || 0}/>
                     <div className='meridiem' onClick={() => this.toggleMeridiem()}>
                         {meridiem ? 'am' : 'pm'}
                     </div>
