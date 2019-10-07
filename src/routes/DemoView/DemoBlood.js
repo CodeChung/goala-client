@@ -4,6 +4,7 @@ import Date from '../../components/ToolBox/Blocks/Date/Date';
 import Text from '../../components/ToolBox/Blocks/Text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import Clock from '../../components/ToolBox/Blocks/Clock/Clock';
 
 class DemoBlood extends React.Component {
     render() {
@@ -16,6 +17,7 @@ class DemoBlood extends React.Component {
                 </Link>
                 <div className='demo-entry-log-body'>
                     <Date />
+                    <Clock value={{ time: 1430 }} />
                     <Text value={({ text: 'Go to LA Hospital' })}/>
                 </div>
             </section>

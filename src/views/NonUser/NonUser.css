@@ -26,3 +26,7 @@
 .new-user .entry-title {
     background: transparent;
 }
+
+.new-user .entry-date-day, .new-user .entry-date-block, .new-user .entry-date-number {
+    color: rgb(97, 133, 0);
+}
