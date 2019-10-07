@@ -48,3 +48,14 @@
 .goal-form .entry-back-arrow {
     left: -80px;
 }
+
+.actions-newbie {
+    font-size: 25px;
+    line-height: 40px;
+    padding-top: 10%;
+}
+
+.settings-arrow {
+    font-size: 40px;
+    font-weight: 700;
+}

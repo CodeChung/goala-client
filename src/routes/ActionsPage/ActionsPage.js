@@ -81,11 +81,27 @@ class ActionsPage extends React.Component {
                 </div>
                 )
             })
+
+        const newbie = actions.length === 0 &&
+        <div className='actions-newbie'>
+            <p>
+                Hey there, user!
+                <br/>
+                Feel free to add a goal below.
+            </p>
+            <p>
+                You can keep track of it in your journal. 
+            </p>
+            <div className='settings-arrow'>
+                &#8595;
+            </div>
+        </div>
         return (
             <section className='reminders-page'>
                 <div className='actions'>
                     {actionList}
                 </div>
+                {newbie}
                 <button
                     className='add-reminder'
                     onClick={() => this.addGoal()}

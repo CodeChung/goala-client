@@ -15,6 +15,7 @@ class RemindersPage extends React.Component {
         recurringReminders: [],
         formActive: false,
         settingsActive: false,
+        newUser: false
     }
     componentDidMount() {
         RemindersService.getReminders() 
@@ -22,7 +23,8 @@ class RemindersPage extends React.Component {
                 let recurringReminders = reminders.filter(reminder => reminder.schedule && reminder.schedule.schedule)
                 let upcomingReminders = reminders.filter(reminder => reminder.schedule && reminder.schedule.date)
                 let unscheduledReminders = reminders.filter(reminder => !!!reminder.schedule)
-                this.setState({ reminders, recurringReminders, unscheduledReminders, upcomingReminders })
+                let newUser = reminders.length === 0
+                this.setState({ reminders, recurringReminders, unscheduledReminders, upcomingReminders, newUser })
             })
             .catch(res => this.setState({ error: res.error }))
     }
@@ -45,7 +47,7 @@ class RemindersPage extends React.Component {
         this.setState({ activeReminder })
     }
     render() {
-        const { formActive, activeReminder, recurringReminders, settingsActive,  unscheduledReminders, upcomingReminders} = this.state
+        const { newUser, formActive, activeReminder, recurringReminders, settingsActive,  unscheduledReminders, upcomingReminders} = this.state
         if (formActive) {
             return (
                 <section className='reminders-page'>
@@ -60,7 +62,7 @@ class RemindersPage extends React.Component {
         if (settingsActive) {
             return (
                 <section className='reminders-page'>
-                    <ReminderForm reminders={[...recurringReminders, ...upcomingReminders, ...unscheduledReminders]} returnPage={() => this.setState({ formActive: false })} />
+                    <ReminderForm reminders={[...recurringReminders, ...upcomingReminders, ...unscheduledReminders]} returnPage={() => this.toggleSettings()} />
                 </section>
             )
         }
@@ -92,6 +94,20 @@ class RemindersPage extends React.Component {
                         schedule={reminder.schedule}
                         toggleForm={() => this.toggleForm()} /> 
         })
+        let newbie = newUser && 
+            <div className='reminders-newbie'>
+                <p>
+                    Hey there, user!
+                    <br />
+                    Feel free to add a reminder below
+                </p>
+                <p>
+                    You can keep track of it in your journal.
+                </p>
+                <div className='settings-arrow'>
+                    &#8595;
+                </div>
+            </div>
         
         return (
             <section className='reminders-page'>
@@ -107,6 +123,7 @@ class RemindersPage extends React.Component {
                     <h2>Unscheduled</h2>
                 </div>
                 {unscheduledReminderComponents}
+                {newbie}
                 <button
                     className='add-reminder'
                     onClick={() => this.toggleSettings()}

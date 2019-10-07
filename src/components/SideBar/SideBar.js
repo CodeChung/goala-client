@@ -48,7 +48,7 @@ class SideBar extends React.Component {
                         <FontAwesomeIcon 
                             icon={faCheckSquare} /> 
                     </div>
-                    Actions
+                    Goals
                 </Link>
                 <Link to='/reminders'
                     onClick={() => this.setCurrentNav('reminders')}

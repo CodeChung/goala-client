@@ -35,7 +35,7 @@ class GoalForm extends React.Component {
         event.preventDefault()
         const { goalTitle, actionId } = this.state
         if (!actionId) {
-            return this.setState({ error: 'Must specify action type'})
+            return this.setState({ error: 'Must specify goal category first'})
         }
         GoalsService.createGoal(goalTitle, actionId)
             .then(res => {
@@ -70,7 +70,7 @@ class GoalForm extends React.Component {
     render() {
         const { error } = this.state
         const { actions, goals } = this.props
-        const options = [ {title: '--Choose an action', value: null }, ...actions].map((action, index) => <option 
+        const options = [ {title: '--Choose a goal category', value: null }, ...actions].map((action, index) => <option 
                 key={index} 
                 value={action.id}>
                 {action.title}
@@ -92,18 +92,18 @@ class GoalForm extends React.Component {
                         <form
                             onSubmit={(e) => this.createAction(e)}
                             >
-                            <legend><h2>Add New Action</h2></legend>
+                            <legend><h2>Add New Goal Category</h2></legend>
                             <label>Title</label>
                             <input 
                                 onChange={this.updateActionTitle}
                                 />
-                            <button>Add Action</button>
+                            <button>Add Category</button>
                         </form>
                         <form
                             onSubmit={(e) => this.createGoal(e)}
                             >
                             <legend><h2>Add New Goal</h2></legend>
-                            <label>Action Type:</label>
+                            <label>Category Type:</label>
                             <select
                                 onChange={(event) => this.setState({ actionId: event.target.value })}
                                 >
@@ -119,7 +119,7 @@ class GoalForm extends React.Component {
                         <form
                             onSubmit={(e) => this.deleteAction(e)}
                             >
-                            <legend><h2>Delete Action</h2></legend>
+                            <legend><h2>Delete Goal Category</h2></legend>
                             <select
                                 onChange={this.updateDeleteAction}
                                 >
