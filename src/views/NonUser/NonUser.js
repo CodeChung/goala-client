@@ -6,6 +6,10 @@ import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './NonUser.css';
 import DemoView from '../../routes/DemoView/DemoView';
+import DemoBike from '../../routes/DemoView/DemoBike';
+import DemoBlood from '../../routes/DemoView/DemoBlood';
+import DemoReading from '../../routes/DemoView/DemoReading';
+import DemoGroceries from '../../routes/DemoView/DemoGroceries';
 
 class NonUser extends React.Component {
     render() {
@@ -29,6 +33,10 @@ class NonUser extends React.Component {
                         <Route exact path='/login' render={() => <LoginPage login={() => this.props.login()}/>} />
                         <Route exact path='/register' component={RegistrationPage} />
                         <Route exact path='/demo' component={DemoView} />
+                        <Route path='/demo/bike' component={DemoBike} />
+                        <Route path='/demo/groceries' component={DemoGroceries} />
+                        <Route path='/demo/reading' component={DemoReading} />
+                        <Route path='/demo/blood' component={DemoBlood} />
                         <Route component={MissingPage}/>
                     </Switch>
                 </main>
