@@ -58,3 +58,21 @@
     content: '';
     font-size: 37px;
 }
+
+.demo-entry-log {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.demo-entry-log a {
+    position: relative;
+    right: 300px;
+    top: 25px;
+}
+
+.demo-entry-log-body {
+    background: whitesmoke;
+    height: 60vh;
+    border-radius: 25px;
+    padding-top: 75px;
+}
