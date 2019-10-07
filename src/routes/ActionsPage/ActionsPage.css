@@ -50,8 +50,10 @@
 }
 
 .actions-newbie {
-    font-size: 25px;
-    line-height: 40px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(14, 84, 128);
     padding-top: 10%;
 }
 

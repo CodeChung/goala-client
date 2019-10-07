@@ -24,8 +24,8 @@ class ReminderForm extends React.Component {
     }
     createReminder = event => {
         event.preventDefault()
-        const { reminderTitle } = this.state
-        RemindersService.createReminder(reminderTitle)
+        const { title } = this.state
+        RemindersService.createReminder(title)
             .then(res => this.setState({ reminders: res }))
             .catch(res => this.setState({ error: res.error }))
     }
@@ -42,7 +42,7 @@ class ReminderForm extends React.Component {
         this.setState({ deleteReminderId: event.target.value })
     }
     updateReminderTitle = event => {
-        this.setState({ reminderTitle: event.target.value })
+        this.setState({ title: event.target.value })
     }
     render() {
         const { title, error, } = this.state

@@ -1,0 +1,17 @@
+.landing-page p {
+    font-size: 25px;
+    padding: 5px;
+
+}
+
+.landing-desc {
+    margin-top: 30%;
+    padding-bottom: 40px;
+}
+
+.demo-button {
+    text-decoration: none;
+    background: cornflowerblue;
+    padding: 15px;
+    border-radius: 25px;
+}

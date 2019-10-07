@@ -1,5 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
+import { Link } from 'react-router-dom';
 
 class LandingPage extends React.Component {
     render() {
@@ -8,8 +9,10 @@ class LandingPage extends React.Component {
                 <div className='landing-desc'>
                     <p>A private journal integrated with goal and reminder tracking.</p>
                     <p>Keep track of your life while writing out your narrative.</p>
-                    <button>Check it out</button>
                 </div>
+                <Link to='/demo' className='demo-button'>
+                    Demo Journal
+                </Link>
             </section>
         )
     }

@@ -5,6 +5,7 @@ import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './NonUser.css';
+import DemoView from '../../routes/DemoView/DemoView';
 
 class NonUser extends React.Component {
     render() {
@@ -24,9 +25,10 @@ class NonUser extends React.Component {
                 </nav>
                 <main>
                     <Switch>
-                        <Route exact path='/' component={LandingPage}/>
-                        <Route exact path='/login' render={() => <LoginPage login={() => this.props.login()}/>}/>
-                        <Route exact path='/register' component={RegistrationPage}/>
+                        <Route exact path='/' component={LandingPage} />
+                        <Route exact path='/login' render={() => <LoginPage login={() => this.props.login()}/>} />
+                        <Route exact path='/register' component={RegistrationPage} />
+                        <Route exact path='/demo' component={DemoView} />
                         <Route component={MissingPage}/>
                     </Switch>
                 </main>
