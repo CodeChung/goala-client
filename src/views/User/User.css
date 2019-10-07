@@ -19,4 +19,9 @@ nav a {
     width: calc(100% - 200px);
     float: right;
     overflow: scroll;
+    /* background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('./user-background.jpg') no-repeat center center ; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

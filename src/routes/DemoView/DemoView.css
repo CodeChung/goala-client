@@ -2,8 +2,12 @@
     height: calc(100vh - 65px);
 }
 
+.entry-demo .entry-date-number {
+    color: rgb(51, 46, 46);
+}
+
 .demo-entry-body {
-    width: 80%;
+    width: 75%;
     margin: 0 auto;
 }
 

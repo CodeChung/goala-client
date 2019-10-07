@@ -1,6 +1,11 @@
 .new-user {
     height: 100vh;
     overflow: hidden;
+    background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('./notepad.jpg') no-repeat center center ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .new-user nav {
@@ -18,3 +23,6 @@
     padding: 0 20px;
 }
 
+.new-user .entry-title {
+    background: transparent;
+}
