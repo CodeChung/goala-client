@@ -145,7 +145,6 @@ class ReminderTools extends React.Component {
     render() {
         const columns = this.state.columnOrder.map(columnId => {
             const column = this.state.columns[columnId]
-            console.log(column.id)
             const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
             if (column.id === 'column-trash') {
                 return <TrashColumn column={column} tasks={([])} type={column.id} />

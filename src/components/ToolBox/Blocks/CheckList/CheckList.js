@@ -20,7 +20,7 @@ class CheckList extends React.Component {
         }
         else if (value) {
             let checked = value.checked
-            let text = value.text
+            let text = value.text ? value.text : value.value
             this.setState({ checked, text })
         }
     }
@@ -42,7 +42,7 @@ class CheckList extends React.Component {
             <div className='block block-checklist'>
                 <input
                     onChange={this.updateText}
-                    value={this.props.value.value || text}
+                    value={text}
                     />
                 <input
                     onChange={() => this.toggleCheck()}

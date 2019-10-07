@@ -30,7 +30,7 @@ class DemoView extends React.Component {
                                     <Date date={new Date()} />
                                     <input
                                         className='entry-title'
-                                        onChange={this.handleTitle}
+                                        readOnly
                                         value={'A Day Well Spent'} />
                                 </div>
                                 <ContentEditable

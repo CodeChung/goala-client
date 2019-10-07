@@ -1,5 +1,6 @@
 import React from 'react';
 import './Notes.css';
+import ContentEditable from 'react-contenteditable';
 
 class Notes extends React.Component {
     state = {
@@ -8,7 +9,8 @@ class Notes extends React.Component {
     componentDidMount() {
         const { value } = this.props;
         if (value) {
-            this.setState({ content: value.content })
+            let content = value.content ? value.content : value.text || 'Sticky Note'
+            this.setState({ content })
         }
     }
     updateContent(event) {
@@ -17,15 +19,14 @@ class Notes extends React.Component {
     }
     render() {
         const { content } = this.state
-        const propContent = this.props.value ? this.props.value.text : null
         return (
             <div className='block block-notes'>
-                <div
-                    onChange={(e) => this.updateContent(e)}
-                    className='block block-notepad'
-                    contentEditable='true'>
-                    { propContent || content}
-                </div>
+                <ContentEditable
+                    innerRef={this.ContentEditable}
+                    html={content}
+                    disabled={false}
+                    onChange={this.updateContent}
+                    />
             </div>
         )
     }
