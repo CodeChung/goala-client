@@ -23,7 +23,7 @@ class HomePage extends React.Component {
         this.addNewEntries()
             .then(entries => {
                 // check if today's entry exists and creates
-                if (entries && !entries.length || entries && entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date()).format('MM-DD-YYYY')) {
+                if ((entries && !entries.length) || (entries && entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date()).format('MM-DD-YYYY'))) {
                     EntriesService.createNewEntry()
                         .then(entries => this.setState({ entries }))
                         .catch(res => this.setState({ error: res.message }))
@@ -32,7 +32,7 @@ class HomePage extends React.Component {
         
     }
     addNewEntries() {
-        let { entries, page, itemCount } = this.state
+        let { entries, page, } = this.state
 
         return EntriesService.getEntriesById()
             .then(res => {

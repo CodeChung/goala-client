@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import './LogView.css';
-import BaseBlock from '../../components/ToolBox/Blocks/BaseBlock/BaseBlock';
 import MissingPage from '../MissingPage/MissingPage';
 import Spinner from '../../components/Spinner/Spinner';
 import LogsService from '../../services/logs-service';
@@ -9,7 +8,6 @@ import GoalsService from '../../services/goals-service';
 import RemindersService from '../../services/reminders-service';
 import BlocksService from '../../services/blocks-service';
 import BlockMap from '../../components/ToolBox/Blocks/BaseBlock/BlockMap';
-import EntryPage from '../EntryPage/EntryPage';
 
 class LogView extends React.Component {
     state = {

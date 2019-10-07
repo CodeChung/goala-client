@@ -45,7 +45,6 @@ class RemindersPage extends React.Component {
         this.setState({ activeReminder })
     }
     render() {
-        const { reminders } = this.props
         const { formActive, activeReminder, recurringReminders, settingsActive,  unscheduledReminders, upcomingReminders} = this.state
         if (formActive) {
             return (

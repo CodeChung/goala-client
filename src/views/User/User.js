@@ -3,9 +3,7 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import MissingPage from '../../routes/MissingPage/MissingPage';
 import './User.css'
 import HomePage from '../../routes/HomePage/HomePage';
-import SearchPage from '../../routes/SearchPage/SearchPage';
 import SideBar from '../../components/SideBar/SideBar';
-import SavedPage from '../../routes/SavedPage/SavedPage';
 import CalendarPage from '../../routes/CalendarPage/CalendarPage';
 import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';

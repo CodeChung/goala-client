@@ -8,3 +8,4 @@ it('renders without crashing', () => {
   ReactDOM.render(<Date />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+

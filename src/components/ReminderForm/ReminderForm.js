@@ -2,7 +2,6 @@ import React from 'react';
 import './ReminderForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import ReminderTools from '../ToolBox/ReminderTools/ReminderTools';
 import RemindersService from '../../services/reminders-service';
 
 class ReminderForm extends React.Component {

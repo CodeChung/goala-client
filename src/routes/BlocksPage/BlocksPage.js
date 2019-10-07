@@ -7,13 +7,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './BlocksPage.css';
 import BlocksService from '../../services/blocks-service';
 import Title from '../../components/ToolBox/Blocks/Title/Title';
-import Count from '../../components/ToolBox/Blocks/Count/Count';
-import Notes from '../../components/ToolBox/Blocks/Notes/Notes';
-import CheckList from '../../components/ToolBox/Blocks/CheckList/CheckList';
-import Text from '../../components/ToolBox/Blocks/Text/Text';
-import Weekly from '../../components/ToolBox/Blocks/Weekly/Weekly';
-import CountDown from '../../components/ToolBox/Blocks/CountDown/CountDown';
-import Date from '../../components/ToolBox/Blocks/Date/Date';
 import BaseBlock from '../../components/ToolBox/Blocks/BaseBlock/BaseBlock';
 import Sequence from './Sequence';
 import Trash from '../../components/ToolBox/Blocks/Trash/Trash';
@@ -66,22 +59,6 @@ const Handle = styled.div`
     background: #fff;
     border-right: 1px solid #ddd;
     color: #000;
-`;
-
-const Container = styled(List)`
-    margin: 0.5rem 0.5rem 1.5rem;
-`;
-
-const Notice = styled.div`
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    padding: 0.5rem;
-    margin: 0 0.5rem 0.5rem;
-    border: 1px solid transparent;
-    line-height: 1.5;
-    color: #aaa;
 `;
 
 const Button = styled.button`
@@ -201,7 +178,6 @@ class BlocksPage extends Component {
             console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
-                    
                     columns.blocks = blocks
                     this.setState({ 
                         columns, 
@@ -229,29 +205,39 @@ class BlocksPage extends Component {
         }
         this.setState({ type: 'goal'})
     }
-    componentWillUnmount() {
+    async componentWillUnmount() {
         const { columns, id, originalSequence, type } = this.state
         if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
-            console.log(JSON.stringify(originalSequence))
-            console.log(JSON.stringify(columns.blocks))
-            let Sequence = []
+            let newBlocks = []
             columns.blocks.forEach((block, index) => {
                 if (!Number.isInteger(block.id)) {
-                    // make new block and push id to sequence array
-
-                } else {
-                    Sequence.push(block.id)
-                }
-            })
-            BlocksService.updateBlockSequence(Sequence, type, id)
-                .then(updatedBlocks => {
+                    let goalId = type === 'goal' ? id : null
+                    let reminderId = type === 'reminder' ? id : null
+                    let dimension = 'col-12'
+                    let value = block.value ? block.value : {}
                     
-                    if (type === 'goal') {
-                        this.setState({ goal: updatedBlocks })
-                    } else if (type === 'reminder') {
-                        this.setState({ reminder: updatedBlocks })
-                    }
-                })
+                    let newBlock = BlocksService.createBlock(block.type, value, dimension, goalId, reminderId)
+                        .then(res => res)
+                        .catch(res => this.setState({ error: res.error || res.message }))
+                    newBlocks.push(newBlock)
+                } else {
+                    debugger
+                    let newBlock = BlocksService.updateBlock(block.id, block.value)
+                        .then(res => res)
+                        .catch(res => this.setState({ error: res.error || res.message }))
+                    newBlocks.push(newBlock)
+                }
+                debugger
+            })
+            // BlocksService.updateBlockSequence(columns.blocks, type, id)
+            //     .then(updatedBlocks => {
+            //         if (type === 'goal') {
+            //             this.setState({ goal: updatedBlocks })
+            //         } else if (type === 'reminder') {
+            //             this.setState({ reminder: updatedBlocks })
+            //         }
+            //     })
+            //     .catch(res => this.setState({ error: res.error || res.message }))
         }
     }
     onDragEnd = result => {
@@ -326,8 +312,6 @@ class BlocksPage extends Component {
                 {(provided, snapshot) => <Trash provided={provided} snapshot={snapshot} list={[]} />}
             </Droppable>
         )
-        const { goal, reminder } = this.state
-        
         let title = 'Title'
 
         if (this.props.goal) {

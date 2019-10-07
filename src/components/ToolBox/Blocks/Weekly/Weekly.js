@@ -30,7 +30,6 @@ class Weekly extends React.Component {
         }
     }
     componentWillUnmount() {
-        const { original } = this.state;
         
     }
     toggleDay(day) {

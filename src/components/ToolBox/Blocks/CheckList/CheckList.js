@@ -11,7 +11,6 @@ class CheckList extends React.Component {
     }
     componentDidMount() {
         const { log, value } = this.props
-        debugger
         if (log && log.value) {
             Object.keys(log.value).forEach(key => {
                 Object.keys(log.value[key]).forEach(k2y => {

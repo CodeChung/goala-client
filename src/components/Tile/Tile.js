@@ -1,12 +1,8 @@
-import React from 'react';
 import './Tile.css';
-import { Link } from 'react-router-dom'
-import BlocksService from '../../services/blocks-service';
-import BlockMap from '../ToolBox/Blocks/BaseBlock/BlockMap';
 import moment from 'moment';
 
 function Tile(tile, date) {
-    const { type, id, user_id, action_id, title, last_logged, block_sequence } = tile;
+    const { type, id, title, } = tile;
 
     // STORING the blocks with type and value for BLOCKMAP
     // tileBlocks returns an array of objects that contain goal_id/reminder_id possibly null
