@@ -43,3 +43,37 @@
 .block-trash:hover {
     background: greenyellow;
 }
+
+@media only screen and (max-width: 768px) {
+    .blocks-main {
+        width: 100%;
+    }
+
+    .blocks-page {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+
+    .blocks-page-header button {
+        width: 110px;
+    }
+
+    .blocks-page-header button svg {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .blocks-page-header button div {
+        margin: 0;
+        padding-right: 10px;
+    }
+
+    .toolbox-list {
+        width: 100%;
+        display: block;
+        position: static;
+        overflow: visible;
+        height: 1000px !important;
+        background: ghostwhite;
+    }
+}

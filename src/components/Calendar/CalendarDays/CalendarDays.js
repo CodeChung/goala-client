@@ -68,7 +68,6 @@ class CalendarDays extends React.Component {
         const monthLength = moment().month(currentMonth).daysInMonth()
         let cells = []
         // add in irrelevant month blocks
-        debugger
         for (let i = 0; i < monthOffset; i++) {
             cells.push(this.addCell(activeDays, entries, cells))
         }

@@ -12,9 +12,12 @@ class SideBar extends React.Component {
         this.setState({ currentView })
     }
     render() {
+        const { hidden } = this.props
         const { currentView } = this.state
+
+        let hideView = hidden ? 'nav-hidden' : ''
         return (
-            <nav className='sidebar'>
+            <nav className={'sidebar ' + hideView}>
                 <Link to='/'
                     onClick={() => this.setCurrentNav('home')}
                     className='nav-logo'>

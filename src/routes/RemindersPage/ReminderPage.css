@@ -102,3 +102,25 @@
     color: rgb(14, 84, 128);
     padding-top: 10%;
 }
+
+@media only screen and (max-width: 768px) {
+    .reminders-page {
+        height: 100vh;
+    }
+
+    .reminder {
+        width: 80%;
+    }
+
+    .reminder-form {
+        width: 100%;
+        position: static;
+        display: block;
+    }
+
+    .reminders-page .entry-back-arrow {
+        left: 20px !important;
+        position: absolute;
+        top: 100px;
+    }
+}

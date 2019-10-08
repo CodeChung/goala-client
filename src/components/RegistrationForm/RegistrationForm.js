@@ -53,6 +53,7 @@ class RegistrationForm extends Component {
             name='name'
             type='text'
             required
+            placeholder='Name'
             id='registration-name'>
           </input>
         </div>
@@ -64,6 +65,7 @@ class RegistrationForm extends Component {
             name='username'
             type='text'
             required
+            placeholder='Username'
             id='registration-username'>
           </input>
         </div>
@@ -72,6 +74,7 @@ class RegistrationForm extends Component {
             Password
           </label>
           <input
+            placeholder='Password'
             name='password'
             type='password'
             required

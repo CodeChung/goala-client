@@ -61,3 +61,37 @@
     font-size: 40px;
     font-weight: 700;
 }
+
+@media only screen and (max-width: 768px) {
+    .actions {
+        width: 80%;
+    }
+
+    .goal-form {
+        display: block !important;
+    }
+
+    .goal-settings {
+        width: 90% !important;
+        margin: 0 auto !important;
+        flex-direction: column;
+    }
+
+    .new-goal {
+        width: 100% !important;
+    }
+
+    .delete-goal {
+        width: 100% !important;
+    }
+
+    .goal-form .entry-back-arrow {
+        left: 20px !important;
+        position: absolute;
+        top: 70px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+}

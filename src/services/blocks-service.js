@@ -2,9 +2,9 @@ import config from '../config'
 import TokenService from './token-service';
 
 const BlocksService = {
-    async createBlock(type, value, dimension, goal_id, reminder_id) {
-        const newBlock = { type, value, dimension, goal_id, reminder_id }
-        return await fetch(`${config.API_ENDPOINT}/blocks/new`, {
+    createNewBlocks(newBlocks, goal_id, reminder_id) {
+        const newBlock = { newBlocks, goal_id, reminder_id }
+        return fetch(`${config.API_ENDPOINT}/blocks/new`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -12,12 +12,15 @@ const BlocksService = {
             },
             body: JSON.stringify(newBlock)
         })
-            .then(res =>{
+            .then(res => {
+                let result = res.clone()
                 return (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
+                    ? result.json().then(e => Promise.reject(e))
+                    : result.json()
                 })
+
     },
+
     async getBlocksByIds(ids) {
         return await fetch(`${config.API_ENDPOINT}/blocks`, {
             method: 'POST',
@@ -27,7 +30,7 @@ const BlocksService = {
             },
             body: JSON.stringify(ids)
         })
-            .then(res =>{
+            .then(res => {
                 return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()

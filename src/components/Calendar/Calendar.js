@@ -52,25 +52,25 @@ class Calendar extends React.Component {
                         />
                     <div className='calendar-weekdays'>
                         <div className='weekday'>
-                            Sunday
+                            Sun
                         </div>
                         <div className='weekday'>
-                            Monday
+                            Mon
                         </div>
                         <div className='weekday'>
-                            Tuesday
+                            Tue
                         </div>
                         <div className='weekday'>
-                            Wednesday
+                            Wed
                         </div>
                         <div className='weekday'>
-                            Thursday
+                            Thu
                         </div>
                         <div className='weekday'>
-                            Friday
+                            Fri
                         </div>
                         <div className='weekday'>
-                            Saturday
+                            Sat
                         </div>
                     </div>
                     <CalendarDays

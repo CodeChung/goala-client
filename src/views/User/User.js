@@ -9,18 +9,39 @@ import RemindersPage from '../../routes/RemindersPage/RemindersPage';
 import ActionsPage from '../../routes/ActionsPage/ActionsPage';
 import BlocksPage from '../../routes/BlocksPage/BlocksPage';
 import LogView from '../../routes/LogView/LogView';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleRight, faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 class User extends React.Component {
     state = {
-        view: 'Home'
+        view: 'Home',
+        toggleSidebar: true
     }
     updateView = (view) => {
         this.setState({ view })
     }
+    toggleSidebar = event => {
+        const { toggleSidebar } = this.state
+        this.setState({ toggleSidebar: !toggleSidebar })
+    }
     render() {
+        const { toggleSidebar } = this.state
         return (
             <section className='user view'>
-                <SideBar logout={() => this.props.logout()}/>
+                <SideBar hidden={toggleSidebar} logout={() => this.props.logout()}/>
+                <div className='mobile-header'>
+                    <div className='sidebar-max'
+                            onClick={this.toggleSidebar}>
+                        <FontAwesomeIcon icon={faChevronCircleRight} />
+                    </div>
+                    <span className='logo'>
+                        Goala
+                    </span>
+                    {!toggleSidebar && <div className='sidebar-min'
+                        onClick={this.toggleSidebar}>
+                        <FontAwesomeIcon icon={faChevronCircleLeft} />
+                    </div>}
+                </div>
                 <main>
                     <Switch>
                         <Route exact path='/' 

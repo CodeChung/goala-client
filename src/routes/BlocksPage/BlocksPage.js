@@ -205,30 +205,48 @@ class BlocksPage extends Component {
         }
         this.setState({ type: 'goal'})
     }
-    async componentWillUnmount() {
+    componentWillUnmount() {
         const { columns, id, originalSequence, type } = this.state
         if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
+            // if we change the order of our block sequence or add/subtract blocks:
             let newBlocks = []
             columns.blocks.forEach((block, index) => {
                 if (!Number.isInteger(block.id)) {
-                    let goalId = type === 'goal' ? id : null
-                    let reminderId = type === 'reminder' ? id : null
-                    let dimension = 'col-12'
-                    let value = block.value ? block.value : {}
-                    
-                    let newBlock = BlocksService.createBlock(block.type, value, dimension, goalId, reminderId)
-                        .then(res => res)
-                        .catch(res => this.setState({ error: res.error || res.message }))
-                    newBlocks.push(newBlock)
-                } else {
-                    debugger
-                    let newBlock = BlocksService.updateBlock(block.id, block.value)
-                        .then(res => res)
-                        .catch(res => this.setState({ error: res.error || res.message }))
-                    newBlocks.push(newBlock)
+                    newBlocks.push({ block, index })
                 }
-                debugger
-            })
+            }) 
+            let goalId = type === 'goal' ? id : null
+            let reminderId = type === 'reminder' ? id : null
+            BlocksService.createNewBlocks(newBlocks, goalId, reminderId)
+             .then(newBlocks => {
+                 let blocks = columns.blocks
+                 newBlocks.forEach(newBlock => {
+                     blocks[newBlock.index] = newBlock.block
+                 })
+
+                 BlocksService.updateBlockSequence(newBlocks)
+             })
+             .catch(res => this.setState({ error: res.message }))
+            // columns.blocks.forEach((block, index) => {
+            //     if (!Number.isInteger(block.id)) {
+            //         let goalId = type === 'goal' ? id : null
+            //         let reminderId = type === 'reminder' ? id : null
+            //         let dimension = 'col-12'
+            //         let value = block.value ? block.value : {}
+                    
+            //         let newBlock = BlocksService.createBlock(block.type, value, dimension, goalId, reminderId)
+            //             .then(res => res)
+            //             .catch(res => this.setState({ error: res.error || res.message }))
+            //         newBlocks.push(newBlock)
+            //     } else {
+            //         debugger
+            //         let newBlock = BlocksService.updateBlock(block.id, block.value)
+            //             .then(res => res)
+            //             .catch(res => this.setState({ error: res.error || res.message }))
+            //         newBlocks.push(newBlock)
+            //     }
+            //     debugger
+            // })
             // BlocksService.updateBlockSequence(columns.blocks, type, id)
             //     .then(updatedBlocks => {
             //         if (type === 'goal') {
@@ -330,6 +348,7 @@ class BlocksPage extends Component {
                                 className='toolbox-list'
                                 ref={provided.innerRef}
                                 isDraggingOver={snapshot.isDraggingOver}>
+                                <h3>ToolBox</h3>
                                 {SIDEBAR_ITEMS.map((item, index) => (
                                     <Draggable
                                         key={item.id}
