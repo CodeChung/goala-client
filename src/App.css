@@ -50,8 +50,13 @@ html, body {
 
 @media only screen and (max-width: 768px) {
   html, body {
-    overflow: auto;
+    overflow: hidden;
   }
+
+  .App {
+    width: 100vw;
+  }
+
   main {
     width: 100% !important;
   }
