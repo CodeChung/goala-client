@@ -112,3 +112,30 @@
     margin: 0 10px;
     text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .entry-page-bookmark {
+        right: 20px;
+    }
+
+    .entry-page .entry-back-arrow {
+        top: 0;
+        left: 20px;
+        font-size: 35px;
+    }
+    
+    .entry-header {
+        width: 90%;
+        padding-top: 10px;
+    }
+
+    .entry-body {
+        padding: 0 20px;
+    }
+
+    .entry-bar {
+        box-sizing: border-box;
+        width: 100% !important;
+        height: auto !important;
+    }
+}

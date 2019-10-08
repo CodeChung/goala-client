@@ -10,7 +10,7 @@ import ActionsPage from '../../routes/ActionsPage/ActionsPage';
 import BlocksPage from '../../routes/BlocksPage/BlocksPage';
 import LogView from '../../routes/LogView/LogView';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleRight, faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 class User extends React.Component {
     state = {
@@ -18,7 +18,7 @@ class User extends React.Component {
         toggleSidebar: true
     }
     updateView = (view) => {
-        this.setState({ view })
+        this.setState({ view, toggleSidebar: true })
     }
     toggleSidebar = event => {
         const { toggleSidebar } = this.state
@@ -32,17 +32,17 @@ class User extends React.Component {
                 <div className='mobile-header'>
                     <div className='sidebar-max'
                             onClick={this.toggleSidebar}>
-                        <FontAwesomeIcon icon={faChevronCircleRight} />
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </div>
                     <span className='logo'>
                         Goala
                     </span>
-                    {!toggleSidebar && <div className='sidebar-min'
-                        onClick={this.toggleSidebar}>
-                        <FontAwesomeIcon icon={faChevronCircleLeft} />
-                    </div>}
                 </div>
                 <main>
+                    {!toggleSidebar && <div className='sidebar-min'
+                            onClick={this.toggleSidebar}>
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </div>}
                     <Switch>
                         <Route exact path='/' 
                             component={HomePage} />

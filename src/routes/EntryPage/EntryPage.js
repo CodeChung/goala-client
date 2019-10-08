@@ -124,6 +124,7 @@ class EntryPage extends React.Component {
                         onClick={() => this.props.resetDate()} 
                         icon={faArrowAltCircleLeft} />
                 <div className='entry-body'>
+                    
                     <div className='entry-header'>
                         <Date date={date} />
                         <input
