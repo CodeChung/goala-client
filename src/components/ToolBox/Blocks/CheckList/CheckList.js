@@ -4,7 +4,6 @@ import './CheckList.css';
 import LogsService from '../../../../services/logs-service';
 
 class CheckList extends React.Component {
-    //TODO probably should sanitize this later
     state = {
         text: 'checklist',
         checked: false,

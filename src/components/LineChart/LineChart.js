@@ -3,8 +3,6 @@ import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 import './LineChart.css';
 
-//TODO: get this data from api later
-
 const graphData = {
     labels: [],
     datasets: [

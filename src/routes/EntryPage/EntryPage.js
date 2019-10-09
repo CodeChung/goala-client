@@ -9,6 +9,7 @@ import EntriesService from '../../services/entries-service';
 import EntryBar from '../../components/EntryBar/EntryBar';
 import Tile from '../../components/Tile/Tile';
 import LogView from '../LogView/LogView';
+import { Redirect } from 'react-router-dom';
 
 class EntryPage extends React.Component {
     state = {
@@ -23,7 +24,8 @@ class EntryPage extends React.Component {
         logs: [],
         data: null,
         logView: false,
-        error: null
+        error: null,
+        redirect: false
     }
     componentDidMount() {
         let { date, data } = this.props
@@ -93,10 +95,11 @@ class EntryPage extends React.Component {
                 .then(res => this.setState({ originalTitle: title }))
                 .catch(res => this.setState({ error: res.error }))
         }
-        this.setState({saveButton: false})
+        this.setState({saveButton: false, })
+        this.props.resetDate()
     }
     render() {
-        const { originalText, originalTitle, loading, error, date, logs, saved, text, title, logView, saveButton } = this.state
+        const { redirect, originalText, originalTitle, loading, error, date, logs, saved, text, title, logView, saveButton } = this.state
         
         if (loading) {
             return (
@@ -104,6 +107,10 @@ class EntryPage extends React.Component {
                     Loading 
                 </section>
             )
+        }
+
+        if (redirect) {
+            return <Redirect to='/' />
         }
 
         if (logs.length && logView) {
