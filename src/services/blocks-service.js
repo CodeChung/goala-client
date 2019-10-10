@@ -66,6 +66,22 @@ const BlocksService = {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
                 })
+    },
+    updateTitle(blockId, title, type) {
+        return fetch(`${config.API_ENDPOINT}/blocks/title`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'type': type,
+            },
+            body: JSON.stringify({ typeId: blockId, title })
+        })
+            .then(res => {
+                return (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+                })
     }
 
     // getActions() {

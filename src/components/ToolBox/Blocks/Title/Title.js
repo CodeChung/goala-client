@@ -15,6 +15,9 @@ class Title extends React.Component {
     updateTitle(event) {
         event.preventDefault()
         this.setState({ title: event.target.value })
+        if (this.props.changeTitle) {
+            this.props.changeTitle(event.target.value)
+        }
     }
     render() {
         const { title } = this.state 

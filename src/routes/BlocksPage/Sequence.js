@@ -73,6 +73,7 @@ class Sequence extends React.Component {
                 className='block-saved-list'
                 ref={provided.innerRef}
                 isDraggingOver={snapshot.isDraggingOver}>
+                {!list.length && <div className='saved-list-empty'>Start Adding Blocks!</div>}
                 {list && list.length
                     ? list.map(
                         (item, index) => (

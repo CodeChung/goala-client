@@ -8,11 +8,11 @@ class LoginForm extends Component {
     onLoginSuccess: () => {}
   }
 
-  state = { error: null }
+  state = { loading: false, error: null }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.setState({ error: null })
+    this.setState({ loading:true, error: null })
     const { username, password } = event.target
     
     AuthApiService.postLogin({
@@ -31,7 +31,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { error } = this.state
+    const { loading, error } = this.state
     return (
       <form
         className='LoginForm'
@@ -62,6 +62,7 @@ class LoginForm extends Component {
             placeholder='password'
             id='LoginForm__password'/>
         </div>
+        {loading && <span className='loading-msg'>Patience child<br/>I am loading...</span>}
         <button type='submit'>
           Login
         </button>

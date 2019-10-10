@@ -30,7 +30,12 @@
     
     transition-duration: 0.25s;
     font-weight: 300;
+}
 
+.loading-msg {
+    font-size: 18px;
+    padding: 10px;
+    color: ivory;
 }
 
 .LoginForm input:hover{

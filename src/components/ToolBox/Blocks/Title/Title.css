@@ -3,8 +3,13 @@
     outline: none;
     font-size: 35px;
     background: inherit;
+    width: 100%;
 }
 
 .block-title:focus {
     outline: none;
+}
+
+.blocks-page-header .block-title input {
+    width: 700px;
 }

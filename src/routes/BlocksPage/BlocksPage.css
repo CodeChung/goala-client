@@ -31,8 +31,13 @@
 }
 
 .block-saved-list {
-    /* height: calc(100vh - 200px); */
-    
+    height: calc(100vh - 200px);
+}
+
+.saved-list-empty {
+    font-size: 25px;
+    color: red;
+    margin: 25px;
 }
 
 .block-trash {
@@ -66,6 +71,11 @@
     .blocks-page-header button div {
         margin: 0;
         padding-right: 10px;
+    }
+
+    .block-saved-list {
+        height: 200px;
+        overflow: scroll;
     }
 
     .toolbox-list {

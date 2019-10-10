@@ -162,12 +162,16 @@ class BlocksPage extends Component {
         },
         originalSequence: [],
         error: null,
+        title: 'Add Title',
         type: null,
         id: null,
         goal: null,
         reminder: null,
+        loading: false,
     };
     componentDidMount() {
+        this.setState({ loading: true })
+
         // Determines if block form is goal or reminder
         // then it fetches <Block /> components based on blockId
         const columns = {}
@@ -183,6 +187,8 @@ class BlocksPage extends Component {
                         columns, 
                         id: goal.id,
                         originalSequence: blocks, 
+                        originalTitle: goal.title,
+                        title: goal.title,
                         type: 'goal' 
                     })
                 })
@@ -198,15 +204,31 @@ class BlocksPage extends Component {
                         columns, 
                         id: reminder.id,
                         originalSequence: blocks, 
+                        originalTitle: reminder.title,
+                        title: reminder.title,
                         type: 'reminder' 
                     })
                 })
                 .catch(err => this.setState({ error: err.error }))
         }
-        this.setState({ type: 'goal'})
+        this.setState({ loading: false,type: 'goal'})
     }
     componentWillUnmount() {
-        const { columns, id, originalSequence, type } = this.state
+        const { columns, id, originalSequence, originalTitle, title, type } = this.state
+        debugger
+        if (title !== originalTitle) {
+            // updating title
+            BlocksService.updateTitle(id, title, type)
+                .then(newTitle => {
+                    debugger
+                    return newTitle
+                }) 
+                .catch(res => this.setState({ error: res.message }))
+        }
+
+
+    /* Quarantine
+
         if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
             // if we change the order of our block sequence or add/subtract blocks:
             let newBlocks = []
@@ -257,6 +279,10 @@ class BlocksPage extends Component {
             //     })
             //     .catch(res => this.setState({ error: res.error || res.message }))
         }
+
+
+
+        */
     }
     onDragEnd = result => {
         const { source, destination } = result;
@@ -317,9 +343,13 @@ class BlocksPage extends Component {
         this.setState({ [uuid()]: [] });
     };
 
+    changeTitle = title => {
+        this.setState({ title })
+    }
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
+        let { loading, title } = this.state
         const activeBlocks = (
             <Droppable key={96} droppableId='active-blocks'>
                 {(provided, snapshot) => <Sequence provided={provided} snapshot={snapshot} list={this.state.columns.blocks} />}
@@ -330,14 +360,18 @@ class BlocksPage extends Component {
                 {(provided, snapshot) => <Trash provided={provided} snapshot={snapshot} list={[]} />}
             </Droppable>
         )
-        let title = 'Title'
 
-        if (this.props.goal) {
-            title = this.props.goal.title
-        } else if (this.props.reminder) {
-            title = this.props.reminder.title
+        if (loading) {
+            return <div>Loading Right Now</div>
         }
         
+        if (this.props.goal) {
+            title = this.props.goal.title
+        }
+        if (this.props.reminder) {
+            title = this.props.reminder.title
+        }
+
         return (
             <section className='blocks-page'>
                 {this.state.error}
@@ -397,7 +431,7 @@ class BlocksPage extends Component {
                                     icon={faArrowAltCircleLeft} />
                                 <ButtonText>Return</ButtonText>
                             </Button>
-                            <Title value={({ title })} />
+                            <Title changeTitle={this.changeTitle} value={({ title })} />
                         </div>
                         <div className='blocks-saved'>
                             {activeBlocks}
