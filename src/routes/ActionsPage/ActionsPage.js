@@ -42,12 +42,22 @@ class ActionsPage extends React.Component {
         const { newGoal } = this.state
         this.setState({ newGoal: !newGoal })
     }
+    updateGoalTitle = (goalId, title) => {
+        const { goals } = this.state
+        goals.forEach(goal => {
+            if (goal.id === goalId) {
+                goal.title = title
+            }
+        })
+        this.setState({ goals })
+    }
     render() {
         const { activeGoal, formActive, actions, goals, newGoal } = this.state
         if (formActive) {
             return (
                 <section className='actions-page'>
                     <BlocksPage 
+                        updateGoalTitle={this.updateGoalTitle}
                         goal={activeGoal}
                         blockSequence={activeGoal.block_sequence}  
                         toggleForm={() => this.toggleForm()} />

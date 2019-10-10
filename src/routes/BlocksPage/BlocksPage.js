@@ -215,13 +215,18 @@ class BlocksPage extends Component {
     }
     componentWillUnmount() {
         const { columns, id, originalSequence, originalTitle, title, type } = this.state
-        debugger
+
         if (title !== originalTitle) {
             // updating title
+            if (type === 'reminder') {
+                this.props.updateReminderTitle(id, title)
+            }
             BlocksService.updateTitle(id, title, type)
                 .then(newTitle => {
-                    debugger
-                    return newTitle
+                    let title = newTitle[0].title
+                    if (type === 'goal') {
+                        this.props.updateGoalTitle(id, title)
+                    }
                 }) 
                 .catch(res => this.setState({ error: res.message }))
         }

@@ -47,12 +47,22 @@ class RemindersPage extends React.Component {
             .find(reminder => reminder.id === reminderId)
         this.setState({ activeReminder })
     }
+    updateReminderTitle = (reminderId, title) => {
+        const { reminders } = this.state
+        reminders.forEach(reminder => {
+            if (reminder.id === reminderId) {
+                reminder.title = title
+            }
+        })
+        this.setState({ reminders })
+    }
     render() {
         const { loading, newUser, formActive, activeReminder, recurringReminders, settingsActive,  unscheduledReminders, upcomingReminders} = this.state
         if (formActive) {
             return (
                 <section className='reminders-page'>
                     <BlocksPage 
+                        updateReminderTitle={this.updateReminderTitle}
                         reminder={activeReminder}
                         blockSequence={activeReminder.block_sequence}  
                         toggleForm={() => this.toggleForm()} />
