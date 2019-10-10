@@ -76,7 +76,6 @@ class EntryPage extends React.Component {
     addTile = (tile, date) => {
         let { text } = this.state
         text += Tile(tile, date)
-        console.log('tiled')
         this.setState({ text })
     }
     updateLog(newLog) {
@@ -89,15 +88,12 @@ class EntryPage extends React.Component {
     }
     saveChanges() {
         const { id, originalText, originalTitle, text, title } = this.state
-        const { index } = this.props;
         if (originalText !== text) {
-            let newText = this.props.updateEntry ? this.props.updateEntry({ id, index, text }) : null
             EntriesService.updateEntryText(id, text)
                 .then(res => res)
                 .catch(res => this.setState({ error: res.error }))
         }
         if (originalTitle !== title) {
-            let newTitle = this.props.updateEntry ? this.props.updateEntry({ id, index, title }) : null
             EntriesService.updateEntryTitle(id, title)
                 .then(res => res)
                 .catch(res => this.setState({ error: res.error }))

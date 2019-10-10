@@ -71,7 +71,6 @@ class GoalProvider extends React.Component {
         // After updating chat context, pass new msg from client to server
         ChatService.postMessage(goalId, message)
             .then(res => {
-                console.log('RES', res)
                 this.updateChatServer(res.msg, goalId)
             })
             .catch(res => {

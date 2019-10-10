@@ -118,7 +118,6 @@ const SIDEBAR_ITEMS = [
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
-    console.log(list, startIndex, endIndex)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     if (endIndex < 0) {
@@ -179,7 +178,6 @@ class BlocksPage extends Component {
         
         if (goal) {
             const blockSeq = goal.block_sequence ? goal.block_sequence : []
-            console.log('BLOCK SEQUENCE ', blockSeq)
             BlocksService.getBlocksByIds(blockSeq)
                 .then(blocks => {
                     columns.blocks = blocks
@@ -231,6 +229,30 @@ class BlocksPage extends Component {
                 .catch(res => this.setState({ error: res.message }))
         }
 
+        if (JSON.stringify(originalSequence) !== JSON.stringify(columns.blocks)) {
+            let blocksToCreate = []
+            columns.blocks.forEach((block, index) => {
+                if (!Number.isInteger(block.id)) {
+                    blocksToCreate.push({ block, index})
+                }
+            })
+            BlocksService.createNewBlocks(blocksToCreate, id, type)
+                .then(newBlocks => {
+                    // combining newBlocks with old blocks and updating blocklist sequence
+                    let newBlockSequence = []
+                    for (let i = 0; i < columns.blocks.length; i++) {
+                        const block = columns.blocks[i]
+                        if (Number.isInteger(block.id)) {
+                            newBlockSequence.push(block.id)
+                        } else {
+                            const matchingBlock = newBlocks.find(block => block.index === i)
+                            newBlockSequence.push(matchingBlock.block.id)
+                        }
+                    }
+                    BlocksService.updateBlockSequence(newBlockSequence, type, id)
+                })
+                .catch(res => this.setState({ error: res.message }))
+        }
 
     /* Quarantine
 
@@ -266,13 +288,11 @@ class BlocksPage extends Component {
             //             .catch(res => this.setState({ error: res.error || res.message }))
             //         newBlocks.push(newBlock)
             //     } else {
-            //         debugger
             //         let newBlock = BlocksService.updateBlock(block.id, block.value)
             //             .then(res => res)
             //             .catch(res => this.setState({ error: res.error || res.message }))
             //         newBlocks.push(newBlock)
             //     }
-            //     debugger
             // })
             // BlocksService.updateBlockSequence(columns.blocks, type, id)
             //     .then(updatedBlocks => {
@@ -325,7 +345,6 @@ class BlocksPage extends Component {
                 }
                 break;
             case 'active-blocks':
-                console.log('main blocks dont cry')
                 if (destination.droppableId === 69) {
                     const blocks = this.state.columns.blocks.filter( (block, index) => index !== source.index )
                     this.setState({ columns: { blocks } })

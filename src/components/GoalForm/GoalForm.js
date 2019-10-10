@@ -30,6 +30,7 @@ class GoalForm extends React.Component {
                 this.setState({ reload: true })
             })
             .catch(res => this.setState({ error: res.error }))
+        this.props.toggleForm()
     }
     createGoal(event) {
         event.preventDefault()
@@ -42,6 +43,7 @@ class GoalForm extends React.Component {
                 this.setState({ reload: true })
             })
             .catch(res => this.setState({ error: res.error }))
+        this.props.toggleForm()
     }
     updateActionTitle = event => {
         this.setState({ actionTitle: event.target.value })
@@ -60,12 +62,14 @@ class GoalForm extends React.Component {
         ActionsService.deleteAction(deleteActionTitle)
             .then(res => this.setState({ actions: res.actions }))
             .catch(res => this.setState({ error: res.error }))
+        this.props.toggleForm()
     }
     deleteGoal = event => {
         const { deleteGoalTitle } = this.state
         GoalsService.deleteGoal(deleteGoalTitle)
             .then(res => this.setState({ goals: res.goals }))
             .catch(res => this.setState({ error: res.error }))
+        this.props.toggleForm()
     }
     render() {
         const { error } = this.state

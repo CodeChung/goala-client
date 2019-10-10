@@ -27,7 +27,6 @@ class Calendar extends React.Component {
         })
     }
     resetData() {
-        console.log('reset')
         this.setState({ data: null })
     }
     openData(data) {

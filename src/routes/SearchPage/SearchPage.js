@@ -15,7 +15,6 @@ class SearchPage extends React.Component {
         // here we'll get request /entries/:keyword
         // saved returned cards in state
         const { keyword } = this.state
-        console.log(keyword)
     }
     render() {
         const { cards } = this.state

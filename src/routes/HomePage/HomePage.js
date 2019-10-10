@@ -25,9 +25,6 @@ class HomePage extends React.Component {
                 // check if today's entry exists and creates
                 let a = entries && !entries.length
                 let b = entries && entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date() - 1).format('MM-DD-YYYY')
-                let c = moment(new Date()).format('MM-DD-YYYY')
-                let d = moment(entries[0].date).format('MM-DD-YYYY')
-                let e = new Date(entries[0].date)
                 
                 if ((a) || (b)) {
                     EntriesService.createNewEntry()
@@ -56,7 +53,6 @@ class HomePage extends React.Component {
     handleScroll(e) {
         const element = e.target
         if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-            console.log('reached')
         }
     }
     resetDate() {
@@ -71,9 +67,8 @@ class HomePage extends React.Component {
     }
     updateEntry = entry => {
         const { entries } = this.state
-        const { index, text, title, id } = entry
+        const { text, title, id } = entry
         const entryToUpdate = entries.find(entry => entry.id === id)
-        debugger
         if (text) {
             entryToUpdate.text = text
         }
@@ -91,7 +86,6 @@ class HomePage extends React.Component {
         } else {
             EntriesService.getEntriesByKeyword(keyword)
                 .then(searchEntries => {
-                    console.log(searchEntries)
                     this.setState({
                         searchEntries,
                         searchActive: true,

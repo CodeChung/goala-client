@@ -13,9 +13,8 @@ class ReminderForm extends React.Component {
         
     }
     componentDidMount() {
-        const title= this.props || ''
         const deleteReminderId = this.props.reminders[0] ? this.props.reminders[0].id : null
-        this.setState({ title, deleteReminderId })
+        this.setState({ deleteReminderId })
         
     }
     handleClick(event) {
@@ -25,18 +24,21 @@ class ReminderForm extends React.Component {
     createReminder = event => {
         event.preventDefault()
         const { title } = this.state
+        debugger
         RemindersService.createReminder(title)
-            .then(res => this.setState({ reminders: res }))
+            .then(res => res)
             .catch(res => this.setState({ error: res.error }))
+        this.props.returnPage()
     }
     deleteReminder = event => {
         event.preventDefault()
         const { deleteReminderId } = this.state
         if (deleteReminderId) {
             RemindersService.deleteReminder(deleteReminderId)
-                .then(res => this.setState({ reminders: res }))
+                .then(res => res)
                 .catch(res => this.setState({ error: res.error }))
         }
+        this.props.returnPage()
     }
     updateDeleteReminder = (event) => {
         this.setState({ deleteReminderId: event.target.value })

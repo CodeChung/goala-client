@@ -2,15 +2,17 @@ import config from '../config'
 import TokenService from './token-service';
 
 const BlocksService = {
-    createNewBlocks(newBlocks, goal_id, reminder_id) {
-        const newBlock = { newBlocks, goal_id, reminder_id }
+    createNewBlocks(newBlocks, id, type) {
+        let goal_id =  type === 'goal' ? id : null
+        let reminder_id = type === 'reminder' ? id : null
+        const blockData = { newBlocks, goal_id, reminder_id }
         return fetch(`${config.API_ENDPOINT}/blocks/new`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify(newBlock)
+            body: JSON.stringify(blockData)
         })
             .then(res => {
                 let result = res.clone()
@@ -52,7 +54,6 @@ const BlocksService = {
                 })
     },
     updateBlockSequence(sequence, type, id) {
-        console.log(`Type, type, reading all about it ${ type }`)
         return fetch(`${config.API_ENDPOINT}/blocks/${type}/${id}`, {
             method: 'PATCH',
             headers: {

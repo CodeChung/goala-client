@@ -19,7 +19,6 @@ class Weekly extends React.Component {
             const state = {}
             const original = {}
             Object.keys(this.state).forEach(key => {
-                console.log(key, days)
                 if (days.includes(key)) {
                     state[key] = true
                     original[key] = true

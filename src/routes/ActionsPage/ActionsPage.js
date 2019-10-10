@@ -66,7 +66,7 @@ class ActionsPage extends React.Component {
         }
 
         if (newGoal) {
-            return <GoalForm actions={actions} goals={goals} addGoal={() => this.addGoal()} />
+            return <GoalForm toggleForm={this.toggleForm()} actions={actions} goals={goals} addGoal={() => this.addGoal()} />
         }
 
         let actionList = actions.map(action => {

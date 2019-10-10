@@ -50,7 +50,6 @@ class LineChart extends React.Component {
     }
     componentDidUpdate(prevProps) {
         const { ratings } = this.props
-        console.log(ratings, prevProps.ratings)
         if (ratings.length !== prevProps.ratings.length) {
             this.cleanData(ratings)
         }
@@ -69,7 +68,6 @@ class LineChart extends React.Component {
                 
             } else if (rating.day) {
                 const date = moment(rating.day).utc().format('MM-DD-YY')
-                console.log(date, rating.rating)
                 labels.push(date)
                 data.push(rating.rating)
             }
