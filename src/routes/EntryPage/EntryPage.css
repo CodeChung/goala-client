@@ -84,6 +84,17 @@
             user-select: none; 
 }
 
+.save-entry {
+    border-radius: 5px;
+    outline: none;
+}
+
+.save-entry:active {
+    background: black;
+    color: beige;
+    outline: none;
+}
+
 /* console.log(we have to implement this later for the stamp hover view please dont forget. */
 
 /* .entry-text-stamp:active, .entry-text-stamp:focus {

@@ -28,7 +28,6 @@ class HomePage extends React.Component {
                 let c = moment(new Date()).format('MM-DD-YYYY')
                 let d = moment(entries[0].date).format('MM-DD-YYYY')
                 let e = new Date(entries[0].date)
-                debugger
                 
                 if ((a) || (b)) {
                     EntriesService.createNewEntry()
@@ -70,6 +69,19 @@ class HomePage extends React.Component {
     updateKeyword(keyword) {
         this.setState({ keyword })
     }
+    updateEntry = entry => {
+        const { entries } = this.state
+        const { index, text, title, id } = entry
+        const entryToUpdate = entries.find(entry => entry.id === id)
+        debugger
+        if (text) {
+            entryToUpdate.text = text
+        }
+        if (title) {
+            entryToUpdate.title = title
+        }
+        this.setState({ entries })
+    }
     searchJournal() {
         // here we'll get request /entries/:keyword
         // saved returned cards in state
@@ -92,10 +104,22 @@ class HomePage extends React.Component {
     render() {
         const { error, entries, date, keyword, searchActive, searchEntries, } = this.state
         if (date) {
-            const data = entries.find(entry => entry.date === date)
+            let data, index
+
+            for (let i = 0; i < entries.length; i++) {
+                if (entries[i].date === date) {
+                    data = entries[i]
+                    index = i
+                }
+            }
+
             return (
                 <section className='home-page'>
-                    <EntryPage data={data} resetDate={() => this.resetDate()} />
+                    <EntryPage 
+                        index={index} 
+                        data={data} 
+                        updateEntry={this.updateEntry}
+                        resetDate={() => this.resetDate()} />
                 </section>
             )
         }

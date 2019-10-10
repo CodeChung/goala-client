@@ -54,12 +54,16 @@ class EntryPage extends React.Component {
         const { id, originalText, originalTitle, text, title } = this.state
         if (originalText !== text) {
             EntriesService.updateEntryText(id, text)
-                .then(res => res)
+                .then(res => {
+                    this.props.updateEntry({ text: res[0] })
+                })
                 .catch(res => this.setState({ error: res.error }))
         }
         if (originalTitle !== title) {
             EntriesService.updateEntryTitle(id, title)
-                .then(res => res)
+                .then(res => {
+                    this.props.updateEntry({ title: res[0] })
+                })
                 .catch(res => this.setState({ error: res.error }))
         }
     }
@@ -85,14 +89,17 @@ class EntryPage extends React.Component {
     }
     saveChanges() {
         const { id, originalText, originalTitle, text, title } = this.state
+        const { index } = this.props;
         if (originalText !== text) {
+            let newText = this.props.updateEntry ? this.props.updateEntry({ id, index, text }) : null
             EntriesService.updateEntryText(id, text)
-                .then(res => this.setState({ originalText: text }))
+                .then(res => res)
                 .catch(res => this.setState({ error: res.error }))
         }
         if (originalTitle !== title) {
+            let newTitle = this.props.updateEntry ? this.props.updateEntry({ id, index, title }) : null
             EntriesService.updateEntryTitle(id, title)
-                .then(res => this.setState({ originalTitle: title }))
+                .then(res => res)
                 .catch(res => this.setState({ error: res.error }))
         }
         this.setState({saveButton: false, })
@@ -138,7 +145,7 @@ class EntryPage extends React.Component {
                             className='entry-title'
                             onChange={this.handleTitle}
                             value={title} />
-                        {((originalText !== text || originalTitle !== title) && saveButton) && <button onClick={() => this.saveChanges()}>Save Changes</button>}
+                        {((originalText !== text || originalTitle !== title) && saveButton) && <button className='save-entry' onClick={() => this.saveChanges()}>Save Changes</button>}
                     </div>
                     <ContentEditable
                         className='entry-text'
