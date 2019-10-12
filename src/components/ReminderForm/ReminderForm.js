@@ -24,7 +24,6 @@ class ReminderForm extends React.Component {
     createReminder = event => {
         event.preventDefault()
         const { title } = this.state
-        debugger
         RemindersService.createReminder(title)
             .then(res => res)
             .catch(res => this.setState({ error: res.error }))

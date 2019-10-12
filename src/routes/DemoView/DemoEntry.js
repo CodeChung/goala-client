@@ -11,6 +11,7 @@ class DemoEntry extends React.Component {
         const text = "What a great day. I went <a href=\"/demo/bike\" contenteditable=\"false\" class=\"text-stamp-container\"> <button class=\"entry-text-stamp\"> bike riding </button><div class=\"stamp-hidden\">Hide me</div> </a><div>in the mountains. It was great getting some fresh air and pumping them legs.</div><div><br></div><div>Afterwards, I picked up some <a href=\"demo/groceries\" contenteditable=\"false\" class=\"text-stamp-container\"> <button class=\"entry-text-stamp\"> groceries </button><div class=\"stamp-hidden\">Hide me</div> </a> and while I was there, </div><div>I went to the blood bank nearby to <a href=\"demo/blood\" contenteditable=\"false\" class=\"text-stamp-container\"> <button class=\"entry-text-stamp\"> donate blood </button><div class=\"stamp-hidden\">Hide me</div> </a>.</div><br></div>Well, it's currently nighttime, and I'm <a href=\"demo/reading\" contenteditable=\"false\" class=\"text-stamp-container\"> <button class=\"entry-text-stamp\"> reading </button><div class=\"stamp-hidden\">Hide me</div> </a>, trying to get to bed. Goodnight."    
         const goals = ['eating healthy', 'bike riding', 'reading'].map((goal, index) => <EntryStamp addTile={() => {}} key={index} title={goal} />)
         const reminders = ['groceries','donate blood'].map((goal, index) => <EntryStamp addTile={() => {}} key={index} title={goal} />)
+    
         return (
             <div className='demo-entry'>
                 <Link to='/'>

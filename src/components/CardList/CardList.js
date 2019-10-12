@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import './CardList.css';
 
@@ -32,17 +31,6 @@ class CardList extends React.Component {
             </div>
         )
     }
-}
-
-CardList.propTypes = {
-    cards: PropTypes.arrayOf(PropTypes.exact({
-        id: PropTypes.number,
-        date: PropTypes.instanceOf(Date),
-        saved: PropTypes.bool,
-        actions: PropTypes.array,
-        reminders: PropTypes.array,
-        text: PropTypes.string,
-    }))
 }
 
 export default CardList;

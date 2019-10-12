@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './Card.css';
@@ -52,15 +51,6 @@ class Card extends React.Component {
             </div>
         )
     }
-}
-
-Card.propTypes = {
-    id: PropTypes.number,
-    date: PropTypes.object,
-    saved: PropTypes.bool,
-    actions: PropTypes.array,
-    reminders: PropTypes.array,
-    upDate: PropTypes.func,
 }
 
 export default Card;

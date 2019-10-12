@@ -33,10 +33,10 @@ class NonUser extends React.Component {
                         <Route exact path='/login' render={() => <LoginPage login={() => this.props.login()}/>} />
                         <Route exact path='/register' component={RegistrationPage} />
                         <Route exact path='/demo' component={DemoView} />
-                        <Route path='/demo/bike' component={DemoBike} />
-                        <Route path='/demo/groceries' component={DemoGroceries} />
-                        <Route path='/demo/reading' component={DemoReading} />
-                        <Route path='/demo/blood' component={DemoBlood} />
+                        <Route exact path='/demo/bike' component={DemoBike} />
+                        <Route exact path='/demo/groceries' component={DemoGroceries} />
+                        <Route exact path='/demo/reading' component={DemoReading} />
+                        <Route exact path='/demo/blood' component={DemoBlood} />
                         <Route component={MissingPage}/>
                     </Switch>
                 </main>

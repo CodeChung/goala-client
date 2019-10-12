@@ -4,14 +4,17 @@ import LogsService from '../../../../services/logs-service';
 
 class Count extends React.Component {
     state = {
-        num: '',
-        den: '',
+        num: 0,
+        den: 5,
         units: 'units'
     }
     componentDidMount() {
         if (this.props.value) {
-            const { num, den, units } = this.props.value
-            this.setState({ num, den, units})
+            let { num, den, units } = this.props.value
+            num = num ? num : 0
+            den = den ? den : 5
+            units = units ? units : 'units'
+            this.setState({ num, den, units })
         }
 
     }

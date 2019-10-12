@@ -13,6 +13,7 @@ class CheckList extends React.Component {
         if (log && log.value) {
             Object.keys(log.value).forEach(key => {
                 Object.keys(log.value[key]).forEach(k2y => {
+                    debugger
                     let text = log.value[key][k2y] || 'checklist'
                     this.setState({ [`${k2y}`]: text })
                 })
@@ -21,6 +22,7 @@ class CheckList extends React.Component {
         else if (value) {
             let checked = value.checked
             let text = value.text ? value.text : value.value
+            text = text ? text : 'checklist'
             this.setState({ checked, text })
         }
     }
@@ -46,7 +48,7 @@ class CheckList extends React.Component {
                     />
                 <input
                     onChange={() => this.toggleCheck()}
-                    checked={checked}
+                    checked={!!checked}
                     type='checkbox'
                     />
             </div>
