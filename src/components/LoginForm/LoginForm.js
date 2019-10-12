@@ -64,7 +64,7 @@ class LoginForm extends Component {
             placeholder='password'
             id='LoginForm__password'/>
         </div>
-        {loading && <span className='loading-msg'>Patience child<br/>I am loading...</span>}
+        {loading && <span className='loading-msg'>Please be patient<br/>I am loading...</span>}
         <button type='submit'>
           Login
         </button>

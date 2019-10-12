@@ -88,7 +88,7 @@ class GoalForm extends React.Component {
             <div className='goal-form'>
                 <FontAwesomeIcon 
                     className='entry-back-arrow' 
-                    onClick={() => this.props.addGoal()} 
+                    onClick={() => this.props.toggleForm()} 
                     icon={faArrowAltCircleLeft} />
                 <div className='goal-settings'>
                     <div className='new-goal'>
