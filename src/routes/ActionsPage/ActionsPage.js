@@ -63,7 +63,7 @@ class ActionsPage extends React.Component {
         const { activeGoal, formActive, actions, goals, settingsActive } = this.state
 
         if (settingsActive) {
-            return <GoalForm toggleForm={() => this.toggleForm()} actions={actions} goals={goals} addGoal={() => this.addGoal()} />
+            return <GoalForm toggleForm={() => this.toggleSettings()} actions={actions} goals={goals} addGoal={() => this.addGoal()} />
         }
 
         if (formActive) {
