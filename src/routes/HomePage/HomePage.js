@@ -23,9 +23,10 @@ class HomePage extends React.Component {
         this.addNewEntries()
             .then(entries => {
                 // check if today's entry exists and creates
+                let today = new Date()
+                today.setDate(today.getDate() - 1)
                 let a = entries && !entries.length
-                let b = entries && entries.length && moment(entries[0].date).format('MM-DD-YYYY') !== moment(new Date() - 1).format('MM-DD-YYYY')
-                
+                let b = entries && !entries.find(entry => moment(entry.date).format('MM-DD-YYYY') === moment(today).format('MM-DD-YYYY'))
                 if ((a) || (b)) {
                     EntriesService.createNewEntry()
                         .then(entries => this.setState({ entries }))

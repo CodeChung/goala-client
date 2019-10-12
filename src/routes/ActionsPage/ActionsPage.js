@@ -17,6 +17,7 @@ class ActionsPage extends React.Component {
         formActive: false,
         error: false,
         loading: false,
+        settingsActive: false,
     }
     componentDidMount() {
         ActionsService.getActions()
@@ -39,6 +40,7 @@ class ActionsPage extends React.Component {
         })
     }
     addGoal() {
+        debugger
         const { newGoal } = this.state
         this.setState({ newGoal: !newGoal })
     }
@@ -51,8 +53,19 @@ class ActionsPage extends React.Component {
         })
         this.setState({ goals })
     }
+    toggleSettings() {
+        const { settingsActive } = this.state
+        this.setState({
+            settingsActive: !settingsActive
+        })
+    }
     render() {
-        const { activeGoal, formActive, actions, goals, newGoal } = this.state
+        const { activeGoal, formActive, actions, goals, settingsActive } = this.state
+
+        if (settingsActive) {
+            return <GoalForm toggleForm={() => this.toggleForm()} actions={actions} goals={goals} addGoal={() => this.addGoal()} />
+        }
+
         if (formActive) {
             return (
                 <section className='actions-page'>
@@ -63,10 +76,6 @@ class ActionsPage extends React.Component {
                         toggleForm={() => this.toggleForm()} />
                 </section>
             )
-        }
-
-        if (newGoal) {
-            return <GoalForm toggleForm={this.toggleForm()} actions={actions} goals={goals} addGoal={() => this.addGoal()} />
         }
 
         let actionList = actions.map(action => {
@@ -114,7 +123,7 @@ class ActionsPage extends React.Component {
                 {newbie}
                 <button
                     className='add-reminder'
-                    onClick={() => this.addGoal()}
+                    onClick={() => this.toggleSettings()}
                     >
                     <FontAwesomeIcon icon={faTools} />
                 </button>
