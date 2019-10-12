@@ -49,6 +49,7 @@ class LoginForm extends Component {
             required
             name='username'
             placeholder='username'
+            autoComplete='username'
             id='LoginForm__user_name'/>
         </div>
         <div className='password'>
@@ -59,6 +60,7 @@ class LoginForm extends Component {
             required
             name='password'
             type='password'
+            autoComplete='current-password'
             placeholder='password'
             id='LoginForm__password'/>
         </div>

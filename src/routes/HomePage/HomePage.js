@@ -57,7 +57,6 @@ class HomePage extends React.Component {
     }
     resetDate() {
         this.setState({ date: null })
-        this.addNewEntries()
     }
     upDate(date) {
         this.setState({ date })

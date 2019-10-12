@@ -13,7 +13,6 @@ class CheckList extends React.Component {
         if (log && log.value) {
             Object.keys(log.value).forEach(key => {
                 Object.keys(log.value[key]).forEach(k2y => {
-                    debugger
                     let text = log.value[key][k2y] || 'checklist'
                     this.setState({ [`${k2y}`]: text })
                 })

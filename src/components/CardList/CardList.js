@@ -11,10 +11,10 @@ class CardList extends React.Component {
         cards: []
     }
     render() {
-        const cardsList = this.props.cards.map(card => 
+        const cardsList = this.props.cards.map((card, index) => 
             <Card 
                 upDate={(date) => this.props.upDate(date)}
-                key={card.id}
+                key={card.id + card.title}
                 id={card.id}
                 date={card.date}
                 saved={card.saved}
