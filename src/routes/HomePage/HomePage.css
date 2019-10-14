@@ -33,3 +33,17 @@
 .journal-feed .card-list .entry-card:active {
     transform: translateY(3px);
 }
+
+@media only screen and (max-width: 400px) {
+    .journal-feed .card-list .entry-card {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .journal-feed .card-list .entry-card {
+        width: 300px;
+        height: 300px;
+    }
+}

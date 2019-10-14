@@ -1,6 +1,4 @@
 import React from 'react';
-// import ReminderDate from './ReminderDate/ReminderDate';
-// import ReminderTime from './ReminderTime/ReminderTime';
 import './Reminder.css';
 
 class Reminder extends React.Component {

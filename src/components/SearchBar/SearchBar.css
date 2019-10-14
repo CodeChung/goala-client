@@ -38,3 +38,14 @@
 .searchbar form button:focus {
     outline: none;
 }
+
+@media only screen and (max-width: 400px) {
+    .searchbar form input {
+        width: 270px;
+        font-size: 21px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+
+}

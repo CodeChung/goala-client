@@ -13,7 +13,7 @@
 
 .entry-card-header {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .entry-card-header h3 {
@@ -58,3 +58,15 @@
 .entry-bookmark svg:hover {
     color: white;
 }
+
+@media only screen and (max-width: 400px) {
+    .entry-card-header h3 {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .entry-date-block {
+        padding-right: 10px;
+    }
+}
+

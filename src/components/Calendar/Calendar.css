@@ -36,3 +36,10 @@
         width: 100%;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .calendar {
+        position: relative;
+        bottom: 40px;
+    }
+}

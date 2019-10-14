@@ -42,3 +42,12 @@
 .icon-right:active {
     transform: translateX(3px);
 }
+
+@media only screen and (max-width: 400px) {
+    .icon-left {
+        right: -20px;
+    }
+    .icon-right {
+        left: -20px;
+    }
+}
