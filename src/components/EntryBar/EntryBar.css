@@ -1,7 +1,7 @@
 .entry-bar {
     /* width: 100%; */
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: -8px;
     border: 1.4px solid rgb(145, 145, 145);
     background: rgb(212, 212, 212);

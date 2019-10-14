@@ -14,7 +14,7 @@
 .demo-entry-bar {
     width: 100%;
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 18%;
     border: 1.4px solid rgb(145, 145, 145);
